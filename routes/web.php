@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChartController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function(){
-    return view('admin.dashboard');
-});
+Route::get('/home', [ChartController::class, 'index']);
