@@ -13,4 +13,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [ChartController::class, 'index']);
+Route::middleware([
+    'auth:sanctum',              
+    config('jetstream.auth_session'), 
+    'verified',                  
+])->group(function () {
+    // Rute untuk halaman home
+    Route::get('/dashboard', [ChartController::class, 'index'])->name('dashboard');
+});
