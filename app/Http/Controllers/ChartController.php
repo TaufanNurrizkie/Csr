@@ -2,29 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use ArielMejiaDev\LarapexCharts\LarapexChart;
+use ArielMejiaDev\LarapexCharts\Facades\LarapexChart;
 
 class ChartController extends Controller
 {
+
+
     public function index()
     {
-        // Membuat pie chart
-        $pieChart = (new LarapexChart)->pieChart()
-            ->setTitle('Distribusi Warna')
-            ->setDataset([40, 30, 20, 10]) // Set data untuk pie chart
-            ->setLabels(['Red', 'Blue', 'Yellow', 'Green']); // Set label untuk pie chart
+        // Contoh data statis
+        $pieChart = LarapexChart::pieChart()
+            ->setTitle('')
+            ->setDataset([44, 55, 13, 33])
+            ->setLabels(['Sektor 1', 'Sektor 2', 'Sektor 3', 'Sektor 4']);
+    
+        $barChart = LarapexChart::barChart()
+            ->setTitle('')
+            ->setDataset([
+                [
+                    'name' => 'Proyek CSR',
+                    'data' => [30, 40, 45, 50, 49, 60, 70, 91, 125, 134, 145]
+                ]
+            ])
+            ->setXAxis(['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nov', 'Des']);
+        $barChart2 = LarapexChart::barChart()
+            ->setTitle('')
+            ->setDataset([
+                [
+                    'name' => 'Proyek CSR',
+                    'data' => [30, 40, 45, 50, 49, 60, 70, 91, 125, 134, 145]
+                ]
+            ])
+            ->setXAxis(['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nov', 'Des']);
+        $barChart3 = LarapexChart::barChart()
+            ->setTitle('')
+            ->setDataset([
+                [
+                    'name' => 'Proyek CSR',
+                    'data' => [30, 40, 45, 50, 49, 60, 70, 91, 125, 134, 145]
+                ]
+            ])
+            ->setXAxis(['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nov', 'Des']);
 
             
-        // Membuat bar chart
-        $barChart = (new LarapexChart)->barChart()
-        ->setTitle('San Francisco vs Boston.')
-        ->setSubtitle('Wins during season 2021.')
-        ->setDataset('San Francisco', [6, 9, 3, 4, 10, 8])
-        ->setDataset('Boston', [7, 3, 8, 2, 6, 4])
-        ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
-        
+    return view('admin.dashboard', compact('pieChart', 'barChart', 'barChart2', 'barChart3'));
+}
 
-        // Mengirimkan data ke view
-        return view('admin.dashboard', compact('barChart','pieChart'));
-    }
 }
