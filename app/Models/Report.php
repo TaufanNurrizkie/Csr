@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'status',
+        'submitted_by',
+        'reporter_name',
+        'image_url', // Tambahkan ini
+        // Kolom lainnya...
+    ];
 }
+
