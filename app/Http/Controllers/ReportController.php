@@ -11,7 +11,7 @@ class ReportController extends Controller
     // Tampilkan semua laporan untuk admin
     public function index()
     {
-        $reports = Report::all();
+        $reports = Report::paginate(10); // Menggunakan pagination
         return view('admin.reports.index', compact('reports'));
     }
 
@@ -56,4 +56,44 @@ class ReportController extends Controller
             return redirect()->back()->with('error', 'Laporan tidak ditemukan.');
         }
     }
+
+    // Tambahkan saran
+    public function suggest(Request $request, $id)
+    {
+        try {
+            $report = Report::findOrFail($id);
+            $report->suggestion = $request->input('suggestion');
+            $report->save();
+
+            return redirect()->route('reports.show', $report->id)->with('success', 'Saran telah disampaikan.');
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('reports.index')->with('error', 'Laporan tidak ditemukan.');
+        }
+    }
+
+    public function store(Request $request)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'image' => 'required|image|mimes:jpg,jpeg,png|max:2048', // Validasi gambar
+        // Kolom lainnya...
+    ]);
+
+    // Menyimpan gambar
+    $imagePath = $request->file('image')->store('reports', 'public'); // Simpan di storage/app/public/reports
+
+    // Membuat laporan
+    Report::create([
+        'title' => $request->title,
+        'description' => $request->description,
+        'image_url' => $imagePath, // Simpan URL gambar
+        'submitted_by' => auth()->user()->id,
+        'reporter_name' => $request->reporter_name,
+        // Kolom lainnya...
+    ]);
+
+    return redirect()->route('reports.index')->with('success', 'Laporan berhasil dibuat.');
+}
+
 }

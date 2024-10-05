@@ -4,24 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class AddSuggestionToReportsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('reports', function (Blueprint $table) {
+            $table->text('suggestion')->nullable(); // Menambahkan kolom suggestion
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('reports');
+        Schema::table('reports', function (Blueprint $table) {
+            $table->dropColumn('suggestion'); // Menghapus kolom jika rollback
+        });
     }
-};
+}
+
