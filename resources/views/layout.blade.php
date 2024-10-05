@@ -5,11 +5,11 @@
     </div>
 <!-- Menu Navigasi -->
     <ul class="flex space-x-10 text-xl font-medium">
-        <li><a href="#" class="text-red-600 border-b-2 border-red-600">Dashboard</a></li>
+        <li><a href="/home" class="text-red-600 border-b-2 border-red-600">Dashboard</a></li>
         <li><a href="#" class="text-gray-700 hover:text-red-600">Kegiatan</a></li>
         <li><a href="#" class="text-gray-700 hover:text-red-600">Proyek</a></li>
         <li><a href="#" class="text-gray-700 hover:text-red-600">Sektor</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-red-600">Laporan</a></li>
+        <li><a href="/reports" class="text-gray-700 hover:text-red-600">Laporan</a></li>
         <li><a href="#" class="text-gray-700 hover:text-red-600">Mitra</a></li>
     </ul>
 
