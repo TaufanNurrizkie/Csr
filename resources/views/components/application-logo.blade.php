@@ -1,0 +1,1 @@
+<img src="{{ asset('cirebonLogo.png') }}" alt="">
