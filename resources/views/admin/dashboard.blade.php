@@ -8,15 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard CSR Kabupaten Cirebon</title>
   @vite('resources/css/app.css')
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-  <div class="bg-[url('{{ asset('background.png') }}')] h-56 bg-cover bg-center flex items-center justify-center">
-    <div class="text-center">
-      <h1 class="text-4xl font-bold text-white mb-3">Selamat Datang di Dashboard CSR Kabupaten Cirebon</h1>
-      <p class="text-white">Lapor dan ketahui program CSR Anda</p>
-    </div>
+ <!-- Header Section -->
+ <div class="flex items-center" style="background-image: url('{{ asset('background.png') }}'); background-size: cover; background-position: center; min-height: 250px;">
+  <div class="container mx-auto flex flex-col items-center justify-center h-full text-center bg-black bg-opacity-50 p-6 rounded">
+    <h1 class="text-4xl font-bold text-white my-5">Selamat Datang di Dashboard CSR Kabupaten Cirebon</h1>
+    <p class="text-lg text-white">Lapor dan ketahui program CSR Anda</p>
   </div>
+</div>
+
+
+
 
   <!-- Filter Section -->
   <div class="container mx-auto mt-8 flex justify-center">
@@ -40,7 +43,7 @@
         </select>
       </div>
 
-      <!-- Dropdown Semua Sektor -->
+      <!-- Dropdown Sektor -->
       <div>
         <select class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
           <option selected>Semua Sektor</option>
@@ -49,7 +52,7 @@
         </select>
       </div>
 
-      <!-- Dropdown Semua Mitra -->
+      <!-- Dropdown Mitra -->
       <div>
         <select class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
           <option selected>Semua Mitra</option>
@@ -60,9 +63,7 @@
 
       <!-- Tombol Terapkan Filter -->
       <div>
-        <button class="bg-red-600 text-white py-1.5 px-3 rounded hover:bg-red-700 transition-colors">
-          Terapkan filter
-        </button>
+        <button class="bg-red-600 text-white py-1.5 px-3 rounded hover:bg-red-700 transition-colors">Terapkan filter</button>
       </div>
 
       <!-- Tombol Unduh CSV -->
@@ -90,7 +91,7 @@
   <!-- Main Section -->
   <div class="container mx-auto mt-6">
     <div class="bg-white p-4 rounded-lg shadow-md">
-      <h2 class="text-3xl font-bold my-8 text-start">Realisasi Proyek CSR</h2>
+      <h2 class="text-3xl font-bold my-8 text-start">Data Statistik</h2>
       <!-- Data Statistik -->
       <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-4 text-center">
         <div class="bg-red-500 text-white p-3 rounded-lg">
@@ -112,52 +113,62 @@
       </div>
 
       <!-- Realisasi Proyek CSR -->
+      <h2 class="text-3xl font-bold mb-8 text-start">Realisasi Proyek CSR</h2>
       <div class="bg-gray-50 p-4 rounded-lg shadow-md">
-        <h2 class="text-3xl font-bold mb-3 text-start">Realisasi Proyek CSR</h2>
 
         <!-- Charts Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <!-- Pie Chart -->
           <div class="bg-white p-3 rounded-lg shadow-md">
             <h3 class="text-xl mb-2 text-start font-bold">Persentase total realisasi berdasarkan sektor CSR</h3>
-            <div class="w-full h-100 bg-white-200 rounded-lg">
+            <div class="w-full h-64 bg-white-200 rounded-lg">
               <div class="w-full h-full flex items-center justify-center">
-                <div class="max-w-xl max-h-xl w-full h-full">
+                <div class="max-w-sm max-h-sm w-full h-full">
                   {!! $pieChart->container() !!}
                 </div>
               </div>
-            </div> <!-- Tempat untuk chart -->
+            </div>
           </div>
 
-          <!-- Bar Chart -->
+          <!-- Bar Chart 1 -->
           <div class="bg-white p-3 rounded-lg shadow-md">
             <h3 class="text-xl mb-2 text-start font-bold">Persentase total realisasi berdasarkan sektor CSR</h3>
-            <div class="w-full h-100 bg-white-200 rounded-lg">
+            <div class="w-full h-64 bg-white-200 rounded-lg">
               <div class="w-full h-full flex items-center justify-center">
-                <div class="max-w-xl max-h-xl w-full h-full">
+                <div class="max-w-sm max-h-sm w-full h-full">
                   {!! $barChart->container() !!}
                 </div>
               </div>
-            </div> <!-- Tempat untuk chart -->
+            </div>
           </div>
 
-          <!-- Realisasi Mitra -->
+          <!-- Bar Chart 2 -->
           <div class="bg-white p-3 rounded-lg shadow-md">
-            <h3 class="text-xl font-semibold mb-2 text-center">Persentase total realisasi berdasarkan mitra</h3>
-            <div class="w-full h-40 bg-white-200 rounded-lg"></div> <!-- Tempat untuk chart -->
+            <h3 class="text-xl mb-2 text-start font-bold">Persentase total realisasi berdasarkan sektor CSR</h3>
+            <div class="w-full h-64 bg-white-200 rounded-lg">
+              <div class="w-full h-full flex items-center justify-center">
+                <div class="max-w-sm max-h-sm w-full h-full">
+                  {!! $barChart2->container() !!}
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- Realisasi Kecamatan -->
+          <!-- Bar Chart 3 -->
           <div class="bg-white p-3 rounded-lg shadow-md">
-            <h3 class="text-xl font-semibold mb-2 text-center">Persentase total realisasi berdasarkan Kecamatan</h3>
-            <div class="w-full h-40 bg-white-200 rounded-lg"></div> <!-- Tempat untuk chart -->
+            <h3 class="text-xl mb-2 text-start font-bold">Persentase total realisasi berdasarkan sektor CSR</h3>
+            <div class="w-full h-64 bg-white-200 rounded-lg">
+              <div class="w-full h-full flex items-center justify-center">
+                <div class="max-w-sm max-h-sm w-full h-full">
+                  {!! $barChart3->container() !!}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Footer -->
   
 </body>
 </html>
@@ -165,5 +176,7 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 {{ $pieChart->script() }}
 {{ $barChart->script() }}
+{{ $barChart2->script() }}
+{{ $barChart3->script() }}
 
 @endsection
