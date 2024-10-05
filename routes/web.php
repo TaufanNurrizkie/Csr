@@ -11,6 +11,7 @@ Route::get('/reports/{id}', [ReportController::class, 'show'])->name('reports.sh
 Route::post('/reports/{id}/approve', [ReportController::class, 'approve'])->name('reports.approve');
 Route::post('/reports/{id}/reject', [ReportController::class, 'reject'])->name('reports.reject');
 
+
 Route::get('/', function () {
     return view('welcome');
 });
