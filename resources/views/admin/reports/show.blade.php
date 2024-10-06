@@ -5,39 +5,81 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <div class="container mx-auto p-6">
-    <h1 class="text-2xl font-bold mb-4 text-center">Detail Laporan CSR</h1>
-    <h2 class="text-xl font-semibold">{{ $report->title }}</h2>
-    <p class="mb-4">{{ $report->description }}</p>
-    <p>Status: {{ ucfirst($report->status) }}</p>
+    <!-- Card Detail Laporan -->
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <!-- Gambar Utama -->
+        <img src="{{ asset('storage/' . $report->image_url) }}" alt="{{ $report->title }}" class="w-full h-56 object-cover">
 
-    @if($report->status == 'pending')
-        <form action="{{ route('reports.approve', $report->id) }}" method="POST" class="mt-4">
-            @csrf
-            <button type="submit" class="btn btn-success">Setujui</button>
-        </form>
-        
-        <form action="{{ route('reports.reject', $report->id) }}" method="POST" class="mt-4">
-            @csrf
-            <textarea name="review_notes" placeholder="Catatan penolakan" required class="w-full border border-gray-300 p-2 rounded-md"></textarea>
-            <button type="submit" class="btn btn-danger">Tolak</button>
-        </form>
-    @elseif($report->status == 'rejected')
-        <h3 class="mt-4 text-red-600 font-semibold">Catatan Penolakan:</h3>
-        <p>{{ $report->review_notes }}</p>
+        <div class="p-6">
+            <!-- Judul Laporan -->
+            <h1 class="text-2xl font-bold mb-2 text-center">{{ $report->title }}</h1>
+            
+            <!-- Deskripsi Laporan -->
+            <p class="text-gray-700 mb-4 text-justify">{{ $report->description }}</p>
+            
+            <!-- Status Laporan -->
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-sm font-medium">
+                    Status: 
+                    <span class="px-2 py-1 rounded-full text-white
+                        {{ $report->status === 'approved' ? 'bg-green-500' : ($report->status === 'rejected' ? 'bg-red-500' : 'bg-yellow-500') }}">
+                        {{ ucfirst($report->status) }}
+                    </span>
+                </span>
+                
+                <!-- Pelapor -->
+                <p class="text-gray-600 text-sm">Pelapor: {{ $report->reporter_name }}</p>
+            </div>
 
-        <form action="{{ route('reports.suggest', $report->id) }}" method="POST" class="mt-4">
-            @csrf
-            <textarea name="suggestion" placeholder="Berikan saran untuk revisi" required class="w-full border border-gray-300 p-2 rounded-md"></textarea>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg mt-2">Kirim Saran</button>
-        </form>
-    @endif
+            <!-- Tombol untuk Laporan yang Pending -->
+            @if($report->status == 'pending')
+                <div class="mt-4 flex justify-between gap-4">
+                    <!-- Tombol Setujui -->
+                    <form action="{{ route('reports.approve', $report->id) }}" method="POST" class="flex-1">
+                        @csrf
+                        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
+                            Setujui
+                        </button>
+                    </form>
 
-    @if(session('success'))
-        <div class="alert alert-success mt-4">{{ session('success') }}</div>
-    @endif
+                    <!-- Tombol Tolak -->
+                    <form action="{{ route('reports.reject', $report->id) }}" method="POST" class="flex-1">
+                        @csrf
+                        <textarea name="review_notes" placeholder="Catatan penolakan" required class="w-full border border-gray-300 p-2 rounded-md mb-2"></textarea>
+                        <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
+                            Tolak
+                        </button>
+                    </form>
+                </div>
+            @elseif($report->status == 'rejected')
+                <div class="bg-red-100 p-4 rounded-md">
+                    <h3 class="text-red-600 font-semibold">Catatan Penolakan:</h3>
+                    <p class="text-red-500 mb-4">{{ $report->review_notes }}</p>
+                </div>
 
-    @if(session('error'))
-        <div class="alert alert-danger mt-4">{{ session('error') }}</div>
-    @endif
+                <!-- Formulir untuk Saran Perbaikan -->
+                <form action="{{ route('reports.suggest', $report->id) }}" method="POST" class="mt-4">
+                    @csrf
+                    <textarea name="suggestion" placeholder="Berikan saran untuk revisi" required class="w-full border border-gray-300 p-2 rounded-md mb-2"></textarea>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
+                        Kirim Saran
+                    </button>
+                </form>
+            @endif
+
+            <!-- Pesan Sukses dan Error -->
+            @if(session('success'))
+                <div class="bg-green-500 text-white px-4 py-3 rounded mb-4 mt-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="bg-red-500 text-white px-4 py-3 rounded mb-4 mt-4">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>
+    </div>
 </div>
 @endsection

@@ -8,10 +8,18 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ReportController extends Controller
 {
-    // Tampilkan semua laporan untuk admin
-    public function index()
+    // Tampilkan semua laporan untuk admin dengan pencarian
+    public function index(Request $request)
     {
-        $reports = Report::paginate(10); // Menggunakan pagination
+        // Ambil kata kunci pencarian dari query string
+        $search = $request->input('search');
+
+        // Filter laporan berdasarkan judul atau nama pelapor jika ada kata kunci pencarian
+        $reports = Report::when($search, function ($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%')
+                         ->orWhere('reporter_name', 'like', '%' . $search . '%');
+        })->paginate(10); // Menggunakan pagination
+
         return view('admin.reports.index', compact('reports'));
     }
 
@@ -48,7 +56,7 @@ class ReportController extends Controller
             $report = Report::findOrFail($id);
             $report->status = 'rejected';
             $report->review_notes = $request->input('review_notes');
-            $report->reviewed_by = auth()->user()->id;
+            $report->reviewed_by = auth()->user()->id; // ID admin yang menolak laporan
             $report->save();
 
             return redirect()->back()->with('success', 'Laporan telah ditolak.');
@@ -71,29 +79,29 @@ class ReportController extends Controller
         }
     }
 
+    // Simpan laporan baru
     public function store(Request $request)
-{
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'description' => 'required|string',
-        'image' => 'required|image|mimes:jpg,jpeg,png|max:2048', // Validasi gambar
-        // Kolom lainnya...
-    ]);
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048', // Validasi gambar
+            // Kolom lainnya...
+        ]);
 
-    // Menyimpan gambar
-    $imagePath = $request->file('image')->store('reports', 'public'); // Simpan di storage/app/public/reports
+        // Menyimpan gambar
+        $imagePath = $request->file('image')->store('reports', 'public'); // Simpan di storage/app/public/reports
 
-    // Membuat laporan
-    Report::create([
-        'title' => $request->title,
-        'description' => $request->description,
-        'image_url' => $imagePath, // Simpan URL gambar
-        'submitted_by' => auth()->user()->id,
-        'reporter_name' => $request->reporter_name,
-        // Kolom lainnya...
-    ]);
+        // Membuat laporan
+        Report::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image_url' => $imagePath, // Simpan URL gambar
+            'submitted_by' => auth()->user()->id,
+            'reporter_name' => $request->reporter_name,
+            // Kolom lainnya...
+        ]);
 
-    return redirect()->route('reports.index')->with('success', 'Laporan berhasil dibuat.');
-}
-
+        return redirect()->route('reports.index')->with('success', 'Laporan berhasil dibuat.');
+    }
 }
