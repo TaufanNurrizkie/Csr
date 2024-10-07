@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ActivityController;
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/reports/{id}/reject', [ReportController::class, 'reject'])->name('reports.reject');
@@ -26,3 +27,8 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', [ChartController::class, 'index'])->name('dashboard')->middleware('role:admin');
 });
+
+Route::get('/activities', [ActivityController::class, 'index'])->name('activities.activity');
+
+Route::get('/activities/{id}/edit', [ActivityController::class, 'edit'])->name('activities.edit');
+Route::put('/activities/{id}', [ActivityController::class, 'update'])->name('activities.update');
