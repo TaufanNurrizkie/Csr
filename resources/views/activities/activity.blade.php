@@ -11,7 +11,7 @@
             <button class="bg-white text-gray-700 border px-4 py-1 rounded">Terbit</button>
             <button class="bg-white text-gray-700 border px-4 py-1 rounded">Draf</button>
         </div>
-        <button class="bg-red-600 text-white px-4 py-2 rounded">+ Buat Kegiatan Baru</button>
+        <a href="/activities/create" class="bg-red-600 text-white px-4 py-2 rounded">+ Buat Kegiatan Baru</a>
     </div>
     <div class="mb-4">
         <input type="text" placeholder="Cari" class="border p-2 rounded w-full" />
@@ -34,7 +34,11 @@
                     <img src="{{ $activity->photo }}" alt="Foto" class="w-16 h-16 object-cover rounded">
                 </td>
                 <td class="px-6 py-4 border-b">{{ $activity->title }}</td>
-                <td class="px-6 py-4 border-b">{{ $activity->description }}</td>
+                <td class="px-6 py-4 border-b max-w-lg break-words whitespace-normal">
+                    {{ htmlspecialchars(strip_tags($activity->description)) }}
+                </td>
+
+                
                 <td class="py-2 px-4">
                     {{ $activity->published_date ? \Carbon\Carbon::parse($activity->published_date)->format('d M Y') : '-' }}
                 </td>
@@ -57,4 +61,5 @@
         {{ $activities->links() }}
     </div>
 </div>
+
 @endsection

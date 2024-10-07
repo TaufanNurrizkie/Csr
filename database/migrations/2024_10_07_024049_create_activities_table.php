@@ -15,6 +15,7 @@ return new class extends Migration
     $table->id();
     $table->string('photo')->nullable();
     $table->string('title');
+    $table->string('tags');
     $table->text('description');
     $table->date('published_date')->nullable();
     $table->enum('status', ['Terbit', 'Draf']);
