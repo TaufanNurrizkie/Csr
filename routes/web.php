@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ActivityController;
 
 Route::post('/reports/{id}/reject', [ReportController::class, 'reject'])->name('reports.reject');
 Route::post('/reports/{id}/suggest', [ReportController::class, 'suggest'])->name('reports.suggest');    
@@ -24,3 +25,8 @@ Route::middleware([
     // Rute untuk halaman home
     Route::get('/dashboard', [ChartController::class, 'index'])->name('dashboard');
 });
+
+Route::get('/activities', [ActivityController::class, 'index'])->name('activities.activity');
+
+Route::get('/activities/{id}/edit', [ActivityController::class, 'edit'])->name('activities.edit');
+Route::put('/activities/{id}', [ActivityController::class, 'update'])->name('activities.update');
