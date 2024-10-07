@@ -22,6 +22,7 @@ return new class extends Migration
         Schema::table('reports', function (Blueprint $table) {
             $table->dropColumn('suggestion');
             $table->dropColumn('revision');
+            $table->string('test');
         });
     }
     
@@ -29,3 +30,5 @@ return new class extends Migration
      * Reverse the migrations.
      */
 };
+
+// test

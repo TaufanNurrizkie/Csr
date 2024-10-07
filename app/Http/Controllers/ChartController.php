@@ -22,9 +22,11 @@ class ChartController extends Controller
                 [
                     'name' => 'Proyek CSR',
                     'data' => [30, 40, 45, 50, 49, 60]
+            
+                    
                 ]
             ])
-            ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
+            ->setColors(['#008FFB', '#00E396'])
             ->setXAxis(['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul']);
 
         $barChart2 = LarapexChart::horizontalBarChart()
