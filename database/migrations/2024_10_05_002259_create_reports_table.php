@@ -17,6 +17,7 @@ class AddSuggestionToReportsTable extends Migration
     {
         Schema::table('reports', function (Blueprint $table) {
             $table->dropColumn('suggestion'); // Menghapus kolom jika rollback
+            $table->string('test');
         });
     }
 }
