@@ -16,7 +16,18 @@
             
             <!-- Deskripsi Laporan -->
             <p class="text-gray-700 mb-4 text-justify">{{ $report->description }}</p>
-            
+
+            <!-- Informasi Laporan -->
+            <div class="mb-4">
+                <p class="font-semibold">Mitra: <span class="font-normal">{{ $report->mitra }}</span></p>
+                <p class="font-semibold">Lokasi: <span class="font-normal">{{ $report->lokasi }}</span></p>
+                <p class="font-semibold">Realisasi: <span class="font-normal">{{ number_format($report->realisasi, 2) }}</span></p>
+                
+                <!-- Konversi string ke Carbon -->
+                <p class="font-semibold">Tanggal Realisasi: <span class="font-normal">{{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d-m-Y') }}</span></p>
+                <p class="font-semibold">Tanggal Laporan Dikirim: <span class="font-normal">{{ \Carbon\Carbon::parse($report->laporan_dikirim)->format('d-m-Y') }}</span></p>
+            </div>
+
             <!-- Status Laporan -->
             <div class="flex items-center justify-between mb-4">
                 <span class="text-sm font-medium">
