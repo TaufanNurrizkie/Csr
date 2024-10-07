@@ -21,10 +21,7 @@
             <input type="text" name="title" value="{{ old('title', $activity->title) }}" class="border p-2 rounded w-full" required />
         </div>
 
-        <div class="mb-4">
-            <label class="block text-sm font-medium mb-2">Tags *</label>
-            <input type="text" name="tags" value="{{ old('tags', $activity->tags) }}" class="border p-2 rounded w-full" required />
-        </div>
+
 
         <div class="mb-4">
             <label class="block text-sm font-medium mb-2">Deskripsi *</label>
@@ -33,7 +30,7 @@
 
         <div class="flex gap-4">
             <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded">Terbitkan Kegiatan</button>
-            <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded">Simpan Sebagai Draft</button>
+            <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded">Simpan Sebagai Draft</button>
         </div>
     </form>
 </div>

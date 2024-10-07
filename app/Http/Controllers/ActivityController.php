@@ -25,14 +25,12 @@ class ActivityController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'tags' => 'required',
             'photo' => 'nullable|image|mimes:jpg,png,jpeg|max:10240',
         ]);
 
         // Update the activity details
         $activity->title = $request->title;
         $activity->description = $request->description;
-        $activity->tags = $request->tags;
 
         // Handle file upload if a new photo is uploaded
         if ($request->hasFile('photo')) {
@@ -42,6 +40,6 @@ class ActivityController extends Controller
 
         $activity->save();
 
-        return redirect()->route('activities.index')->with('success', 'Activity updated successfully.');
+        return redirect()->route('activities.activity')->with('success', 'Activity updated successfully.');
     }
 }
