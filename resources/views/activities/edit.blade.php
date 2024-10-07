@@ -21,11 +21,14 @@
             <input type="text" name="title" value="{{ old('title', $activity->title) }}" class="border p-2 rounded w-full" required />
         </div>
 
-
+        <div class="mb-4">
+            <label class="block text-sm font-medium mb-2">Tags *</label>
+            <input type="text" name="tags" value="{{ old('tags', $activity->tags) }}" class="border p-2 rounded w-full" required />
+        </div>
 
         <div class="mb-4">
             <label class="block text-sm font-medium mb-2">Deskripsi *</label>
-            <textarea name="description" rows="5" class="border p-2 rounded w-full" required>{{ old('description', $activity->description) }}</textarea>
+            <textarea id="editor" name="description" rows="5" class="border p-2 rounded w-full" required>{{ old('description', $activity->description) }}</textarea>
         </div>
 
         <div class="flex gap-4">
@@ -34,5 +37,12 @@
         </div>
     </form>
 </div>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 @endsection

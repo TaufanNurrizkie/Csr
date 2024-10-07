@@ -42,4 +42,40 @@ class ActivityController extends Controller
 
         return redirect()->route('activities.activity')->with('success', 'Activity updated successfully.');
     }
+
+    public function create()
+    {
+        return view('activities.create');
+    }
+    
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'tags' => 'required',
+            'photo' => 'nullable|image|mimes:jpg,png,jpeg|max:10240',
+            'status' => 'required|in:Terbit,Draft'
+        ]);
+    
+        $activity = new Activity();
+    
+        // Reordered assignments
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('photos', 'public');
+            $activity->photo = $path; // Handle file upload if a photo is uploaded
+        }
+        
+        $activity->title = $request->title;            // Title first
+        $activity->tags = $request->tags;              // Tags second
+        $activity->description = $request->description; // Description third
+        $activity->published_date = $request->status === 'Terbit' ? now() : null; // Published date fourth
+        $activity->status = $request->status;          // Status last
+    
+        $activity->save();
+    
+        return redirect()->route('activities.activity')->with('success', 'Activity created successfully.');
+    }
+    
+    
 }
