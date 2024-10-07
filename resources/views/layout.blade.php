@@ -18,7 +18,7 @@
     <div class="flex items-center space-x-6">
         <div class="text-right">
             <p class="text-lg font-semibold">{{ Auth::user()->name }}</p>
-            <p class="text-sm text-gray-500">Admin</p>
+            <p class="text-sm text-gray-500">{{ Auth::user()->getRoleNames()->join(', ') }}</p>
         </div>
         <!-- Icon User -->
         <div class="shrink-0 me-3">
