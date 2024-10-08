@@ -8,9 +8,14 @@
 
         <li><a href="/dashboard" class="{{ Request::is('dashboard') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Dashboard</a></li>
         <li><a href="/activities" class="{{ Request::is('activities') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Kegiatan</a></li>
+
+        <li><a href="#" class="{{ Request::is('proyek*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Proyek</a></li>
+        <li><a href="/sektor" class="{{ Request::is('sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a></li>
+
         <li><a href="/projects" class="{{ Request::is('projects*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Proyek</a></li>
 
         <li><a href="#" class="{{ Request::is('sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a></li>
+
         <li><a href="/reports" class="{{ Request::is('reports*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Laporan</a></li>
         <li><a href="#" class="{{ Request::is('mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a></li>
     </ul>
@@ -41,7 +46,7 @@
 
 @yield('content')
 
-<footer class="bg-gray-800 text-white p-4 mt-6">
+<footer class="bg-gray-800 text-white p-4 mt-6 ">
     <div class="container mx-auto text-center">
         <p>&copy; 2024 CSR Kabupaten Cirebon | Semua hak dilindungi undang-undang</p>
     </div>
