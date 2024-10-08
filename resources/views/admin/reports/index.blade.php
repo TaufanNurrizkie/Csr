@@ -95,9 +95,7 @@
                     </td>
                     <td class="py-2 px-4">
                         <a href="{{ route('reports.show', $report->id) }}" class="text-blue-500 hover:text-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm-9 0c0 4.418 3.582 8 8 8s8-3.582 8-8-3.582-8-8-8-8 3.582-8 8z" />
-                            </svg>
+                            👁️
                         </a>
                     </td>
                 </tr>
