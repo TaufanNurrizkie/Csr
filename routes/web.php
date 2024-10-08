@@ -56,3 +56,6 @@ Route::get('/activities/{id}/edit', [ActivityController::class, 'edit'])->name('
 Route::put('/activities/{id}', [ActivityController::class, 'update'])->name('activities.update');
 Route::get('/activities/create', [ActivityController::class, 'create'])->name('activities.create');
 Route::post('/activities', [ActivityController::class, 'store'])->name('activities.store');
+Route::get('/activities/{id}', [ActivityController::class, 'show'])->name('activities.show');
+
+

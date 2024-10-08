@@ -18,7 +18,7 @@ return new class extends Migration
     $table->string('tags');
     $table->text('description');
     $table->date('published_date')->nullable();
-    $table->enum('status', ['Terbit', 'Draf']);
+    $table->enum('status', ['Draft', 'Terbit']);
     $table->timestamps();
 });
 
