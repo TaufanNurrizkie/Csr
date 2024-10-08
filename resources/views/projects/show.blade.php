@@ -6,6 +6,22 @@
 
 <div class="container mx-auto p-6">
     <div class="bg-white shadow rounded-lg p-6">
+        <nav class=" top-4 left-4 flex items-center space-x-2 text-lg px-3 py-1 rounded">
+            <!-- Icon home -->
+            <a href="/" class="text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 3.293l6 6V16a1 1 0 01-1 1h-4v-4H9v4H5a1 1 0 01-1-1v-6.707l6-6z"/>
+                </svg>
+            </a>
+            <!-- Separator -->
+            <span class="text-black">›</span>
+            <!-- Kegiatan link -->
+            <a href="{{ route('projects.index') }}" class="text-black hover:text-gray-700">Proyek</a>
+            <!-- Separator -->
+            <span class="text-black">›</span>
+            <!-- Detail -->
+            <span class="bg-red-100 text-red-600 px-3 py-1 rounded">Detail</span>
+        </nav>
         <!-- Judul Proyek -->
         <h1 class="text-3xl font-semibold mb-4">{{ $project->judul }}</h1>
 
