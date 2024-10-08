@@ -4,6 +4,28 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ProjectController;
+
+Route::resource('projects', ProjectController::class);
+
+
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
+Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+Route::get('/projects/{id}/update', [ProjectController::class, 'update'])->name('projects.update');
+// web.php
+Route::get('projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
+// routes/web.php
+
+Route::get('/projects/{id}/publish', [ProjectController::class, 'publish'])->name('projects.publish');
+
+
+
+
+
+
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/reports/{id}/reject', [ReportController::class, 'reject'])->name('reports.reject');
@@ -34,4 +56,3 @@ Route::get('/activities/{id}/edit', [ActivityController::class, 'edit'])->name('
 Route::put('/activities/{id}', [ActivityController::class, 'update'])->name('activities.update');
 Route::get('/activities/create', [ActivityController::class, 'create'])->name('activities.create');
 Route::post('/activities', [ActivityController::class, 'store'])->name('activities.store');
-
