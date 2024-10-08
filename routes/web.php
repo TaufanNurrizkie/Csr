@@ -51,7 +51,6 @@ Route::middleware([
 });
 
 Route::get('/activities', [ActivityController::class, 'index'])->name('activities.activity');
-
 Route::get('/activities/{id}/edit', [ActivityController::class, 'edit'])->name('activities.edit');
 Route::put('/activities/{id}', [ActivityController::class, 'update'])->name('activities.update');
 Route::get('/activities/create', [ActivityController::class, 'create'])->name('activities.create');
