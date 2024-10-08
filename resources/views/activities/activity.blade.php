@@ -31,12 +31,15 @@
             @foreach($activities as $activity)
             <tr>
                 <td class="px-6 py-4 border-b">
-                    <img src="{{ $activity->photo }}" alt="Foto" class="w-16 h-16 object-cover rounded">
+                    <img src="{{ asset('storage/' . $activity->photo) }}" alt="Foto" class="w-16 h-16 object-cover rounded">
                 </td>
+                
+                
                 <td class="px-6 py-4 border-b">{{ $activity->title }}</td>
                 <td class="px-6 py-4 border-b max-w-lg break-words whitespace-normal">
-                    {{ htmlspecialchars(strip_tags($activity->description)) }}
+                    {!! htmlspecialchars_decode($activity->description) !!}
                 </td>
+                         
 
                 
                 <td class="py-2 px-4">
@@ -50,7 +53,7 @@
                     </span>
                 </td>
                 <td class="px-6 py-4 border-b">
-                    <button class="text-blue-500">👁️</button>
+                    <a href="{{ route('activities.show', $activity->id) }}" class="text-blue-500">👁️</a>
                     <a href="{{ route('activities.edit', $activity->id) }}" class="text-gray-500">✏️</a>
                 </td>
             </tr>
