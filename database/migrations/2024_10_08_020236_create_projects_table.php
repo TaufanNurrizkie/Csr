@@ -19,10 +19,10 @@ return new class extends Migration
             $table->date('tgl_mulai');
             $table->date('tgl_akhir');
             $table->date('tgl_diterbitkai')->nullable();
-            $table->string('status'); // Terbit atau Draf
+            $table->enum('status', ['Draft', 'Terbit']);
+// Menggunakan enum untuk status
             $table->timestamps();
         });
-        
     }
 
     /**

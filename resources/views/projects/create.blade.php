@@ -54,7 +54,6 @@
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>
-
         <div class="mb-4">
             <label for="status" class="block text-sm font-medium mb-2">Status *</label>
             <select name="status" class="border p-2 rounded w-full @error('status') border-red-500 @enderror" required>
@@ -65,6 +64,7 @@
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>
+        
 
         <div class="flex items-center justify-between">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

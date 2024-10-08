@@ -11,6 +11,23 @@ Route::resource('projects', ProjectController::class);
 
 
 
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
+Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+Route::get('/projects/{id}/update', [ProjectController::class, 'update'])->name('projects.update');
+// web.php
+Route::get('projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
+// routes/web.php
+
+Route::get('/projects/{id}/publish', [ProjectController::class, 'publish'])->name('projects.publish');
+
+// tes 
+
+
+
+
+
 // web.php
 
 
