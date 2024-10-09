@@ -60,6 +60,7 @@
 </nav>
 
 <main class="flex-grow">
+    {{ $slot }}
 @yield('content')
 </main>
 

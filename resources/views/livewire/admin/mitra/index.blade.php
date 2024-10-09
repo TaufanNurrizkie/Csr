@@ -1,30 +1,21 @@
-@extends('layout')
-@section('content')
-
-@vite('resources/css/app.css')
 <div class="container mx-auto p-6 bg-gray-100">
     <nav class=" top-4 left-4 flex items-center space-x-2 text-lg px-3 py-1 rounded mb-8">
-        <!-- Icon home -->
-        <a href="/" class="text-black" wire:navigate>
+        <a href="/dashboard" class="text-black" wire:navigate>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M10 3.293l6 6V16a1 1 0 01-1 1h-4v-4H9v4H5a1 1 0 01-1-1v-6.707l6-6z"/>
             </svg>
         </a>
-        <!-- Separator -->
         <span class="text-black">›</span>
-        <!-- Kegiatan link -->
-        <!-- Detail -->
         <span class="bg-red-100 text-red-600 px-3 py-1 rounded">Mitra</span>
     </nav>
     <div class="flex justify-between mb-4">
         <h1 class="text-2xl font-semibold mb-4">Mitra</h1>
-        <a href="{{ route('mitra.create') }}" class="bg-red-600 text-white px-4 py-2 rounded">+ Tambahkan Mitra Baru</a>
+        <a href="{{ route('mitra.create') }}" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Tambahkan Mitra Baru</a>
     </div>
     <div class="mb-4">
-        <input type="text" placeholder="Cari" class="border p-2 rounded w-full" />
+        <input type="text" placeholder="Cari" class="border p-2 rounded w-full" wire:model="search" />
     </div>
 
-    <!-- Data Table -->
     <table class="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
         <thead>
             <tr class="bg-gray-50">
@@ -63,29 +54,25 @@
                         @endif
                     </td>
                     <td class="py-3 px-6">
-                        <a href="{{ route('mitra.show', $mitra->id) }}" class="text-blue-500 flex items-center">
+                        <a href="{{ route('mitra.show', $mitra->id) }}" wire:navigate class="text-blue-500 flex items-center">
                             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12m0 0h.01M9 12m0 0h.01M12 9m0 0h.01M12 15m0 0h.01M5 5l7-2m-7 7l7-2m7 7l-7 2m7-7l-7-2"></path>
                             </svg>
                             Lihat
                         </a>
-                        
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <!-- Pagination and Data Selector -->
     <div class="mt-4 flex justify-between items-center">
         <div>
             <label for="perPage" class="text-sm">Tampilkan Data</label>
-            <span>1-5 data dari {{ $mitras->total() }} data</span>
+            <span>{{ $mitras->firstItem() }}-{{ $mitras->lastItem() }} dari {{ $mitras->total() }} data</span>
         </div>
         <div>
             {{ $mitras->links() }}
         </div>
     </div>
 </div>
-
-@endsection
