@@ -18,7 +18,7 @@ class ReportController extends Controller
         $reports = Report::when($search, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%')
                          ->orWhere('reporter_name', 'like', '%' . $search . '%');
-        })->paginate(10); // Menggunakan pagination
+        })->paginate(5); // Menggunakan pagination
 
         return view('admin.reports.index', compact('reports'));
     }

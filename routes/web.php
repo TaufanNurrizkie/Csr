@@ -75,9 +75,13 @@ Route::middleware([
       Route::get('/mitra', [MitraController::class, 'index'])->name('mitra.index');
       Route::get('/mitra/{id}', [MitraController::class, 'show'])->name('mitra.show');
       Route::get('/mitra/{id}/edit', [MitraController::class, 'edit'])->name('mitra.edit');
-      Route::get('/mitra/{id}/update', [MitraController::class, 'update'])->name('mitra.update');
+      Route::put('/mitra/{id}/update', [MitraController::class, 'update'])->name('mitra.update');
       Route::get('/admin/mitra/create', [MitraController::class, 'create'])->name('mitra.create');
       Route::post('/mitra', [MitraController::class, 'store'])->name('mitra.store');
+      Route::put('/mitra/{id}/nonaktifkan', [MitraController::class, 'nonaktifkan'])->name('mitra.nonaktifkan');
+      Route::put('/mitra/{id}/aktifkan', [MitraController::class, 'aktifkan'])->name('mitra.aktifkan');
+      
+
 
 });
 
