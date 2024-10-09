@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\MitraController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ActivityController;
 
 Route::resource('projects', ProjectController::class);
 
@@ -69,6 +70,15 @@ Route::middleware([
 
       //Route Sektor
       Route::resource('sektor', SectorController::class);
+
+      //Route Mitra
+      Route::get('/mitra', [MitraController::class, 'index'])->name('mitra.index');
+      Route::get('/mitra/{id}', [MitraController::class, 'show'])->name('mitra.show');
+      Route::get('/mitra/{id}/edit', [MitraController::class, 'edit'])->name('mitra.edit');
+      Route::get('/mitra/{id}/update', [MitraController::class, 'update'])->name('mitra.update');
+      Route::get('/admin/mitra/create', [MitraController::class, 'create'])->name('mitra.create');
+      Route::post('/mitra', [MitraController::class, 'store'])->name('mitra.store');
+
 });
 
 Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {

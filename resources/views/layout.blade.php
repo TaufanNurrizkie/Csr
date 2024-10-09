@@ -1,3 +1,4 @@
+<body class="flex flex-col min-h-screen">
 <nav class="bg-white py-4 px-8 shadow-md flex justify-between items-center">
     <div class="flex items-center">
         <!-- Logo dan Teks -->
@@ -11,7 +12,7 @@
         <li><a href="/projects" class="{{ Request::is('projects*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Proyek</a></li>
         <li><a href="/sektor" class="{{ Request::is('sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a></li>
         <li><a href="/reports" class="{{ Request::is('reports*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Laporan</a></li>
-        <li><a href="#" class="{{ Request::is('mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a></li>
+        <li><a href="/mitra" class="{{ Request::is('mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a></li>
     </ul>
     
 
@@ -38,10 +39,13 @@
     </div>
 </nav>
 
+<main class="flex-grow">
 @yield('content')
+</main>
 
 <footer class=" bottom-0 left-0 w-full bg-gray-800 text-white p-4">
     <div class="container mx-auto text-center">
         <p>&copy; 2024 CSR Kabupaten Cirebon | Semua hak dilindungi undang-undang</p>
     </div>
 </footer>
+</body>
