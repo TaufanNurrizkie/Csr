@@ -13,7 +13,6 @@ class Create extends Component
     public $jumlah_mitra;
     public $tgl_mulai;
     public $tgl_akhir;
-    public $tgl_diterbitkan;
     public $status;
 
     protected $rules = [
@@ -22,7 +21,6 @@ class Create extends Component
         'jumlah_mitra' => 'required|integer|min:1',
         'tgl_mulai' => 'required|date',
         'tgl_akhir' => 'required|date|after_or_equal:tgl_mulai',
-        'tgl_diterbitkan' => 'required|date',
         'status' => 'required|in:Draft,Terbit',
     ];
 
@@ -37,7 +35,7 @@ class Create extends Component
         $project->jumlah_mitra = $this->jumlah_mitra;
         $project->tgl_mulai = $this->tgl_mulai;
         $project->tgl_akhir = $this->tgl_akhir;
-        $project->tgl_diterbitkai = $this->tgl_diterbitkan; // Perbaiki typo dari 'tgl_diterbitkai'
+        $project->tgl_diterbitkai = $this->status === 'Terbit' ? now() : null; // Perbaiki typo dari 'tgl_diterbitkai'
         $project->status = $this->status;
         $project->save();
 

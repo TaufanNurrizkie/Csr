@@ -21,7 +21,7 @@ class Create extends Component
         'title' => 'required|string|max:255',
         'tags' => 'required|string',
         'description' => 'required|string',
-        'status' => 'required|in:Draft,Terbit',
+        'status' => 'required|in:Draft,Terbit', // Use 'Draft' and 'Terbit' here
     ];
 
     public function save()
