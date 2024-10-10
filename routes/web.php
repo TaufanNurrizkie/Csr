@@ -60,7 +60,6 @@ Route::middleware([
     Route::put('/mitra/{id}/aktifkan', [MitraController::class, 'aktifkan'])->name('mitra.aktifkan');
 });
 
-
 // Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
 //     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 // });
@@ -69,7 +68,4 @@ Route::middleware([
 Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
     
 
-// Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
-//     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-// });
 

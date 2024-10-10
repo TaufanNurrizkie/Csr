@@ -43,8 +43,8 @@ class Create extends Component
 
         $activity->save();
 
-        session()->flash('success', 'Activity created successfully.');
-        
+        $this->dispatch('sweet-alert', icon: 'success', title: 'Data berhasil disimpan');
+
         return redirect()->route('activities.activity');
 
         // Reset the form

@@ -1,4 +1,5 @@
 <div class="container mx-auto p-4">
+    
     <nav class=" top-4 left-4 flex items-center space-x-2 text-lg px-3 py-1 rounded mb-8">
         <!-- Icon home -->
         <a href="/dashboard" class="text-white" wire:navigate>
@@ -18,7 +19,7 @@
     </div>
 
     <div class="mb-4">
-        <input type="text" wire:model="search" placeholder="Cari" class="border p-2 rounded w-full" />
+        <input type="text" wire:model.live="search" placeholder="Cari" class="border p-2 rounded w-full" />
     </div>
 
     <table class="min-w-full bg-white">
@@ -48,4 +49,7 @@
     <div class="mt-4">
         {{ $sektor->links() }}
     </div>
+
+   
+    
 </div>

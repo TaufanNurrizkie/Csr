@@ -40,8 +40,9 @@ class Create extends Component
         $project->save();
 
         // Emit event atau redirect
-        session()->flash('success', 'Proyek berhasil dibuat.');
-        return redirect()->route('projects.index');
+        $this->dispatch('sweet-alert', icon: 'success', title: 'Data berhasil disimpan');
+
+       return redirect()->route('projects.index');
     }
 
 

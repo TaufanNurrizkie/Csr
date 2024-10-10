@@ -33,7 +33,8 @@ class Index extends Component
         $report->reviewed_by = auth()->user()->id; // ID admin yang menyetujui laporan
         $report->save();
 
-        session()->flash('success', 'Laporan telah disetujui.');
+        $this->dispatch('sweet-alert', icon: 'success', title: 'Laporan Telah Disetujui');
+
     }
 
     // Proses penolakan laporan

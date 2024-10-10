@@ -82,6 +82,8 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{ asset('js/notifications.js') }}"></script>
 
+<x-sweet-alert />
+
 @livewireScripts
 <script>
     Livewire.hook('message.processed', (message, component) => {
@@ -90,8 +92,6 @@
         }
     });
 
-    // Fungsi untuk mengambil dan menampilkan notifikasi
-// Fungsi untuk mengambil dan menampilkan notifikasi
 // Fungsi untuk mengambil dan menampilkan notifikasi
 function fetchNotifications() {
     axios.get('/get-notifications')

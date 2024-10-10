@@ -34,7 +34,11 @@
         <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded">Simpan</button>
         <a href="{{ route('sektor.index') }}" wire:navigate class="text-gray-500 hover:text-gray-700 ml-4">Batal</a>
     </div>
-    <button type="button" wire:click="delete"  class="bg-red-700 text-white px-4 py-2 rounded ml-4" onclick="confirm('Apakah Anda yakin ingin menghapus sektor ini?') || event.stopImmediatePropagation();">Hapus</button>
+   <button type="button" 
+        class="bg-red-700 text-white px-4 py-2 rounded ml-4" 
+        @click="$dispatch('confirm-delete')">Hapus</button>
 </div>
     </form>
+
+    <x-confirm-delete />
 </div>

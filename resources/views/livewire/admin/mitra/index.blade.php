@@ -13,7 +13,7 @@
         <a href="{{ route('mitra.create') }}" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Tambahkan Mitra Baru</a>
     </div>
     <div class="mb-4">
-        <input type="text" placeholder="Cari" class="border p-2 rounded w-full" wire:model="search" />
+        <input type="text" placeholder="Cari" class="border p-2 rounded w-full" wire:model.live="search" />
     </div>
 
     <table class="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
