@@ -5,12 +5,12 @@
     </div>
     <!-- Menu Navigasi -->
     <ul class="flex space-x-10 text-xl font-medium">
-        <li><a href="{{ route('dashboard') }}" class="text-red-600 border-b-2 border-red-600">Dashboard</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-red-600">Kegiatan</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-red-600">Proyek</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-red-600">Sektor</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-red-600">Laporan</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-red-600">Mitra</a></li>
+        <li><a href="/dashboard" wire:navigate class="{{ Request::is('dashboard*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Dashboard</a></li>
+        <li><a href="/activities" wire:navigate class="{{ Request::is('activities*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Kegiatan</a></li>
+        <li><a href="/projects" wire:navigate class="{{ Request::is('projects*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Proyek</a></li>
+        <li><a href="/sektor" wire:navigate class="{{ Request::is('sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a></li>
+        <li><a href="/reports" wire:navigate class="{{ Request::is('reports*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Laporan</a></li>
+        <li><a href="/mitra" wire:navigate class="{{ Request::is('mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a></li>
     </ul>
 
     <!-- Info User dan Notifikasi -->
