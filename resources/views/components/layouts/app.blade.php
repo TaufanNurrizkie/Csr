@@ -91,37 +91,37 @@
     // Fungsi untuk mengambil dan menampilkan notifikasi
     function fetchNotifications() {
         axios.get('/get-notifications')
-            .then(response => {
-                const notifications = response.data;
+        .then(response => {
+            const notifications = response.data;
 
-                // Kosongkan notifikasi lama
-                let notificationList = document.getElementById('notification-list');
-                notificationList.innerHTML = ''; 
+            // Kosongkan notifikasi lama
+            let notificationList = document.getElementById('notification-list');
+            notificationList.innerHTML = ''; 
 
-                // Tampilkan mitra baru
-                notifications.newMitra.forEach(mitra => {
-                    let listItem = document.createElement('div');
-                    listItem.classList.add('p-2', 'bg-green-100', 'rounded-lg', 'mb-2', 'cursor-pointer');
-                    listItem.innerHTML = `<a href="/mitra/${mitra.id}">Mitra Baru: ${mitra.nama}</a>`;
-                    notificationList.appendChild(listItem);
-                });
-
-                // Tampilkan laporan diterima atau ditolak
-                notifications.newReports.forEach(report => {
-                    let listItem = document.createElement('div');
-                    listItem.classList.add('p-2', report.status === 'diterima' ? 'bg-blue-100' : 'bg-red-100', 'rounded-lg', 'mb-2', 'cursor-pointer');
-                    listItem.innerHTML = `<a href="/reports/${report.id}">Laporan ${report.status === 'diterima' ? 'Diterima' : 'Ditolak'}: ${report.title}</a>`;
-                    notificationList.appendChild(listItem);
-                });
-
-                // Hitung jumlah total notifikasi
-                let notificationCount = notifications.newMitra.length + notifications.newReports.length;
-                document.getElementById('notification-count').textContent = notificationCount;
-            })
-            .catch(error => {
-                console.error("Terjadi kesalahan saat mengambil notifikasi: ", error);
+            // Tampilkan mitra baru
+            notifications.newMitra.forEach(mitra => {
+                let listItem = document.createElement('div');
+                listItem.classList.add('p-2', 'bg-green-100', 'rounded-lg', 'mb-2');
+                listItem.innerHTML = `<a href="/mitra/${mitra.id}">Mitra Baru: ${mitra.nama}</a>`;
+                notificationList.appendChild(listItem);
             });
-    }
+
+            // Tampilkan laporan diterima, ditolak, atau pending
+            notifications.newReports.forEach(report => {
+                let listItem = document.createElement('div');
+                listItem.classList.add('p-2', report.status === 'approved' ? 'bg-blue-100' : report.status === 'rejected' ? 'bg-red-100' : 'bg-yellow-100', 'rounded-lg', 'mb-2');
+                listItem.innerHTML = `<a href="/reports/${report.id}">Laporan ${report.status.charAt(0).toUpperCase() + report.status.slice(1)}: ${report.title}</a>`;
+                notificationList.appendChild(listItem);
+            });
+
+            // Hitung jumlah total notifikasi
+            let notificationCount = notifications.newMitra.length + notifications.newReports.length;
+            document.getElementById('notification-count').textContent = notificationCount;
+        })
+        .catch(error => {
+            console.error("Terjadi kesalahan saat mengambil notifikasi: ", error);
+        });
+}
 
     // Menampilkan atau menyembunyikan dropdown notifikasi
     document.getElementById('notification-btn').addEventListener('click', () => {

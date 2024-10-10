@@ -8,14 +8,17 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Show extends Component
 {
-
     public $reportId;
     public $report;
+    public $reviewNotes; // Properti untuk catatan penolakan
+    public $suggestion; // Properti untuk saran
 
     public function mount($id)
     {
         $this->reportId = $id;
         $this->loadReport();
+        $this->reviewNotes = ''; // Inisialisasi reviewNotes
+        $this->suggestion = ''; // Inisialisasi suggestion
     }
 
     public function loadReport()
@@ -35,20 +38,20 @@ class Show extends Component
         return redirect()->route('reports.show', $this->reportId);
     }
 
-    public function reject($reviewNotes)
+    public function reject()
     {
         $this->report->update([
             'status' => 'rejected',
-            'review_notes' => $reviewNotes,
+            'review_notes' => $this->reviewNotes, // Ambil dari properti
         ]);
         session()->flash('success', 'Laporan berhasil ditolak.');
         return redirect()->route('reports.show', $this->reportId);
     }
 
-    public function suggest($suggestion)
+    public function suggest()
     {
         // Implement logic for suggestions
-        // Optionally, you can store the suggestion to a relevant model or handle it as needed.
+        // Gunakan $this->suggestion jika Anda ingin mengimplementasikan penyimpanan saran.
         session()->flash('success', 'Saran telah dikirim.');
         return redirect()->route('reports.show', $this->reportId);
     }

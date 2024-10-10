@@ -14,7 +14,7 @@ class NotificationController extends Controller
         $newMitra = Mitra::whereDate('created_at', now()->toDateString())->get();
 
         // Ambil laporan terbaru yang diterima, ditolak, atau pending (hari ini)
-        $newReports = Report::whereIn('status', ['diterima', 'ditolak', 'pending']) // Added 'pending' status
+        $newReports = Report::whereIn('status', ['approved', 'rejected', 'pending']) // Status yang diupdate
             ->whereDate('updated_at', now()->toDateString())
             ->get();
 
