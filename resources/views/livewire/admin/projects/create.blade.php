@@ -53,14 +53,6 @@
         </div>
 
         <div class="mb-4">
-            <label for="tgl_diterbitkan" class="block text-sm font-medium mb-2">Tanggal Diterbitkan *</label>
-            <input type="date" wire:model.defer="tgl_diterbitkan" class="border p-2 rounded w-full @error('tgl_diterbitkan') border-red-500 @enderror" required>
-            @error('tgl_diterbitkan')
-                <p class="text-red-500 text-xs italic">{{ $message }}</p>
-            @enderror
-        </div>
-
-        <div class="mb-4">
             <label for="status" class="block text-sm font-medium mb-2">Status *</label>
             <select wire:model.defer="status" class="border p-2 rounded w-full @error('status') border-red-500 @enderror" required>
                 <option value="">Pilih Status</option>

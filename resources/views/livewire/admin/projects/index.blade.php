@@ -83,7 +83,7 @@
                 <td class="px-6 py-4 border-b">{{ $project->jumlah_mitra }}</td>
                 <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($project->tgl_mulai)->format('d M Y') }}</td>
                 <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($project->tgl_akhir)->format('d M Y') }}</td>
-                <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($project->tgl_diterbitkan)->format('d M Y') }}</td>
+                <td class="px-6 py-4 border-b">{{ $project->tgl_diterbitkai ? \Carbon\Carbon::parse($project->tgl_diterbitkai)->format('d M Y') : '-' }}</td> <!-- Tanggal diterbitkan -->
                 <td class="px-6 py-4 border-b">
                     <span class="px-2 py-1 text-xs rounded 
                         {{ $project->status === 'Terbit' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
