@@ -62,8 +62,7 @@
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>
-
-
+        
         <div class="mb-4">
             <label for="status" class="block text-sm font-medium mb-2">Status *</label>
             <select name="status" class="border p-2 rounded w-full @error('status') border-red-500 @enderror" required>

@@ -51,10 +51,10 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-1.14 1.93-1.14 2.23 0l1.518 5.759a1 1 0 00.95.69h6.039c1.184 0 1.668 1.52.762 2.236l-4.876 3.93a1 1 0 00-.36 1.118l1.518 5.758c.3 1.14-.955 2.078-1.92 1.388l-4.875-3.928a1 1 0 00-1.178 0l-4.875 3.928c-.964.69-2.22-.248-1.92-1.388l1.518-5.758a1 1 0 00-.36-1.118l-4.876-3.93C1.327 10.896 1.81 9.375 2.994 9.375h6.038a1 1 0 00.95-.69l1.518-5.758z"/>
                 </svg>
               </span>
-              Pengajuan CSR
+              Total Proyek CSR
             </div>
             <div class="text-xl w-full mt-5 text-start bg-white bg-opacity-20 text-white font-bold border-2 border-white p-2 inline-block rounded-md">
-              12000
+              {{ $jumlahCSR }}
             </div>
           </div>
     
@@ -65,28 +65,28 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-1.14 1.93-1.14 2.23 0l1.518 5.759a1 1 0 00.95.69h6.039c1.184 0 1.668 1.52.762 2.236l-4.876 3.93a1 1 0 00-.36 1.118l1.518 5.758c.3 1.14-.955 2.078-1.92 1.388l-4.875-3.928a1 1 0 00-1.178 0l-4.875 3.928c-.964.69-2.22-.248-1.92-1.388l1.518-5.758a1 1 0 00-.36-1.118l-4.876-3.93C1.327 10.896 1.81 9.375 2.994 9.375h6.038a1 1 0 00.95-.69l1.518-5.758z"/>
                 </svg>
               </span>
-              Jumlah CSR Disetujui
+              Proyek Terealisasi
             </div>
             <div class="text-xl w-full mt-5 text-start bg-white bg-opacity-20 text-white font-bold border-2 border-white p-2 inline-block rounded-md">
-              5000
+              {{ $jumlahApproved }}
             </div>
           </div>
     
-          <div class="bg-[#00D084] text-white p-3 rounded-lg">
+          <div class="bg-[#2C5586] text-white p-3 rounded-lg">
             <div class="flex items-center text-base justify-start">
               <span class="mr-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-1.14 1.93-1.14 2.23 0l1.518 5.759a1 1 0 00.95.69h6.039c1.184 0 1.668 1.52.762 2.236l-4.876 3.93a1 1 0 00-.36 1.118l1.518 5.758c.3 1.14-.955 2.078-1.92 1.388l-4.875-3.928a1 1 0 00-1.178 0l-4.875 3.928c-.964.69-2.22-.248-1.92-1.388l1.518-5.758a1 1 0 00-.36-1.118l-4.876-3.93C1.327 10.896 1.81 9.375 2.994 9.375h6.038a1 1 0 00.95-.69l1.518-5.758z"/>
                 </svg>
               </span>
-              Sektor CSR
+              Mitra Bergabung
             </div>
             <div class="text-xl w-full mt-5 text-start bg-white bg-opacity-20 text-white font-bold border-2 border-white p-2 inline-block rounded-md">
-              200
+              {{ $jumlahMitra }}
             </div>
           </div>
     
-          <div class="bg-[#FFCE00] text-white p-3 rounded-lg">
+          <div class="bg-[#1D9C53] text-white p-3 rounded-lg">
             <div class="flex items-center text-base justify-start">
               <span class="mr-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -96,17 +96,17 @@
               Total Dana CSR
             </div>
             <div class="text-xl w-full mt-5 text-start bg-white bg-opacity-20 text-white font-bold border-2 border-white p-2 inline-block rounded-md">
-              7.000.000.000
+              {{ 'Rp. ' . number_format($totalDanaCsr, 0, ',', '.') }}
             </div>
           </div>
         </div>
     
     
+        <h2 class="text-3xl font-bold ml-8 mb-8 text-start mt-8">Realisasi Proyek CSR</h2>
       </div>
     </div>
   
     <!-- Realisasi Proyek CSR -->
-    <h2 class="text-3xl font-bold ml-8 mb-8 text-start">Realisasi Proyek CSR</h2>
     <div class="bg-gray-50 p-6 rounded-lg shadow-md">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <!-- Charts Section -->
