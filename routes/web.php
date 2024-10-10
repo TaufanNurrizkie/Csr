@@ -7,6 +7,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\NotificationController;
 
 
 Route::get('/', function () {
@@ -19,7 +20,7 @@ Route::middleware([
     'verified',
     'role:admin',
 ])->group(function () {
-    
+
     Route::get('/dashboard', App\Livewire\admin\Dashboard\Chart::class)->name('dashboard');
 
     // Route Report
@@ -57,6 +58,16 @@ Route::middleware([
     Route::get('/mitra/{id}',  App\Livewire\admin\Mitra\Show::class)->name('mitra.show');
 });
 
+
 // Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
 //     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 // });
+
+
+Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
+    
+
+// Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
+//     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+// });
+
