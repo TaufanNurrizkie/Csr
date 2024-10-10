@@ -50,6 +50,7 @@
         <div class="mb-4">
             <label for="status" class="block text-sm font-medium mb-2">Status *</label>
             <select wire:model="status" class="border p-2 rounded w-full @error('status') border-red-500 @enderror">
+                <option value="Pilih Status">Pilih Status</option>
                 <option value="Draft">Draft</option>
                 <option value="Terbit">Terbit</option>
             </select>
@@ -76,6 +77,7 @@
                     editor.model.document.on('change:data', () => {
                         @this.set('description', editor.getData());
                     });
+
                 })
                 .catch(error => {
                     console.error('CKEditor tidak dapat diinisialisasi:', error);

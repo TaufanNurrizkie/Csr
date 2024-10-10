@@ -56,6 +56,8 @@ Route::middleware([
     Route::get('/admin/mitra/create', App\Livewire\admin\Mitra\Create::class)->name('mitra.create');
     Route::get('/mitra/{id}/edit', App\Livewire\admin\Mitra\Edit::class)->name('mitra.edit');
     Route::get('/mitra/{id}',  App\Livewire\admin\Mitra\Show::class)->name('mitra.show');
+    Route::put('/mitra/{id}/nonaktifkan', [MitraController::class, 'nonaktifkan'])->name('mitra.nonaktifkan');
+    Route::put('/mitra/{id}/aktifkan', [MitraController::class, 'aktifkan'])->name('mitra.aktifkan');
 });
 
 
