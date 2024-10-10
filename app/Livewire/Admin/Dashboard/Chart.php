@@ -49,7 +49,7 @@ class Chart extends Component
                     ]
                 ])
                 ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
-                ->setXAxis([    ]); // Nama mitra sebagai label X-axis
+                ->setXAxis([$namabar]); // Nama mitra sebagai label X-axis
 
         $barChart2 = LarapexChart::horizontalBarChart()
             ->setTitle('Presentase total realisasi berdasarkan mitra')

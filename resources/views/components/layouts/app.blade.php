@@ -108,7 +108,7 @@ function fetchNotifications() {
             listItem.innerHTML = `
                 <div class="flex items-center">
                     <span class="font-bold text-green-600 mr-2">Mitra Baru:</span>
-                    <a href="/mitra/${mitra.id}" class="text-gray-700">${mitra.nama}</a>
+                    <a href="/mitra/${mitra.id}" class="text-gray-700">${mitra.nama_pt}</a>
                 </div>
             `;
             notificationList.appendChild(listItem);
