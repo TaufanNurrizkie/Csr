@@ -7,6 +7,10 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\NotificationController;
+
+Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
+
 
 
 Route::get('/', function () {
@@ -101,6 +105,9 @@ Route::middleware([
 Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 });
+
+
+
 
 // Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
 //     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
