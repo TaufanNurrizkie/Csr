@@ -53,8 +53,13 @@
                         {!! htmlspecialchars_decode(Str::limit($mitra->deskripsi, 250, '...')) !!}
                     </td>
                     <td class="py-2 px-4">
-                        {{ $mitra->tgl_terdaftar ? \Carbon\Carbon::parse($mitra->tgl_terdaftar)->format('d M Y') : '-' }}
-                    </td>                    
+                        @if($mitra->status == 'Aktif')
+                            {{ $mitra->tgl_terdaftar ? \Carbon\Carbon::parse($mitra->tgl_terdaftar)->format('d M Y') : '-' }}
+                        @else
+                            <span>-</span>
+                        @endif
+                    </td>
+                                       
                     <td class="py-3 px-6">
                         @if($mitra->status == 'Aktif')
                             <span class="bg-green-100 text-green-600 py-1 px-3 rounded-full text-xs">Aktif</span>

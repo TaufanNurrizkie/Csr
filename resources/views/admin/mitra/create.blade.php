@@ -15,9 +15,11 @@
     <form action="{{ route('mitra.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div class="mb-4">
-            <label for="foto" class="block text-gray-700">Foto</label>
-            <input type="file" name="foto" id="foto" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" accept="image/*">
+        <div class="border-dashed border-2 border-gray-300 rounded-lg h-48 flex items-center justify-center cursor-pointer">
+            <label for="foto" class="w-full h-full flex items-center justify-center cursor-pointer">
+                <input type="file" id="foto" name="foto" class="hidden" accept="image/*" required>
+                <span class="text-gray-500">Klik untuk unggah atau seret dan lepas kesini (PNG, JPG up to 10MB)</span>
+            </label>
         </div>
 
         <div class="mb-4">

@@ -25,11 +25,12 @@
         @csrf
         <div class="mb-4">
             <label for="photo" class="block text-sm font-medium mb-2">Foto Thumbnail *</label>
-            <input type="file" name="photo" class="border p-2 rounded w-full @error('photo') border-red-500 @enderror">
-            @error('photo')
-                <p class="text-red-500 text-xs italic">{{ $message }}</p>
-            @enderror
-        </div>
+            <div class="border-dashed border-2 border-gray-300 rounded-lg h-48 flex items-center justify-center cursor-pointer">
+                <label for="foto" class="w-full h-full flex items-center justify-center cursor-pointer">
+                    <input type="file" id="foto" name="foto" class="hidden" accept="image/*" required>
+                    <span class="text-gray-500">Klik untuk unggah atau seret dan lepas kesini (PNG, JPG up to 10MB)</span>
+                </label>
+            </div>
         <div class="mb-4">
             <label for="title" class="block text-sm font-medium mb-2">Judul Kegiatan *</label>
             <input type="text" name="title" value="{{ old('title') }}" class="border p-2 rounded w-full @error('title') border-red-500 @enderror">

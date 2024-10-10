@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <form action="{{ route('mitra.update', $mitra->id) }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow-md space-y-4">
+    <form action="{{ route('mitra.update', $mitra->id) }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow-md space-y-4" novalidate>
         @csrf
         @method('PUT')
 
@@ -23,8 +23,10 @@
         <div class="flex flex-col mb-4">
             <label for="foto" class="block text-gray-700">Dokumen Pendukung *</label>
             <div class="border-dashed border-2 border-gray-300 rounded-lg h-48 flex items-center justify-center cursor-pointer">
-                <input type="file" id="foto" name="foto" class="hidden" required>
-                <span class="text-gray-500">Klik untuk unggah atau seret dan lepas kesini (PNG, JPG up to 10MB)</span>
+                <label for="foto" class="w-full h-full flex items-center justify-center cursor-pointer">
+                    <input type="file" id="foto" name="foto" class="hidden" accept="image/*" required>
+                    <span class="text-gray-500">Klik untuk unggah atau seret dan lepas kesini (PNG, JPG up to 10MB)</span>
+                </label>
             </div>
             @if ($mitra->foto)
                 <div class="mt-2">
