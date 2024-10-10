@@ -54,14 +54,16 @@
             </svg>
             <span id="notification-count" class="absolute top-0 right-0 inline-block w-5 h-5 bg-red-600 text-white text-xs font-bold rounded-full flex justify-center items-center">0</span>
             
-            <!-- Dropdown Notifikasi -->
-            <div id="notification-dropdown" class="hidden absolute right-0 mt-2 bg-white shadow-lg rounded-lg p-4 z-50">
-                <h3 class="font-bold mb-2">Notifikasi</h3>
-                <div id="notification-list" class="flex flex-wrap justify-start gap-4">
-                    <!-- Notifikasi akan dimuat di sini secara dinamis -->
-                    <p>Tidak ada notifikasi baru</p>
-                </div>
+        <!-- Dropdown Notifikasi -->
+        <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-80 bg-white shadow-lg rounded-lg p-4 z-50 max-h-96 overflow-y-auto">
+            <h3 class="font-bold mb-2">Notifikasi</h3>
+            <div id="notification-list" class="space-y-4">
+                <!-- Notifikasi akan dimuat di sini secara dinamis -->
+                <p class="text-center text-gray-500">Tidak ada notifikasi baru</p>
             </div>
+        </div>
+
+
         </div>
     </div>
 </nav>
@@ -89,39 +91,56 @@
     });
 
     // Fungsi untuk mengambil dan menampilkan notifikasi
-    function fetchNotifications() {
-        axios.get('/get-notifications')
-        .then(response => {
-            const notifications = response.data;
+// Fungsi untuk mengambil dan menampilkan notifikasi
+// Fungsi untuk mengambil dan menampilkan notifikasi
+function fetchNotifications() {
+    axios.get('/get-notifications')
+    .then(response => {
+        const notifications = response.data;
 
-            // Kosongkan notifikasi lama
-            let notificationList = document.getElementById('notification-list');
-            notificationList.innerHTML = ''; 
+        let notificationList = document.getElementById('notification-list');
+        notificationList.innerHTML = ''; // Kosongkan notifikasi lama
 
-            // Tampilkan mitra baru
-            notifications.newMitra.forEach(mitra => {
-                let listItem = document.createElement('div');
-                listItem.classList.add('p-2', 'bg-green-100', 'rounded-lg', 'mb-2');
-                listItem.innerHTML = `<a href="/mitra/${mitra.id}">Mitra Baru: ${mitra.nama}</a>`;
-                notificationList.appendChild(listItem);
-            });
-
-            // Tampilkan laporan diterima, ditolak, atau pending
-            notifications.newReports.forEach(report => {
-                let listItem = document.createElement('div');
-                listItem.classList.add('p-2', report.status === 'approved' ? 'bg-blue-100' : report.status === 'rejected' ? 'bg-red-100' : 'bg-yellow-100', 'rounded-lg', 'mb-2');
-                listItem.innerHTML = `<a href="/reports/${report.id}">Laporan ${report.status.charAt(0).toUpperCase() + report.status.slice(1)}: ${report.title}</a>`;
-                notificationList.appendChild(listItem);
-            });
-
-            // Hitung jumlah total notifikasi
-            let notificationCount = notifications.newMitra.length + notifications.newReports.length;
-            document.getElementById('notification-count').textContent = notificationCount;
-        })
-        .catch(error => {
-            console.error("Terjadi kesalahan saat mengambil notifikasi: ", error);
+        // Tampilkan mitra baru
+        notifications.newMitra.forEach(mitra => {
+            let listItem = document.createElement('div');
+            listItem.classList.add('p-3', 'bg-green-100', 'rounded-lg', 'shadow', 'hover:bg-green-200');
+            listItem.innerHTML = `
+                <div class="flex items-center">
+                    <span class="font-bold text-green-600 mr-2">Mitra Baru:</span>
+                    <a href="/mitra/${mitra.id}" class="text-gray-700">${mitra.nama}</a>
+                </div>
+            `;
+            notificationList.appendChild(listItem);
         });
+
+        // Tampilkan laporan diterima (approved)
+        notifications.newReports.forEach(report => {
+            let listItem = document.createElement('div');
+            let bgColor = report.status === 'approved' ? 'bg-blue-100' : 'bg-red-100'; // Tentukan warna berdasarkan status laporan
+            let statusText = report.status === 'approved' ? 'Laporan Approved:' : 'Laporan Rejected:';
+            let textColor = report.status === 'approved' ? 'text-blue-600' : 'text-red-600'; // Tentukan warna teks
+
+            listItem.classList.add('p-3', bgColor, 'rounded-lg', 'shadow', 'hover:bg-opacity-75');
+            listItem.innerHTML = `
+                <div class="flex items-center">
+                    <span class="font-bold ${textColor} mr-2">${statusText}</span>
+                    <a href="/reports/${report.id}" class="text-gray-700">${report.title}</a>
+                </div>
+            `;
+            notificationList.appendChild(listItem);
+        });
+
+        // Hitung jumlah total notifikasi
+        let notificationCount = notifications.newMitra.length + notifications.newReports.length;
+        document.getElementById('notification-count').textContent = notificationCount;
+    })
+    .catch(error => {
+        console.error("Terjadi kesalahan saat mengambil notifikasi: ", error);
+    });
 }
+
+
 
     // Menampilkan atau menyembunyikan dropdown notifikasi
     document.getElementById('notification-btn').addEventListener('click', () => {
