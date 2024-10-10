@@ -58,7 +58,6 @@ Route::middleware([
     Route::get('/mitra/{id}',  App\Livewire\admin\Mitra\Show::class)->name('mitra.show');
 });
 
-
 // Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
 //     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 // });
@@ -67,7 +66,4 @@ Route::middleware([
 Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
     
 
-// Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
-//     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-// });
 
