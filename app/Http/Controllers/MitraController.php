@@ -93,4 +93,24 @@ public function update(Request $request, $id)
     return redirect()->route('mitra.index')->with('success', 'Mitra berhasil diperbarui!');
 }
 
+public function nonaktifkan($id)
+{
+    $mitra = Mitra::find($id);
+    $mitra->status = 'Non-Aktif';
+    $mitra->save();
+
+    return redirect()->route('mitra.index')->with('success', 'Mitra berhasil dinonaktifkan');
+}
+
+public function aktifkan($id)
+{
+    $mitra = Mitra::findOrFail($id);
+    $mitra->status = 'Aktif'; // Ubah status menjadi Aktif
+    $mitra->save();
+
+    return redirect()->route('mitra.index')->with('success', 'Mitra berhasil diaktifkan.');
+}
+
+
+
 }
