@@ -77,6 +77,11 @@ class Chart extends Component
             ->setXAxis($namaPt); // Nama PT sebagai label sumbu X
 
 
+        $reports = DB::table('reports')
+            ->select('lokasi', DB::raw('SUM(realisasi) as total_realisasi')) // Menghitung total realisasi berdasarkan lokasi
+            ->groupBy('lokasi')
+            ->get();
+
 
         $reports = DB::table('reports')
         ->select('lokasi', DB::raw('SUM(realisasi) as total_realisasi')) // Menghitung total realisasi berdasarkan lokasi
@@ -100,6 +105,24 @@ class Chart extends Component
                ])
                ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
                ->setXAxis($lokasi); // Nama lokasi sebagai label sumbu X
+
+        // Menyiapkan data untuk chart
+        $lokasi = $reports->pluck('lokasi')->toArray(); // Ambil nama lokasi
+        $totalRealisasi = $reports->pluck('total_realisasi')->toArray(); // Ambil total realisasi
+
+        // Membuat chart
+        $barChart3 = LarapexChart::horizontalBarChart()
+            ->setTitle('Presentase Total Realisasi Berdasarkan Lokasi')
+            ->setDataset([
+                [
+                    'name' => 'Proyek CSR',
+                    'data' => $totalRealisasi // Total realisasi berdasarkan lokasi
+                ]
+            ])
+            ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
+            ->setXAxis($lokasi); // Nama lokasi sebagai label sumbu X
+
+
 
         // Return charts to the view
         return view('livewire.admin.dashboard.chart', [

@@ -38,8 +38,8 @@
                     {{ htmlspecialchars(strip_tags($item->deskripsi)) }}
                 </td>
                 <td class="px-6 py-4 border-b">
-                    <a href="{{ route('sektor.show', $item->id) }}" wire:navigate class="text-blue-500">👁️</a>
-                    <a href="{{ route('sektor.edit', $item->id) }}" wire:navigate class="text-gray-500">✏️</a>                    
+                    <a href="{{ route('sektor.show', $item->id) }}" wire:navigate ><i class="fa-regular fa-eye"></i></a>
+                    <a href="{{ route('sektor.edit', $item->id) }}" wire:navigate class="text-gray-500"><i class="fa-solid fa-pen"></i></a>                    
                 </td>
             </tr>
             @endforeach

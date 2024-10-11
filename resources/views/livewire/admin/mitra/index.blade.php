@@ -54,11 +54,8 @@
                         @endif
                     </td>
                     <td class="py-3 px-6">
-                        <a href="{{ route('mitra.show', $mitra->id) }}" wire:navigate class="text-blue-500 flex items-center">
-                            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12m0 0h.01M9 12m0 0h.01M12 9m0 0h.01M12 15m0 0h.01M5 5l7-2m-7 7l7-2m7 7l-7 2m7-7l-7-2"></path>
-                            </svg>
-                            Lihat
+                        <a href="{{ route('mitra.show', $mitra->id) }}" wire:navigate >
+                            <i class="fa-regular fa-eye"></i>
                         </a>
                     </td>
                 </tr>
