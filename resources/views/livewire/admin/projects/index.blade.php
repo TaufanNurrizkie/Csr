@@ -91,7 +91,7 @@
                     </span>
                 </td>
                 <td class="px-6 py-4 border-b">
-                    <a href="{{ route('projects.show', $project->id) }}" wire:navigate class="text-gray-500">👁️</a>
+                    <a href="{{ route('projects.show', $project->id) }}" wire:navigate><i class="fa-regular fa-eye"></i></a>
                 </td>
             </tr>
             @endforeach

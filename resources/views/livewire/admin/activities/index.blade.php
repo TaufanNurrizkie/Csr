@@ -54,9 +54,9 @@
                         {{ $activity->status }}
                     </span>
                 </td>
-                <td class="px-6 py-4 border-b">
-                    <a href="{{ route('activities.show', $activity->id) }}" wire:navigate class="text-blue-500">👁️</a>
-                    <a href="{{ route('activities.edit', $activity->id) }}" wire:navigate class="text-gray-500">✏️</a>
+                <td class="px-6 py-4 border-b ">
+                    <a href="{{ route('activities.show', $activity->id) }}" wire:navigate ><i class="fa-regular fa-eye"></i></a>
+                    <a href="{{ route('activities.edit', $activity->id) }}" wire:navigate class="text-gray-500"><i class="fa-solid fa-pen"></i></i></a>
                 </td>
             </tr>
             @endforeach

@@ -98,8 +98,8 @@
                         </span>
                     </td>
                     <td class="py-2 px-4">
-                        <a href="{{ route('reports.show', $report->id) }}" wire:navigate class="text-blue-500 hover:text-blue-600">
-                            👁️
+                        <a href="{{ route('reports.show', $report->id) }}" wire:navigate >
+                            <i class="fa-regular fa-eye"></i>
                         </a>
                     </td>
                 </tr>
