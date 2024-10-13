@@ -37,6 +37,9 @@ class Chart extends Component
         $pieChart = LarapexChart::pieChart()
             ->setTitle('Persentase Total Realisasi Berdasarkan Sektor CSR')
             ->setDataset($dataset)
+
+            ->setLabels($labels);
+
             ->setLabels($labels)
             ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe']); // Menetapkan warna untuk pie chart
 
@@ -97,7 +100,11 @@ class Chart extends Component
             ->setTitle('Total Realisasi Berdasarkan Lokasi')
             ->setDataset([[
                 'name' => 'Proyek CSR',
+
+                'data' => $totalRealisasi
+
                 'data' => $totalRealisasiLokasi
+
             ]])
             ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
             ->setXAxis($lokasi);
