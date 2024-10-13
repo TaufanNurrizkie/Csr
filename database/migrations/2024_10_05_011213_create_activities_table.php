@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('lokasi');
-            $table->integer('jumlah_mitra')->nullable();
-            $table->date('tgl_mulai');
-            $table->date('tgl_akhir');
-            $table->date('tgl_diterbitkai')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('title');
+            $table->string('tags');
+            $table->text('description');
+            $table->date('published_date')->nullable();
             $table->enum('status', ['Draft', 'Terbit']);
-// Menggunakan enum untuk status
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('activities');
     }
 };

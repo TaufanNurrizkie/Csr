@@ -10,4 +10,10 @@ class Sektor extends Model
     use HasFactory;
 
     protected $fillable = ['thumbnail', 'nama', 'deskripsi'];
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'sektor_id'); // Pastikan 'sektor_id' adalah kolom yang digunakan di tabel 'reports'
+    }
+    
 }

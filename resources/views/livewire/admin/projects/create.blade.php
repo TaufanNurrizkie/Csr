@@ -29,9 +29,16 @@
         </div>
 
         <div class="mb-4">
-            <label for="jumlah_mitra" class="block text-sm font-medium mb-2">Jumlah Mitra *</label>
-            <input type="number" wire:model.defer="jumlah_mitra" class="border p-2 rounded w-full @error('jumlah_mitra') border-red-500 @enderror" required>
-            @error('jumlah_mitra')
+            <label for="sektor_id" class="block text-sm font-medium mb-2">Sektor *</label>
+            <select name="sektor_id" wire:model="sektor_id" class="border p-2 rounded w-full @error('sektor_id') border-red-500 @enderror" required>
+                <option value="">Pilih Sektor</option>
+                @foreach($sektors as $sektor)
+                    <option value="{{ $sektor->id }}" {{ old('sektor_id') == $sektor->id ? 'selected' : '' }}>
+                        {{ $sektor->nama }}
+                    </option>
+                @endforeach
+            </select>
+            @error('sektor_id')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>
@@ -48,18 +55,6 @@
             <label for="tgl_akhir" class="block text-sm font-medium mb-2">Tanggal Akhir *</label>
             <input type="date" wire:model.defer="tgl_akhir" class="border p-2 rounded w-full @error('tgl_akhir') border-red-500 @enderror" required>
             @error('tgl_akhir')
-                <p class="text-red-500 text-xs italic">{{ $message }}</p>
-            @enderror
-        </div>
-
-        <div class="mb-4">
-            <label for="status" class="block text-sm font-medium mb-2">Status *</label>
-            <select wire:model.defer="status" class="border p-2 rounded w-full @error('status') border-red-500 @enderror" required>
-                <option value="">Pilih Status</option>
-                <option value="Draft">Draft</option>
-                <option value="Terbit">Terbit</option>
-            </select>
-            @error('status')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>

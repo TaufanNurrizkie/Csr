@@ -11,8 +11,29 @@ class Project extends Model
 
     // Jika ada kolom lain yang ingin diisi, sesuaikan bagian ini
     protected $fillable = [
-        'judul', 'lokasi', 'jumlah_mitra', 'tgl_mulai', 'tgl_akhir', 'tgl_diterbitkan', 'status'
+        'judul',
+        'lokasi',
+        'jumlah_mitra',
+        'tgl_mulai',
+        'tgl_akhir',
+        'tgl_diterbitkan',
+        'status'
     ];
+
+    public function mitras()
+    {
+        return $this->belongsToMany(Mitra::class, 'project_mitra', 'project_id', 'mitra_id');
+    }
+
+    // Menghitung jumlah mitra
+    public function getJumlahMitraAttribute()
+    {
+        return $this->mitras()->count();
+    }
+
+     // Relasi dengan Report
+     public function reports()
+     {
+         return $this->hasMany(Report::class);
+     }
 }
-
-
