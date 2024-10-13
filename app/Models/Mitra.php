@@ -10,4 +10,9 @@ class Mitra extends Model
     use HasFactory;
 
     protected $fillable = ['foto', 'nama', 'nama_pt', 'email', 'no_telp', 'alamat', 'deskripsi', 'tgl_terdaftar', 'status'];
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'mitra_id');
+    }
 }

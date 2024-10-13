@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\admin\Dashboard;
+namespace App\Livewire\Admin\Dashboard;
 
 use App\Models\Mitra;
 use App\Models\Report;
@@ -14,122 +14,105 @@ class Chart extends Component
 {
     public function render()
     {
-        $jumlahMitra = Mitra::count(); // Menghitung jumlah mitra
-        $jumlahCSR = Project::count(); // Menghitung jumlah mitra
-        $jumlahApproved = Report::where('status', 'approved')->count();
-        $totalDanaCsr = Report::sum('realisasi');
+        // Menghitung data
+        $jumlahMitra = Mitra::count(); // Total mitra
+        $jumlahCSR = Project::count(); // Total CSR
+        $jumlahApproved = Report::where('status', 'approved')->count(); // Laporan Approved
+        $totalDanaCsr = Report::sum('realisasi'); // Total dana CSR
         $reports = Report::select('mitra', 'realisasi')->get();
 
-        // Set up charts here in render instead of assigning them to public properties
+        // Data untuk pie chart sektor berdasarkan total realisasi
+        $sektors = Sektor::with(['reports' => function ($query) {
+            $query->select('sektor_id', DB::raw('SUM(realisasi) as total_realisasi'))
+                ->groupBy('sektor_id');
+        }])->get();
 
-        $sektors = Sektor::select('nama')
-            ->groupBy('nama')
-            ->selectRaw('count(*) as jumlah, nama')
-            ->get();
+        $labels = $sektors->pluck('nama')->toArray();
+        $dataset = $sektors->map(function ($sektor) {
+            // Mengambil total realisasi dari laporan yang terhubung
+            return $sektor->reports->sum('total_realisasi') ?: 0; // Menghindari null
+        })->toArray();
 
-        // Mengambil nama sektor dan jumlahnya
-        $labels = $sektors->pluck('nama')->toArray(); // ['Pendidikan', 'Kesehatan', ...]
-        $dataset = $sektors->pluck('jumlah')->toArray(); // [2, 3, ...] berdasarkan frekuensi nama sektor
-
-        // Membuat pie chart
+        // Pastikan untuk membuat pie chart dengan dataset yang benar
         $pieChart = LarapexChart::pieChart()
-            ->setTitle('Persentase total realisasi berdasarkan sektor CSR')
+            ->setTitle('Persentase Total Realisasi Berdasarkan Sektor CSR')
             ->setDataset($dataset)
-            ->setLabels($labels);
+            ->setLabels($labels)
+            ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe']); // Menetapkan warna untuk pie chart
 
-        $namabar = $sektors->pluck('nama')->toArray(); // ['Mitra A', 'Mitra B', ...]
-        $data1 = $reports->pluck('realisasi')->toArray(); // [100, 200, ...]
+        // Data untuk bar chart realisasi berdasarkan total realisasi per sektor
+        $sektors = Sektor::with(['reports' => function ($query) {
+            $query->select('sektor_id', DB::raw('SUM(realisasi) as total_realisasi'))
+                ->groupBy('sektor_id');
+        }])->get();
 
+        // Ambil nama sektor dan total realisasi
+        $namabar = $sektors->pluck('nama')->toArray();
+        $data1 = $sektors->map(function ($sektor) {
+            // Mengambil total realisasi dari laporan yang terhubung
+            return $sektor->reports->sum('total_realisasi') ?: 0; // Menghindari null
+        })->toArray();
 
         $barChart = LarapexChart::horizontalBarChart()
-            ->setTitle('Total realisasi sektor CSR')
-            ->setDataset([
-                [
-                    'name' => 'Realisasi',
-                    'data' => $data1 // Data realisasi dalam bentuk array satu dimensi
-                ]
-            ])
+            ->setTitle('Total Realisasi Berdasarkan Sektor CSR')
+            ->setDataset([[
+                'name' => 'Realisasi',
+                'data' => $data1 // Total realisasi berdasarkan sektor
+            ]])
             ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
-            ->setXAxis($namabar); // Nama mitra/sektor pada sumbu X
+            ->setXAxis($namabar);
 
 
-        $realisasi = DB::table('reports')
-            ->join('mitras', 'reports.id', '=', 'mitras.id') // Mengganti 'mitra_id' dengan kolom yang sesuai
-            ->select('mitras.nama_pt', DB::raw('SUM(realisasi) as total_realisasi'))
-            ->groupBy('mitras.nama_pt')
+        // Chart Realisasi Berdasarkan PT (Eloquent Query)
+        $realisasiPerPT = Report::with('mitra') // Meload relasi mitra
+            ->selectRaw('mitra_id, SUM(realisasi) as total_realisasi')
+            ->groupBy('mitra_id')
             ->get();
 
+        // Memfilter mitra yang memiliki nama_pt (tidak null)
+        $filteredRealisasiPerPT = $realisasiPerPT->filter(function ($report) {
+            return !is_null($report->mitra) && !is_null($report->mitra->nama_pt); // Hanya yang ada mitra dan nama_pt
+        });
 
-        // Data dari laporan sektor CSR
-        $namaPt = $realisasi->pluck('nama_pt')->toArray(); // Nama PT ['PT A', 'PT B', ...]
-        $totalRealisasi = $realisasi->pluck('total_realisasi')->toArray();
-
+        // Mengambil nama PT dan total realisasi dari data yang sudah difilter
+        $namaPt = $filteredRealisasiPerPT->pluck('mitra.nama_pt')->toArray();
+        $totalRealisasiPT = $filteredRealisasiPerPT->pluck('total_realisasi')->toArray();
 
         $barChart2 = LarapexChart::horizontalBarChart()
-            ->setTitle('Presentase Total Realisasi Berdasarkan PT')
-            ->setDataset([
-                [
-                    'name' => 'Total Realisasi',
-                    'data' => $totalRealisasi // Total realisasi berdasarkan nama_pt
-                ]
-            ])
+            ->setTitle('Total Realisasi Berdasarkan PT')
+            ->setDataset([['name' => 'Total Realisasi', 'data' => $totalRealisasiPT]])
             ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
-            ->setXAxis($namaPt); // Nama PT sebagai label sumbu X
+            ->setXAxis($namaPt);
 
 
-        $reports = DB::table('reports')
-            ->select('lokasi', DB::raw('SUM(realisasi) as total_realisasi')) // Menghitung total realisasi berdasarkan lokasi
+        // Data untuk bar chart realisasi per lokasi (Eloquent Query)
+        $realisasiPerLokasi = Report::select('lokasi', DB::raw('SUM(realisasi) as total_realisasi'))
             ->groupBy('lokasi')
             ->get();
 
+        $lokasi = $realisasiPerLokasi->pluck('lokasi')->toArray();
+        $totalRealisasiLokasi = $realisasiPerLokasi->pluck('total_realisasi')->toArray();
 
-        $reports = DB::table('reports')
-        ->select('lokasi', DB::raw('SUM(realisasi) as total_realisasi')) // Menghitung total realisasi berdasarkan lokasi
-        ->groupBy('lokasi')
-        ->get();
-
-                // Menyiapkan data untuk chart
-        $lokasi = $reports->pluck('lokasi')->toArray(); // Ambil nama lokasi
-        $totalRealisasi = $reports->pluck('total_realisasi')->toArray(); // Ambil total realisasi
-        
-        
-            
-               // Membuat chart
-               $barChart3 = LarapexChart::horizontalBarChart()
-               ->setTitle('Presentase Total Realisasi Berdasarkan Lokasi')
-               ->setDataset([
-                   [
-                       'name' => 'Proyek CSR',
-                       'data' => [$totalRealisasi] // Total realisasi berdasarkan lokasi
-                   ]
-               ])
-               ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
-               ->setXAxis($lokasi); // Nama lokasi sebagai label sumbu X
-
-        // Menyiapkan data untuk chart
-        $lokasi = $reports->pluck('lokasi')->toArray(); // Ambil nama lokasi
-        $totalRealisasi = $reports->pluck('total_realisasi')->toArray(); // Ambil total realisasi
-
-        // Membuat chart
         $barChart3 = LarapexChart::horizontalBarChart()
-            ->setTitle('Presentase Total Realisasi Berdasarkan Lokasi')
-            ->setDataset([
-                [
-                    'name' => 'Proyek CSR',
-                    'data' => $totalRealisasi // Total realisasi berdasarkan lokasi
-                ]
-            ])
+            ->setTitle('Total Realisasi Berdasarkan Lokasi')
+            ->setDataset([[
+                'name' => 'Proyek CSR',
+                'data' => $totalRealisasiLokasi
+            ]])
             ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
-            ->setXAxis($lokasi); // Nama lokasi sebagai label sumbu X
+            ->setXAxis($lokasi);
 
 
-
-        // Return charts to the view
+        // Mengembalikan view dengan data chart
         return view('livewire.admin.dashboard.chart', [
             'pieChart' => $pieChart,
             'barChart' => $barChart,
             'barChart2' => $barChart2,
-            'barChart3' => $barChart3
-        ], compact('jumlahMitra', 'jumlahCSR', 'jumlahApproved', 'totalDanaCsr'));
+            'barChart3' => $barChart3,
+            'jumlahMitra' => $jumlahMitra,
+            'jumlahCSR' => $jumlahCSR,
+            'jumlahApproved' => $jumlahApproved,
+            'totalDanaCsr' => $totalDanaCsr,
+        ]);
     }
 }
