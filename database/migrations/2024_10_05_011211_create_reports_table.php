@@ -15,13 +15,19 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id(); // Auto-incrementing ID
+
             $table->string('foto')->nullable();
+
+
             $table->unsignedBigInteger('reviewed_by')->nullable(); // Reviewer ID (nullable)
             $table->string('title'); // Report title
             $table->string('mitra')->nullable(); // Partner (nullable)
             $table->string('lokasi')->nullable(); // Location (nullable)
             $table->decimal('realisasi', 15, 2)->nullable(); // Realization amount (nullable)
+
             $table->text('deskripsi')->nullable();
+
+
             $table->date('tgl_realisasi')->nullable(); // Realization date (nullable)
             $table->date('laporan_dikirim')->nullable(); // Report sent date (nullable)
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // Status
@@ -41,9 +47,11 @@ class CreateReportsTable extends Migration
               $table->unsignedBigInteger('project_id')->nullable(); // Foreign key to sektors table
               $table->foreign('project_id')->references('id')->on('projects')->onDelete('set null');
 
+
               
 
-            // If you want to create a foreign key for reviewed_by
+
+         // If you want to create a foreign key for reviewed_by
             // Uncomment if you have a users table
             // $table->foreign('reviewed_by')->references('id')->on('users')->onDelete('set null');
         });

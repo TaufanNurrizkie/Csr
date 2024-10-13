@@ -37,7 +37,11 @@ class Chart extends Component
         $pieChart = LarapexChart::pieChart()
             ->setTitle('Persentase Total Realisasi Berdasarkan Sektor CSR')
             ->setDataset($dataset)
+
             ->setLabels($labels);
+
+            ->setLabels($labels)
+            ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe']); // Menetapkan warna untuk pie chart
 
         // Data untuk bar chart realisasi berdasarkan total realisasi per sektor
         $sektors = Sektor::with(['reports' => function ($query) {
@@ -84,45 +88,23 @@ class Chart extends Component
             ->setXAxis($namaPt);
 
 
-        $reports = DB::table('reports')
-            ->select('lokasi', DB::raw('SUM(realisasi) as total_realisasi')) // Menghitung total realisasi berdasarkan lokasi
+        // Data untuk bar chart realisasi per lokasi (Eloquent Query)
+        $realisasiPerLokasi = Report::select('lokasi', DB::raw('SUM(realisasi) as total_realisasi'))
             ->groupBy('lokasi')
             ->get();
 
+        $lokasi = $realisasiPerLokasi->pluck('lokasi')->toArray();
+        $totalRealisasiLokasi = $realisasiPerLokasi->pluck('total_realisasi')->toArray();
 
-        $reports = DB::table('reports')
-        ->select('lokasi', DB::raw('SUM(realisasi) as total_realisasi')) // Menghitung total realisasi berdasarkan lokasi
-        ->groupBy('lokasi')
-        ->get();
-
-                // Menyiapkan data untuk chart
-        $lokasi = $reports->pluck('lokasi')->toArray(); // Ambil nama lokasi
-        $totalRealisasi = $reports->pluck('total_realisasi')->toArray(); // Ambil total realisasi
-        
-        
-            
-               // Membuat chart
-               $barChart3 = LarapexChart::horizontalBarChart()
-               ->setTitle('Presentase Total Realisasi Berdasarkan Lokasi')
-               ->setDataset([
-                   [
-                       'name' => 'Proyek CSR',
-                       'data' => [$totalRealisasi] // Total realisasi berdasarkan lokasi
-                   ]
-               ])
-               ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
-               ->setXAxis($lokasi); // Nama lokasi sebagai label sumbu X
-
-        // Menyiapkan data untuk chart
-        $lokasi = $reports->pluck('lokasi')->toArray(); // Ambil nama lokasi
-        $totalRealisasi = $reports->pluck('total_realisasi')->toArray(); // Ambil total realisasi
-
-        // Membuat chart
         $barChart3 = LarapexChart::horizontalBarChart()
             ->setTitle('Total Realisasi Berdasarkan Lokasi')
             ->setDataset([[
                 'name' => 'Proyek CSR',
+
                 'data' => $totalRealisasi
+
+                'data' => $totalRealisasiLokasi
+
             ]])
             ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
             ->setXAxis($lokasi);
