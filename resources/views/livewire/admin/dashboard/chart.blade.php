@@ -38,9 +38,9 @@
     </div>
   
     <!-- Main Section -->
-    <div class="container mx-auto mt-6">
+    <div class="container mx-auto mt-1">
       <div class="bg-white p-4 rounded-lg shadow-md">
-        <h2 class="text-3xl font-bold my-8 text-start">Data Statistik</h2>
+        <h2 class="text-3xl font-bold my-4 text-start">Data Statistik</h2>
         <!-- Data Statistik -->
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-4 text-center">
           <div class="bg-[#F95016] text-white p-3 rounded-lg">
@@ -72,7 +72,7 @@
             </div>
           </div>
     
-          <div class="bg-[#2C5586] text-white p-3 rounded-lg">
+          <div class="bg-[#2C5586] text-white p-3 rounded-[12px]">
             <div class="flex items-center text-base justify-start">
               <span class="mr-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -101,9 +101,9 @@
           </div>
         </div>
     
-    
-        <h2 class="text-3xl font-bold ml-8 mb-8 text-start mt-8">Realisasi Proyek CSR</h2>
+        
       </div>
+      <h2 class="text-3xl font-bold ml-8 mb-8 text-start mt-8">Realisasi Proyek CSR</h2>
     </div>
   
     <!-- Realisasi Proyek CSR -->

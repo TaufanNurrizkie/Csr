@@ -42,6 +42,7 @@ class Edit extends Component
         $this->mitra->no_telp = $this->no_telp;
         $this->mitra->alamat = $this->alamat;
         $this->mitra->deskripsi = $this->deskripsi;
+        
 
         if ($this->foto) {
             // Menyimpan foto baru dan menghapus foto lama jika ada

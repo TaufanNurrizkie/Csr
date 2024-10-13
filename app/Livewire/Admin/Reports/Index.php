@@ -13,13 +13,34 @@ class Index extends Component
     public $search = '';
     public $reviewNotes = ''; // untuk catatan ulasan
     public $suggestion = ''; // untuk saran
+    public $filters = [
+        'status' => null,
+        'year' => '2024', // Default year
+        'quarter' => null, // Default quarter
+    ];
 
-    // Tampilkan semua laporan untuk admin dengan pencarian
+    // Tampilkan laporan dengan pencarian dan filter
     public function render()
     {
         $reports = Report::when($this->search, function ($query) {
             return $query->where('title', 'like', '%' . $this->search . '%')
                          ->orWhere('reporter_name', 'like', '%' . $this->search . '%');
+        })->when($this->filters['status'], function ($query) {
+            return $query->where('status', $this->filters['status']);
+        })->when($this->filters['year'], function ($query) {
+            return $query->whereYear('created_at', $this->filters['year']);
+        })->when($this->filters['quarter'], function ($query) {
+            $monthRanges = [
+                '1' => [1, 3], // Q1
+                '2' => [4, 6], // Q2
+                '3' => [7, 9], // Q3
+                '4' => [10, 12], // Q4
+            ];
+
+            if (array_key_exists($this->filters['quarter'], $monthRanges)) {
+                return $query->whereMonth('created_at', '>=', $monthRanges[$this->filters['quarter']][0])
+                             ->whereMonth('created_at', '<=', $monthRanges[$this->filters['quarter']][1]);
+            }
         })->paginate(10);
 
         return view('livewire.admin.reports.index', compact('reports'));
@@ -33,8 +54,7 @@ class Index extends Component
         $report->reviewed_by = auth()->user()->id; // ID admin yang menyetujui laporan
         $report->save();
 
-        $this->dispatch('sweet-alert', icon: 'success', title: 'Laporan Telah Disetujui');
-
+        $this->dispatch('sweet-alert', ['icon' => 'success', 'title' => 'Laporan Telah Disetujui']);
     }
 
     // Proses penolakan laporan
@@ -67,5 +87,11 @@ class Index extends Component
 
         session()->flash('success', 'Saran telah disampaikan.');
         $this->reset('suggestion'); // Reset saran setelah pengiriman
+    }
+
+    // Metode untuk mengatur status filter
+    public function setStatusFilter($status)
+    {
+        $this->filters['status'] = $status;
     }
 }

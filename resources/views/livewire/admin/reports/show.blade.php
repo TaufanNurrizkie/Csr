@@ -12,19 +12,30 @@
             <span class="bg-red-100 text-red-600 px-3 py-1 rounded">Detail</span>
         </nav>
         <h1 class="text-3xl font-bold">Detail Laporan</h1>
-        <img src="{{ asset('storage/' . $report->image_url) }}" alt="{{ $report->title }}" class="w-full h-56 object-cover">
-
+        
         <div class="p-6">
-            <h1 class="text-2xl font-bold mb-2 text-center">{{ $report->title }}</h1>
-            <p class="text-gray-700 mb-4 text-justify">{{ $report->description }}</p>
-
-            <div class="mb-4">
-                <p class="font-semibold">Mitra: <span class="font-normal">{{ $report->mitra }}</span></p>
-                <p class="font-semibold">Lokasi: <span class="font-normal">{{ $report->lokasi }}</span></p>
-                <p class="font-semibold">Realisasi: <span class="font-normal">{{ number_format($report->realisasi, 2) }}</span></p>
-                <p class="font-semibold">Tanggal Realisasi: <span class="font-normal">{{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d-m-Y') }}</span></p>
-                <p class="font-semibold">Tanggal Laporan Dikirim: <span class="font-normal">{{ \Carbon\Carbon::parse($report->laporan_dikirim)->format('d-m-Y') }}</span></p>
+            <h1 class="text-2xl font-bold mb-2 text-start">{{ $report->title }}</h1>
+            <span>{{ \Carbon\Carbon::parse($report->laporan_dikirim)->format('d-M-Y') }}</span>
+            <img src="{{ asset('storage/' . $report->foto) }}" alt="{{ $report->title }}" class="w-full h-56 object-cover mb-4">
+            <div class="grid grid-cols-3 gap-4 mb-6">
+                <div class="p-4 border border-gray-300 rounded-lg bg-red-100">
+                    <p class="font-semibold">Realisasi</p>
+                    <p class="text-red-600 font-bold text-lg">{{'Rp. ' . number_format($report->realisasi, 2) }}</p>
+                </div>
+                <div class="p-4 border border-gray-300 rounded-lg bg-gray-100">
+                    <p class="font-semibold">Nama Proyek</p>
+                    <p>{{ $report->title }}</p>
+                </div>
+                <div class="p-4 border border-gray-300 rounded-lg bg-gray-100">
+                    <p class="font-semibold">Kecamatan</p>
+                    <p>{{ $report->lokasi }}</p>
+                </div>
             </div>
+            
+            <h1 class="text-3xl font-bold">Rincian Laporan</h1>
+            <p class="text-gray-700 mb-4 text-justify">{{ $report->deskripsi }}</p>
+
+
 
             <div class="flex items-center justify-between mb-4">
                 <span class="text-sm font-medium">
@@ -46,18 +57,12 @@
                     </form>
 
                     <form wire:submit.prevent="reject" class="flex-1">
-                        <textarea wire:model="reviewNotes" placeholder="Catatan penolakan" required class="w-full border border-gray-300 p-2 rounded-md mb-2"></textarea>
                         <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
                             Tolak
                         </button>
                     </form>
                 </div>
             @elseif($report->status == 'rejected')
-                <div class="bg-red-100 p-4 rounded-md">
-                    <h3 class="text-red-600 font-semibold">Catatan Penolakan:</h3>
-                    <p class="text-red-500 mb-4">{{ $report->review_notes }}</p>
-                </div>
-
                 <form wire:submit.prevent="suggest" class="mt-4">
                     <textarea wire:model="suggestion" placeholder="Berikan saran untuk revisi" required class="w-full border border-gray-300 p-2 rounded-md mb-2"></textarea>
                     <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">

@@ -14,13 +14,15 @@
         <a href="/projects/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Buat Proyek Baru</a>
     </div>
 
-    <div class="flex justify-between items-center mb-2">
+    <div class="flex justify-between items-center mb-8">
         <div class="flex gap-2">
-            <button class="bg-blue-100 text-blue-700 px-4 py-1 rounded">Semua</button>
-            <button class="bg-white text-gray-700 border px-4 py-1 rounded">Terbit</button>
-            <button class="bg-white text-gray-700 border px-4 py-1 rounded">Draf</button>
+            <button class="{{ $status === 'all' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'all')" data-status="all">Semua</button>
+            <button class="{{ $status === 'Terbit' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'Terbit')" data-status="Terbit">Terbit</button>
+            <button class="{{ $status === 'draft' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'draft')" data-status="draft">Draf</button>
+            
         </div>
     </div>
+    
 
     <div class="flex justify-between items-center mb-4">
         <div class="flex gap-2">
@@ -43,19 +45,22 @@
 
         <div class="flex gap-2">
             <button wire:click="applyFilters" class="bg-red-600 text-white py-1.5 px-3 rounded hover:bg-red-700 transition-colors">Terapkan filter</button>
-            <button class="border border-green-600 text-green-600 py-1.5 px-3 rounded hover:bg-green-600 hover:text-white transition-colors">
+            
+            <button wire:click="downloadCsv" class="border border-green-600 text-green-600 py-1.5 px-3 rounded hover:bg-green-600 hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
                 Unduh .csv
             </button>
-            <button class="border border-red-600 text-red-600 py-1.5 px-3 rounded hover:bg-red-600 hover:text-white transition-colors">
+            
+            <button wire:click="downloadPdf" class="border border-red-600 text-red-600 py-1.5 px-3 rounded hover:bg-red-600 hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
                 Unduh .pdf
             </button>
         </div>
+        
     </div>
 
     <div class="mb-4">

@@ -43,6 +43,8 @@ Route::middleware([
     Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::get('/projects/{id}',  App\Livewire\admin\Projects\Show::class)->name('projects.show');
     Route::get('/projects/{id}/publish', [ProjectController::class, 'publish'])->name('projects.publish');
+    
+    
 
 
     //Route Sektor

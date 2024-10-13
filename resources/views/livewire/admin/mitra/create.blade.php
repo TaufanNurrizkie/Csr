@@ -64,6 +64,7 @@
         <div class="mb-4">
             <label for="status" class="block text-gray-700">Status</label>
             <select wire:model="status" id="status" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                <option >Pilih Status</option>
                 <option value="Aktif">Aktif</option>
                 <option value="Non-Aktif">Non-Aktif</option>
             </select>

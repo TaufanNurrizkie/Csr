@@ -15,9 +15,10 @@
     <h1 class="text-2xl font-semibold mb-4">Kegiatan</h1>
     <div class="flex justify-between mb-4">
         <div class="flex gap-2">
-            <button class="bg-blue-100 text-blue-700 px-4 py-1 rounded">Semua</button>
-            <button class="bg-white text-gray-700 border px-4 py-1 rounded">Terbit</button>
-            <button class="bg-white text-gray-700 border px-4 py-1 rounded">Draf</button>
+            <button class="{{ $status === 'all' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'all')" data-status="all">Semua</button>
+            <button class="{{ $status === 'Terbit' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'Terbit')" data-status="Terbit">Terbit</button>
+            <button class="{{ $status === 'draft' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'draft')" data-status="draft">Draf</button>
+            
         </div>
         <a href="/activities/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Buat Kegiatan Baru</a>
     </div>

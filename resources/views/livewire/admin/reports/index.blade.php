@@ -21,12 +21,22 @@
 
     <!-- Filter Section -->
     <div class="flex justify-between mb-6">
-        <div class="space-x-4 flex items-center">
-            <button wire:click="$set('filters.status', null)" class="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none">Semua</button>
-            <button wire:click="$set('filters.status', 'approved')" class="bg-gray-200 text-gray-700 px-4 py-2 rounded focus:outline-none">Diterima</button>
-            <button wire:click="$set('filters.status', 'revision')" class="bg-gray-200 text-gray-700 px-4 py-2 rounded focus:outline-none">Revisi</button>
-            <button wire:click="$set('filters.status', 'rejected')" class="bg-gray-200 text-gray-700 px-4 py-2 rounded focus:outline-none">Ditolak</button>
+        <div class="space-x-4 flex items-center ">
+            <button 
+                wire:click="setStatusFilter(null)" 
+                class="bg-gray-200 text-gray-700 px-4 py-2 rounded-[60px] focus:outline-none focus:text-white focus:bg-[#2C5586]">Semua</button>
+            <button 
+                wire:click="setStatusFilter('approved')" 
+                class="bg-gray-200 text-gray-700 px-4 py-2 rounded-[60px] focus:outline-none focus:text-white focus:bg-[#2C5586]">Diterima</button>
+            <button 
+                wire:click="setStatusFilter('revision')" 
+                class="bg-gray-200 text-gray-700 px-4 py-2 rounded-[60px] focus:outline-none focus:text-white focus:bg-[#2C5586]">Revisi</button>
+            <button 
+                wire:click="setStatusFilter('rejected')" 
+                class="bg-gray-200 text-gray-700 px-4 py-2 rounded-[60px] focus:outline-none focus:text-white focus:bg-[#2C5586]">Ditolak</button>
         </div>
+        
+
         <div class="flex space-x-4 items-center">
             <select wire:model="filters.year" class="border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
                 <option value="2024">2024</option>
@@ -84,7 +94,7 @@
             </thead>
             <tbody>
                 @foreach($reports as $report)
-                <tr class="text-center">
+                <tr class="text-start">
                     <td class="py-2 px-4">{{ $report->title }}</td>
                     <td class="py-2 px-4">{{ $report->mitra }}</td>
                     <td class="py-2 px-4">{{ $report->lokasi }}</td>
