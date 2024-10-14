@@ -112,5 +112,21 @@ class ReportController extends Controller
         $mpdf->WriteHTML(view('livewire.admin.reports.pdf', compact('reports')));
         $mpdf->Output('Data-Laporan-CSR.pdf','D');
     }
+    function download_csv()
+    {
+        $data = Report::latest()->get();
+        $filename = "Data-Laporan-CSR.csv";
+        $fp=fopen($filename, "w+");
+        fputcsv($fp, array('id', 'Judul Laporan','Mitra', 'Lokasi', 'Realisasi','Deskripsi', 'Tgl_realisasi', 'Laporan Dikirim', 'status'));
+        
+        foreach($data as $row){
+            fputcsv($fp, array($row->id,$row->title,$row->mitra,$row->lokasi,$row->realisasi,$row->deskripsi,$row->tgl_realisasi, $row->laporan_dikirim,$row->status));
+        }
+
+        fclose($fp);
+        $headers = array('Content-Type' => 'text/csv');
+
+        return response()->download($filename, "Data-Laporan-CSR.csv", $headers);
+    }
 }
 

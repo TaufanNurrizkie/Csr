@@ -124,5 +124,21 @@ class ProjectController extends Controller
         $mpdf->WriteHTML(view('livewire.admin.projects.pdf', compact('projects')));
         $mpdf->Output('Data-project-CSR.pdf','D');
     }
+    function download_csv()
+    {
+        $data = Project::latest()->get();
+        $filename = "Data-project-CSR.csv";
+        $fp=fopen($filename, "w+");
+        fputcsv($fp, array('id', 'judul', 'lokasi', 'tgl_mulai', 'tgl_akhir', 'tgl_diterbitkan', 'status'));
+        
+        foreach($data as $row){
+            fputcsv($fp, array($row->id,$row->judul,$row->lokasi,$row->tgl_mulai,$row->tgl_akhir,$row->tgl_diterbitkai,$row->status));
+        }
+
+        fclose($fp);
+        $headers = array('Content-Type' => 'text/csv');
+
+        return response()->download($filename, "Data-Project.csv", $headers);
+    }
     
 }

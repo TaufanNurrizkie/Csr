@@ -81,8 +81,10 @@ class Chart extends Component
 
         $barChart = LarapexChart::horizontalBarChart()
             ->setTitle('Total Realisasi Berdasarkan Sektor CSR')
+
             ->setColors(['#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
             ->setDataset([['name' => 'Realisasi', 'data' => $data1]])
+
             ->setXAxis($namabar);
 
         // Data untuk bar chart berdasarkan PT
