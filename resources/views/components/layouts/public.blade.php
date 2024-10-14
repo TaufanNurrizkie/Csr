@@ -20,23 +20,45 @@
     @livewireStyles
 </head>
 <body class="flex flex-col min-h-screen">
-<nav class="bg-white py-4 px-8 shadow-md flex justify-between items-center">
-    <div class="flex items-center">
-        <!-- Logo dan Teks -->
-        <img src="{{ asset('cirebonLogo.png') }}" alt="Logo" class="h-10 mr-4">
-    </div>
-    <!-- Menu Navigasi -->
-    <ul class="flex space-x-10 text-xl font-medium">
-        <li><a href="/dashboard" wire:navigate class="{{ Request::is('dashboard*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Dashboard</a></li>
-        <li><a href="/activities" wire:navigate class="{{ Request::is('activities*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Kegiatan</a></li>
-    </ul>
-    
-
-
-
+    <nav class="flex justify-between items-center p-4 bg-white border-b ">
+        <!-- Isi Navbar -->
+        <div class="flex items-center pl-7">
+            <img src="{{ asset('cirebonLogo.png') }}" alt="Logo" class="h-10 mr-4">
         </div>
-    </div>
-</nav>
+    
+        <!-- Menu Navigasi di Tengah -->
+        <ul class="flex-1 flex justify-center space-x-10 text-xl font-medium">
+            <li>
+                <a href="/beranda" class="{{ Request::is('beranda*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Beranda</a>
+            </li>
+            <li>
+                <a href="/tentang" class="{{ Request::is('tentang*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Tentang</a>
+            </li>
+            <li>
+                <a href="/kegiatan" class="{{ Request::is('kegiatan*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Kegiatan</a>
+            </li>
+            <li>
+                <a href="/statistik" class="{{ Request::is('statistik*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Statistik</a>
+            </li>
+            <li>
+                <a href="/sektor" class="{{ Request::is('sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a>
+            </li>
+            <li>
+                <a href="/laporan" class="{{ Request::is('laporan*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Laporan</a>
+            </li>
+            <li>
+                <a href="/mitra" class="{{ Request::is('mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a>
+            </li>
+        </ul>
+    
+        <!-- Tombol Pengajuan -->
+        <div>
+            <a href="/pengajuan" class="px-4 py-2 bg-[#98100A] text-white rounded-md mr-10">Pengajuan</a>
+        </div>
+        
+    </nav>
+    
+    
 
 <main class="flex-grow">
     {{ $slot }}
