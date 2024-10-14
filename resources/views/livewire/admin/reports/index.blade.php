@@ -38,15 +38,16 @@
         
 
         <div class="flex space-x-4 items-center">
-            <select wire:model="filters.year" class="border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
+            <select wire:model="year" class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
                 <option value="2024">2024</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
             </select>
 
-            <select wire:model="filters.quarter" class="border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
-                <option value="">Kuartal 2 (April, Mei, Juni)</option>
+            <select wire:model="filters.quarter" class="border border-gray-300 text-gray-700 py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500" id="quarter">
+                <option value="">Semua Kuartal</option>
                 <option value="1">Kuartal 1 (Jan, Feb, Mar)</option>
+                <option value="2">Kuartal 2 (Apr, Mei, Jun)</option>
                 <option value="3">Kuartal 3 (Jul, Agu, Sep)</option>
                 <option value="4">Kuartal 4 (Okt, Nov, Des)</option>
             </select>

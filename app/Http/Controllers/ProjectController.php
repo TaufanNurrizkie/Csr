@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sektor;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
+    
     public function index()
     {
         $projects = Project::paginate(5);
