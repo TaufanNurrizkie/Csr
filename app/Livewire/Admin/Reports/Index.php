@@ -10,14 +10,14 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $search = '';
-    public $reviewNotes = ''; // untuk catatan ulasan
-    public $suggestion = ''; // untuk saran
+    public $search = ''; // Properti untuk pencarian
     public $filters = [
         'status' => null,
-        'year' => '2024', // Default year
-        'quarter' => null, // Default quarter
-    ];
+        'year' => null,
+        'quarter' => null,
+    ]; // Properti untuk menyimpan filter
+    public $reviewNotes; // Properti untuk catatan ulasan saat penolakan
+    public $suggestion; // Properti untuk saran
 
     // Tampilkan laporan dengan pencarian dan filter
     public function render()

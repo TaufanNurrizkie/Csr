@@ -37,14 +37,17 @@
             <div class="relative">
                 <select wire:model="sector" class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
                     <option value="Semua Sektor">Semua Sektor</option>
-                    <option value="1">Sektor 1</option>
-                    <option value="2">Sektor 2</option>
+                    @foreach($sektors as $sektor)
+                        <option value="{{ $sektor->id }}">{{ $sektor->nama }}</option>
+                    @endforeach
                 </select>
             </div>
+            
         </div>
 
         <div class="flex gap-2">
             <button wire:click="applyFilters" class="bg-red-600 text-white py-1.5 px-3 rounded hover:bg-red-700 transition-colors">Terapkan filter</button>
+
             
             <a href="{{ route('project.downloadcsv') }}"  class="border border-green-600 text-green-600 py-1.5 px-3 rounded hover:bg-green-600 hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

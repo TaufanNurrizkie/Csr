@@ -136,5 +136,4 @@
   {{ $barChart->script() }}
   {{ $barChart2->script() }}
   {{ $barChart3->script() }}
-  
-  
+

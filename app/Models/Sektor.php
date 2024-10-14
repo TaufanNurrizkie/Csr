@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Sektor extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = ['thumbnail', 'nama', 'deskripsi'];
+
+    protected $table = 'sektors'; // Nama tabel
+
 
     public function reports()
     {
