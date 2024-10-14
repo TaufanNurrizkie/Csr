@@ -37,11 +37,7 @@ class Chart extends Component
         $pieChart = LarapexChart::pieChart()
             ->setTitle('Persentase Total Realisasi Berdasarkan Sektor CSR')
             ->setDataset($dataset)
-
             ->setLabels($labels);
-
-            ->setLabels($labels)
-            ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe']); // Menetapkan warna untuk pie chart
 
         // Data untuk bar chart realisasi berdasarkan total realisasi per sektor
         $sektors = Sektor::with(['reports' => function ($query) {
@@ -56,13 +52,13 @@ class Chart extends Component
             return $sektor->reports->sum('total_realisasi') ?: 0; // Menghindari null
         })->toArray();
 
-        $barChart = LarapexChart::horizontalBarChart()
+        $barChart = LarapexChart::HorizontalBarChart()
             ->setTitle('Total Realisasi Berdasarkan Sektor CSR')
+            ->setColors([ '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
             ->setDataset([[
                 'name' => 'Realisasi',
                 'data' => $data1 // Total realisasi berdasarkan sektor
             ]])
-            ->setColors(['#008FFB', '#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
             ->setXAxis($namabar);
 
 
@@ -100,9 +96,6 @@ class Chart extends Component
             ->setTitle('Total Realisasi Berdasarkan Lokasi')
             ->setDataset([[
                 'name' => 'Proyek CSR',
-
-                'data' => $totalRealisasi
-
                 'data' => $totalRealisasiLokasi
 
             ]])
