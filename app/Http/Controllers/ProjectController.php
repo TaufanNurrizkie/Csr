@@ -115,5 +115,12 @@ class ProjectController extends Controller
 
         return redirect()->route('projects.index')->with('success', 'Proyek berhasil diterbitkan!');
     }
+    function download_pdf()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $projects = Project::paginate(5);
+        $mpdf->WriteHTML(view('livewire.admin.projects.pdf', compact('projects')));
+        $mpdf->Output('Data-project-CSR.pdf','D');
+    }
     
 }

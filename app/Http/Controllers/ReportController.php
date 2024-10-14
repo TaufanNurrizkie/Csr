@@ -104,4 +104,13 @@ class ReportController extends Controller
 
         return redirect()->route('reports.index')->with('success', 'Laporan berhasil dibuat.');
     }
+
+    function download_pdf()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $reports = Report::paginate(5);
+        $mpdf->WriteHTML(view('livewire.admin.reports.pdf', compact('reports')));
+        $mpdf->Output('Data-Laporan-CSR.pdf','D');
+    }
 }
+

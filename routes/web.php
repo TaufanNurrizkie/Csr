@@ -30,6 +30,7 @@ Route::middleware([
     Route::post('/reports/{id}/approve',  App\Livewire\Admin\Reports\Index::class)->name('reports.approve');
     Route::post('/reports/{id}/reject',  App\Livewire\Admin\Reports\Index::class)->name('reports.reject');
     Route::post('/reports/{id}/suggest',  App\Livewire\Admin\Reports\Index::class)->name('reports.suggest');
+    Route::get('/reports/download/pdf', [ReportController::class, 'download_pdf'])->name('reports.downloadpdf');
 
     // Route Activity
     Route::get('/activities', App\Livewire\admin\Activities\Index::class)->name('activities.activity');
@@ -43,6 +44,7 @@ Route::middleware([
     Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::get('/projects/{id}',  App\Livewire\admin\Projects\Show::class)->name('projects.show');
     Route::get('/projects/{id}/publish', [ProjectController::class, 'publish'])->name('projects.publish');
+    Route::get('/projects/download/pdf', [ProjectController::class, 'download_pdf'])->name('project.downloadpdf');
     
     
 
