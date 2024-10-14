@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sektor;
 use ArielMejiaDev\LarapexCharts\Facades\LarapexChart;
 
 class ChartController extends Controller
@@ -11,10 +12,20 @@ class ChartController extends Controller
     public function index()
     {
         // Contoh data statis
-        $pieChart = LarapexChart::pieChart()
-            ->setTitle('Persentase total realisasi berdasarkan sektor CSR')
-            ->setDataset([44, 55, 13, 33])
-            ->setLabels(['Sektor 1', 'Sektor 2', 'Sektor 3', 'Sektor 4']);
+        $sektors = Sektor::select('nama')
+        ->groupBy('nama')
+        ->selectRaw('count(*) as jumlah, nama')
+        ->get();
+
+    // Mengambil nama sektor dan jumlahnya
+    $labels = $sektors->pluck('nama')->toArray(); // ['Pendidikan', 'Kesehatan', ...]
+    $dataset = $sektors->pluck('jumlah')->toArray(); // [2, 3, ...] berdasarkan frekuensi nama sektor
+
+    // Membuat pie chart
+    $pieChart = LarapexChart::pieChart()
+        ->setTitle('Persentase total realisasi berdasarkan sektor CSR')
+        ->setDataset($dataset)
+        ->setLabels($labels);
     
         $barChart = LarapexChart::horizontalBarChart()
             ->setTitle('Total realisasi sektor CSR')

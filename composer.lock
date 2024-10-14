@@ -2775,7 +2775,6 @@
                 "zip"
             ],
             "support": {
-
                 "issues": "https://github.com/maennchen/ZipStream-PHP/issues",
                 "source": "https://github.com/maennchen/ZipStream-PHP/tree/3.1.1"
             },
@@ -2786,12 +2785,6 @@
                 }
             ],
             "time": "2024-10-10T12:33:01+00:00"
-
-                "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.29.1"
-            },
-            "time": "2024-10-08T08:58:34+00:00"
-
         },
         {
             "name": "markbaker/complex",
@@ -2901,7 +2894,6 @@
             "time": "2022-12-02T22:17:43+00:00"
         },
         {
-
             "name": "masterminds/html5",
             "version": "2.9.0",
             "source": {
@@ -2913,19 +2905,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/f5ac2c0b0a2eefca70b2ce32a5809992227e75a6",
                 "reference": "f5ac2c0b0a2eefca70b2ce32a5809992227e75a6",
-=======
-            "name": "livewire/livewire",
-            "version": "v3.5.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/livewire/livewire.git",
-                "reference": "774092003edb2670615ef09f3a9fbdd335d6d0d7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/774092003edb2670615ef09f3a9fbdd335d6d0d7",
-                "reference": "774092003edb2670615ef09f3a9fbdd335d6d0d7",
-
                 "shasum": ""
             },
             "require": {
@@ -2976,23 +2955,10 @@
                 "xml"
             ],
             "support": {
-
                 "issues": "https://github.com/Masterminds/html5-php/issues",
                 "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
             },
             "time": "2024-03-31T07:05:07+00:00"
-
-                "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.5.10"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/livewire",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-10-10T20:03:38+00:00"
-
         },
         {
             "name": "mobiledetect/mobiledetectlib",
