@@ -22,6 +22,9 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/dashboard', App\Livewire\admin\Dashboard\Chart::class)->name('dashboard');
+    Route::get('/dashboard/download/pdf', [ChartController::class, 'download_pdf'])->name('dashboard.downloadpdf');
+    Route::get('/dashboard/download/csv', [ChartController::class, 'download_csv'])->name('dashboard.downloadcsv');
+
 
     // Route Report
     Route::get('/reports', App\Livewire\Admin\Reports\Index::class)->name('reports.index');
@@ -31,6 +34,7 @@ Route::middleware([
     Route::post('/reports/{id}/reject',  App\Livewire\Admin\Reports\Index::class)->name('reports.reject');
     Route::post('/reports/{id}/suggest',  App\Livewire\Admin\Reports\Index::class)->name('reports.suggest');
     Route::get('/reports/download/pdf', [ReportController::class, 'download_pdf'])->name('reports.downloadpdf');
+    Route::get('/reports/download/csv', [ReportController::class, 'download_csv'])->name('reports.downloadcsv');
 
     // Route Activity
     Route::get('/activities', App\Livewire\admin\Activities\Index::class)->name('activities.activity');
@@ -45,6 +49,7 @@ Route::middleware([
     Route::get('/projects/{id}',  App\Livewire\admin\Projects\Show::class)->name('projects.show');
     Route::get('/projects/{id}/publish', [ProjectController::class, 'publish'])->name('projects.publish');
     Route::get('/projects/download/pdf', [ProjectController::class, 'download_pdf'])->name('project.downloadpdf');
+    Route::get('/projects/download/csv', [ProjectController::class, 'download_csv'])->name('project.downloadcsv');
     
     
 
