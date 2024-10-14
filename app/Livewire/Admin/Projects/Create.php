@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Project;
 use App\Models\Sektor;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
@@ -47,8 +48,11 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.admin.projects.create', [
-            'sektors' => Sektor::all(), // Ambil semua sektor
-        ]);
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.projects.create', [
+                'sektors' => Sektor::all(), // Ambil semua sektor
+            ])->layout('components.layouts.admin');
+        }
+      
     }
 }

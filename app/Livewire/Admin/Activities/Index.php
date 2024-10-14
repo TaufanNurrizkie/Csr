@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Activities;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Activity;
+use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
@@ -26,7 +27,9 @@ class Index extends Component
             })
             ->paginate(5);
             
-        return view('livewire.admin.activities.index', compact('activities'));
+            if(Auth::user() && Auth::user()->hasRole('admin')) {
+                return view('livewire.admin.activities.index', compact('activities'))->layout('components.layouts.admin');
+            }
     }
 
     public function updatingSearch()

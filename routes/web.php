@@ -67,14 +67,19 @@ Route::middleware([
     Route::get('/mitra/{id}',  App\Livewire\admin\Mitra\Show::class)->name('mitra.show');
     Route::put('/mitra/{id}/nonaktifkan', [MitraController::class, 'nonaktifkan'])->name('mitra.nonaktifkan');
     Route::put('/mitra/{id}/aktifkan', [MitraController::class, 'aktifkan'])->name('mitra.aktifkan');
+
+    Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
 });
 
-// Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
-//     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-// });
 
 
-Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
-    
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'role:public',
+])->group(function () {
+    Route::get('/home', App\Livewire\Public\Home\Index::class)->name('home');
+});
 
 

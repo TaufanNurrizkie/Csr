@@ -5,6 +5,7 @@ namespace App\Livewire\admin\Sektor;
 use Livewire\Component;
 use App\Models\Sektor;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
@@ -24,8 +25,11 @@ class Index extends Component
         // Mengambil data sektor dan melakukan pencarian berdasarkan nama
         $sektor = Sektor::where('nama', 'like', '%' . $this->search . '%')->paginate(10);
 
-        return view('livewire.admin.sektor.index', [
-            'sektor' => $sektor
-        ]);
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.sektor.index', [
+                'sektor' => $sektor
+            ])->layout('components.layouts.admin');
+        }
+
     }
 }
