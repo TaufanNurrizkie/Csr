@@ -10,9 +10,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\NotificationController;
 
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+
 
 Route::middleware([
     'auth:sanctum',
@@ -50,8 +48,8 @@ Route::middleware([
     Route::get('/projects/{id}/publish', [ProjectController::class, 'publish'])->name('projects.publish');
     Route::get('/projects/download/pdf', [ProjectController::class, 'download_pdf'])->name('project.downloadpdf');
     Route::get('/projects/download/csv', [ProjectController::class, 'download_csv'])->name('project.downloadcsv');
-    
-    
+
+
 
 
     //Route Sektor
@@ -72,23 +70,17 @@ Route::middleware([
 });
 
 
-
-
-Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
-
-// routes/web.php
-Route::get('/kegiatan', App\Livewire\public\Kegiatan\Index::class)->name('kegiatan.index');
-Route::get('/kegiatan/{id}', App\Livewire\public\Kegiatan\Show::class)->name('kegiatan.show');
-
-
+//  ROUTE PUBLIC
 Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-    'role:public',
+    // kalo mau nambahin middleware disini
 ])->group(function () {
-    Route::get('/home', App\Livewire\Public\Home\Index::class)->name('home');
+    // home
+    Route::get('/', App\Livewire\Public\Home\Index::class)->name('home');
+
+    // kegiatan
+    Route::get('/kegiatan', App\Livewire\public\Kegiatan\Index::class)->name('kegiatan.index');
+    Route::get('/kegiatan/{id}', App\Livewire\public\Kegiatan\Show::class)->name('kegiatan.show');
+
+    // statistik
+    Route::get('/statistik', App\Livewire\Public\Statistik\Index::class);
 });
-
-
-

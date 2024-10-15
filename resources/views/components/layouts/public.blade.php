@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -22,43 +25,49 @@
 <body class="flex flex-col min-h-screen">
     <nav class="flex justify-between items-center p-4 bg-white border-b ">
         <!-- Isi Navbar -->
-        <div class="flex items-center pl-7">
+
+        <div class="flex items-center pl-20">
             <img src="{{ asset('cirebonLogo.png') }}" alt="Logo" class="h-10 mr-4">
         </div>
-    
+
         <!-- Menu Navigasi di Tengah -->
         <ul class="flex-1 flex justify-center space-x-10 text-xl font-medium">
             <li>
-                <a href="/beranda" class="{{ Request::is('beranda*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Beranda</a>
+                <a href="/beranda" class="{{ Request::is('beranda*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Beranda</a>
             </li>
             <li>
-                <a href="/tentang" class="{{ Request::is('tentang*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Tentang</a>
+                <a href="/tentang" class="{{ Request::is('tentang*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Tentang</a>
             </li>
             <li>
-                <a href="/kegiatan" class="{{ Request::is('kegiatan*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Kegiatan</a>
+                <a href="/kegiatan" class="{{ Request::is('kegiatan*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Kegiatan</a>
             </li>
             <li>
-                <a href="/statistik" class="{{ Request::is('statistik*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Statistik</a>
+                <a href="/statistik" class="{{ Request::is('statistik*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Statistik</a>
             </li>
             <li>
-                <a href="/sektor" class="{{ Request::is('sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a>
+                <a href="/sektor" class="{{ Request::is('sektor*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Sektor</a>
             </li>
             <li>
-                <a href="/laporan" class="{{ Request::is('laporan*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Laporan</a>
+                <a href="/laporan" class="{{ Request::is('laporan*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Laporan</a>
             </li>
             <li>
-                <a href="/mitra" class="{{ Request::is('mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a>
+                <a href="/mitra" class="{{ Request::is('mitra*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Mitra</a>
             </li>
         </ul>
-    
+
+
+
+
         <!-- Tombol Pengajuan -->
         <div>
             <a href="/pengajuan" class="px-4 py-2 bg-[#98100A] text-white rounded-md mr-10">Pengajuan</a>
         </div>
-        
+
+
     </nav>
-    
-    
+
+
+
 
 <main class="flex-grow">
     {{ $slot }}
@@ -78,7 +87,24 @@
         </div>
     </div>
 </footer>
+<!-- Tambahkan jQuery dan jQuery UI dari CDN -->
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+    $(function() {
+        $('#yearPicker').datepicker({
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'yy', // Format hanya tahun
+            onClose: function(dateText, inst) {
+                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                $(this).datepicker('setDate', new Date(year, 1));
+            }
+        });
+    });
+</script>
 @livewireScripts
 </body>
 </html>
