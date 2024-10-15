@@ -8,6 +8,7 @@ use Livewire\Component;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
@@ -35,10 +36,14 @@ class Index extends Component
         })
         ->paginate(10);
 
-    return view('livewire.admin.projects.index', [
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+   return view('livewire.admin.projects.index', [
         'projects' => $projects,
         'sektors' => \App\Models\Sektor::all(), // Ambil data sektor dari database
-    ]);
+    ])->layout('components.layouts.admin');
+        }
+
+ 
 
     $sektors = Sektor::query()
     ->when($this->search, function($query) {
@@ -51,10 +56,14 @@ class Index extends Component
         $query->where('status', $this->status); // Filter berdasarkan status sektor
     })
     ->paginate(10); // Batasi hasil menjadi 10 data per halaman
+    
+    if(Auth::user() && Auth::user()->hasRole('admin')) {
+        return view('livewire.admin.sektor.index', [
+            'sektors' => $sektors,
+        ])->layout('components.layouts.admin');
+    }
 
-return view('livewire.admin.sektor.index', [
-    'sektors' => $sektors,
-]);
+
 
 }
 

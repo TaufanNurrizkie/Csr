@@ -33,7 +33,7 @@
                     @endif
                 </h2>
                 <div>
-                    <a href="{{ url('/mitra/'.$mitra->id.'/edit') }}" class="bg-red-500 text-white px-4 py-2 rounded">Ubah Profil</a>
+                    <a href="{{ url('/mitra/'.$mitra->id.'/edit') }}" wire:navigate class="bg-red-500 text-white px-4 py-2 rounded">Ubah Profil</a>
                     @if($mitra->status == 'Non-Aktif')
                         <button onclick="openModal('aktifkan')" class="bg-red-500 text-white px-4 py-2 rounded">Aktifkan Mitra</button>
                     @else
@@ -68,7 +68,7 @@
     </div>
 
     <div class="mt-6">
-        <a href="{{ url('/mitra') }}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">Kembali Ke Halaman Utama</a>
+        <a href="{{ url('/mitra') }}" wire:navigate class="bg-gray-300 text-gray-700 px-4 py-2 rounded">Kembali Ke Halaman Utama</a>
     </div>
 
     <!-- Modal -->

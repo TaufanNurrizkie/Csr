@@ -8,6 +8,7 @@ use App\Models\Sektor;
 use App\Models\Project;
 use Livewire\Component;
 use ArielMejiaDev\LarapexCharts\Facades\LarapexChart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Chart extends Component
@@ -121,18 +122,21 @@ class Chart extends Component
             ->setXAxis($lokasi);
 
         // Kembalikan view dengan semua data
-        return view('livewire.admin.dashboard.chart', [
-            'pieChart' => $pieChart,
-            'barChart' => $barChart,
-            'barChart2' => $barChart2,
-            'barChart3' => $barChart3,
-            'jumlahMitra' => $jumlahMitra,
-            'jumlahCSR' => $jumlahCSR,
-            'jumlahApproved' => $jumlahApproved,
-            'totalDanaCsr' => $totalDanaCsr,
-            'sektors' => $sektors, // Tambahkan variabel sektors
-            'projects' => $projects, // Tambahkan variabel projects
-        ]);
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.dashboard.chart', [
+                'pieChart' => $pieChart,
+                'barChart' => $barChart,
+                'barChart2' => $barChart2,
+                'barChart3' => $barChart3,
+                'jumlahMitra' => $jumlahMitra,
+                'jumlahCSR' => $jumlahCSR,
+                'jumlahApproved' => $jumlahApproved,
+                'totalDanaCsr' => $totalDanaCsr,
+                'sektors' => $sektors, // Tambahkan variabel sektors
+                'projects' => $projects, // Tambahkan variabel projects
+            ])->layout('components.layouts.admin');
+        }
+        
     }
 }
 
