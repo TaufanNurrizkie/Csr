@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Projects;
 
 use App\Models\Project;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Show extends Component
 {
@@ -18,6 +19,9 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.admin.projects.show');
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.projects.show')->layout('components.layouts.admin');
+        }
+    
     }
 }

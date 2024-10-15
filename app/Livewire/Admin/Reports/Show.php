@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Reports;
 use Livewire\Component;
 use App\Models\Report;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 
 class Show extends Component
 {
@@ -58,6 +59,8 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.admin.reports.show');
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.reports.show')->layout('components.layouts.admin');
+        }
     }
 }

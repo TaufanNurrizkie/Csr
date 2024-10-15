@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Reports;
 use Livewire\Component;
 use App\Models\Report;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
@@ -43,7 +44,9 @@ class Index extends Component
             }
         })->paginate(10);
 
-        return view('livewire.admin.reports.index', compact('reports'));
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.reports.index', compact('reports'))->layout('components.layouts.admin');
+        }
     }
 
     // Proses persetujuan laporan

@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Mitra;
 
 use App\Models\Mitra;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Show extends Component
 {
@@ -36,7 +37,9 @@ public function aktifkan($id)
     
     public function render()
     {
-        return view('livewire.admin.mitra.show');
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.mitra.show')->layout('components.layouts.admin');
+        }
     }
 
     
