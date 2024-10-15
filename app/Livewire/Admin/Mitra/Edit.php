@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Mitra;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Mitra;
+use Illuminate\Support\Facades\Auth;
 
 class Edit extends Component
 {
@@ -57,6 +58,8 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.admin.mitra.edit');
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.mitra.edit')->layout('components.layouts.admin');
+        }
     }
 }

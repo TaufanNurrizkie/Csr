@@ -2,17 +2,20 @@
 
 namespace App\Livewire\Public\Home;
 
+
 use App\Models\Activity;
 use App\Models\Mitra;
 use App\Models\Report;
 use App\Models\Sektor;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Index extends Component
 {
     public function render()
     {
+
         $mitras = Mitra::all(); // Mengambil semua data mitras
         $sektors = Sektor::all();
         $aktivitas = Activity::where('status', 'Terbit')->latest()->take(4)->get();
@@ -31,6 +34,7 @@ class Index extends Component
             'jumlahApproved' => $jumlahApproved,
             'totalDanaCsr' => $totalDanaCsr,
 
-        ]);
+        ])->layout('components.layouts.public');
+
     }
 }

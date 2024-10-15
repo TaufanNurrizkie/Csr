@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Activities;
 
 use Livewire\Component;
 use App\Models\Activity;
+use Illuminate\Support\Facades\Auth;
 
 class Show extends Component
 {
@@ -16,6 +17,8 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.admin.activities.show');
+        if(Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.activities.show')->layout('components.layouts.admin');
+        }
     }
 }

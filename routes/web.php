@@ -10,9 +10,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\NotificationController;
 
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+
 
 Route::middleware([
     'auth:sanctum',
@@ -50,8 +48,8 @@ Route::middleware([
     Route::get('/projects/{id}/publish', [ProjectController::class, 'publish'])->name('projects.publish');
     Route::get('/projects/download/pdf', [ProjectController::class, 'download_pdf'])->name('project.downloadpdf');
     Route::get('/projects/download/csv', [ProjectController::class, 'download_csv'])->name('project.downloadcsv');
-    
-    
+
+
 
 
     //Route Sektor
@@ -67,13 +65,23 @@ Route::middleware([
     Route::get('/mitra/{id}',  App\Livewire\admin\Mitra\Show::class)->name('mitra.show');
     Route::put('/mitra/{id}/nonaktifkan', [MitraController::class, 'nonaktifkan'])->name('mitra.nonaktifkan');
     Route::put('/mitra/{id}/aktifkan', [MitraController::class, 'aktifkan'])->name('mitra.aktifkan');
+
+    Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
 });
 
-// Route::middleware(['auth', 'role:admin|mitra|public'])->group(function () {
-//     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-// });
 
+//  ROUTE PUBLIC
+Route::middleware([
+    // kalo mau nambahin middleware disini
+])->group(function () {
+    // home
+    Route::get('/', App\Livewire\Public\Home\Index::class)->name('home');
 
-Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
-    
-Route::get('/home', App\Livewire\Public\Home\Index::class)->name('home.index');
+    // kegiatan
+    Route::get('/kegiatan', App\Livewire\public\Kegiatan\Index::class)->name('kegiatan.index');
+    Route::get('/kegiatan/{id}', App\Livewire\public\Kegiatan\Show::class)->name('kegiatan.show');
+
+    // statistik
+    Route::get('/statistik', App\Livewire\Public\Statistik\Index::class);
+});
+

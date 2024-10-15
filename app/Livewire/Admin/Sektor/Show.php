@@ -4,6 +4,7 @@ namespace App\Livewire\admin\Sektor;
 
 use Livewire\Component;
 use App\Models\Sektor;
+use Illuminate\Support\Facades\Auth;
 
 class Show extends Component
 {
@@ -18,6 +19,8 @@ class Show extends Component
     public function render()
     {
         // Mengembalikan view dengan data sektor
-        return view('livewire.admin.sektor.show');
+        if (Auth::user() && Auth::user()->hasRole('admin')) {
+            return view('livewire.admin.sektor.show')->layout('components.layouts.admin');
+        }
     }
 }
