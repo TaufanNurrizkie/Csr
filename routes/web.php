@@ -73,6 +73,14 @@ Route::middleware([
 
 
 
+
+Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
+
+// routes/web.php
+Route::get('/kegiatan', App\Livewire\public\Kegiatan\Index::class)->name('kegiatan.index');
+Route::get('/kegiatan/{id}', App\Livewire\public\Kegiatan\Show::class)->name('kegiatan.show');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -81,5 +89,6 @@ Route::middleware([
 ])->group(function () {
     Route::get('/home', App\Livewire\Public\Home\Index::class)->name('home');
 });
+
 
 
