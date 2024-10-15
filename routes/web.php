@@ -84,3 +84,4 @@ Route::middleware([
     // statistik
     Route::get('/statistik', App\Livewire\Public\Statistik\Index::class);
 });
+
