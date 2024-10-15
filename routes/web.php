@@ -76,5 +76,4 @@ Route::middleware([
 
 Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
     
-
-
+Route::get('/home', App\Livewire\Public\Home\Index::class)->name('home.index');
