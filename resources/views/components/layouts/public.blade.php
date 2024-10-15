@@ -25,6 +25,7 @@
 <body class="flex flex-col min-h-screen">
     <nav class="flex justify-between items-center p-4 bg-white border-b ">
         <!-- Isi Navbar -->
+
         <div class="flex items-center pl-20">
             <img src="{{ asset('cirebonLogo.png') }}" alt="Logo" class="h-10 mr-4">
         </div>
@@ -56,12 +57,15 @@
 
 
 
+
         <!-- Tombol Pengajuan -->
         <div>
             <a href="/pengajuan" class="px-4 py-2 bg-[#98100A] text-white rounded-md mr-10">Pengajuan</a>
         </div>
 
+
     </nav>
+
 
 
 
