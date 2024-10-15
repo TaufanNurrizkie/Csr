@@ -19,8 +19,6 @@ class Index extends Component
 
     public function render()
     {
-        if(Auth::user() && Auth::user()->hasRole('public')) {
             return view('livewire.public.kegiatan.index')->layout('components.layouts.public');
-        }
     }
 }
