@@ -27,9 +27,8 @@
         <!-- Judul -->
         <div class="flex items-start mb-6">
             <h2 class="text-5xl font-bold text-gray-800 mr-60">
-                Apa Itu <br>
-                <span class="block text-5xl">Kegiatan</span>
-                <span class="block text-5xl">CSR?</span>
+                Apa Itu 
+               <span>Kegiatan CSR?</span> 
             </h2>
             <p class="text-sm text-gray-600 leading-relaxed mt-2">
                 Corporate Social Responsibility (CSR) merupakan konsep di mana perusahaan secara sadar mengintegrasikan kepedulian sosial dan lingkungan ke dalam operasional bisnisnya. Ini melibatkan tindakan sukarela yang memberikan manfaat bagi masyarakat, seperti program pendidikan, kesehatan, dan lingkungan, serta upaya untuk mengurangi dampak negatif terhadap lingkungan. CSR tidak hanya mencerminkan tanggung jawab perusahaan terhadap masyarakat, tetapi juga dapat meningkatkan reputasi dan daya saing bisnis.
@@ -151,6 +150,7 @@
 <div class="bg-[#0A1F44] py-16 relative">
     <div class="container mx-auto text-center">
         <!-- Heading -->
+        <div class="w-10 h-1 bg-[#FF5D56] mb-2 mx-auto"></div>
         <h2 class="text-white text-3xl font-semibold mb-4">Panduan</h2>
         <p class="text-[#C4C4C4] text-lg mb-12">Bagaimana proses CSR berlangsung</p>
 
@@ -161,8 +161,7 @@
                 <div class="bg-[#98100A] text-white rounded-[12px] w-10 h-10 flex items-center justify-center mb-4 z-10">1</div>
                 <h3 class="font-semibold text-white">Penyerahan Proposal CSR</h3>
                 <p class="text-sm text-[#C4C4C4] mt-2">
-                    Pihak penerima menyerahkan proposal inisiatif CSR kepada Pemerintah dengan SOP yang ada. Jika pemerintah menerima rekomendasi Bupati, akan diberikan surat rekomendasi CSR.
-                </p>
+                    Pihak penerima menyerahkan proposal terkait CSR kepada Perusahaan yang akan di tuju. Jika perusahaan meminta rekomendasi Bupati Cirebon maka pihak penerima perlu membuat surat permohonan penerbitan surat rekomendasi CSR kepada Bupati dengan melampirkan dokumen proposal kegiatan. </p>
             </div>
 
             <!-- Step 2 -->
@@ -170,7 +169,7 @@
                 <div class="bg-[#98100A] text-white rounded-[12px] w-10 h-10 flex items-center justify-center mb-4 z-10">2</div>
                 <h3 class="font-semibold text-white">Permohonan Penerbitan Surat CSR</h3>
                 <p class="text-sm text-[#C4C4C4] mt-2">
-                    Pemohon meminta penerbitan surat rekomendasi CSR setelah menerima rekomendasi Bupati. Surat diteruskan kepada pihak yang berwenang untuk diterbitkan.
+                    Permohonan penerbitan surat rekomendasi CSR yang sudah masuk akan di disposisikan kepada Bagian Perekonomian dan SDA untuk di tindak <br>lanjuti. <br> Setelah Surat rekomendasi CSR di tandatangani Bupati maka pihak penerima perlu mengambil surat tersebut dan menyerahkan nya kepada <br>perusahaan. <br>
                 </p>
             </div>
 
@@ -179,13 +178,16 @@
                 <div class="bg-[#98100A] text-white rounded-[12px] w-10 h-10 flex items-center justify-center mb-4 z-10">3</div>
                 <h3 class="font-semibold text-white">Laporan CSR</h3>
                 <p class="text-sm text-[#C4C4C4] mt-2">
-                    Setelah penerbitan surat, pelaksanaan CSR akan dilaporkan kepada pihak pemerintah sebagai bagian dari laporan tahunan yang disampaikan ke Bupati.
+                    Setelah perusahaan menerima surat rekomendasi CSR maka selanjutnya pihak perusahaan berhubungan langsung dengan pihak penerima tanpa ada intervensi dari pemda, di akhir tahun berjalan perusahaan yang mengeluarkan CSR perlu melaporkan penyaluran CSR tersebut kepada Pemda sebagai laporan kepada Bupati.
                 </p>
             </div>
 
+            <br>
+            
             <!-- Horizontal Line -->
-            <div class="absolute border-t-2 border-gray-400 top-[28px] z-0" style="width: calc(100% - 320px); left: 160px;"></div>
+            <div class="absolute border-t-2 border-gray-400 top-[20px] z-0" style="width: calc(100% - 320px); left: 160px;"></div>
         </div>
+        <p class="text-center font-bold text-white">Permohonan Penerbitan Surat Csr</p>
 
         <!-- Button -->
         <div class="mt-12">

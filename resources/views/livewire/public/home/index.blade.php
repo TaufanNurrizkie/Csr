@@ -55,21 +55,21 @@
           <!-- Kolom 1 -->
           <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
               <div>
-                  <h3 class="text-5xl font-bold text-[#510300] mb-2">124</h3> <!-- Menambahkan margin bawah -->
+                  <h3 class="text-5xl font-bold text-[#510300] mb-2">{{ $jumlahCSR }}</h3> <!-- Menambahkan margin bawah -->
                   <p class="text-lg font-medium text-gray-800">Total Proyek CSR</p>
               </div>
           </div>
           <!-- Kolom 2 -->
           <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
               <div>
-                  <h3 class="text-5xl font-bold text-[#510300] mb-2">119</h3> <!-- Menambahkan margin bawah -->
+                  <h3 class="text-5xl font-bold text-[#510300] mb-2">{{ $jumlahProyekTerealisasi }}</h3> <!-- Menambahkan margin bawah -->
                   <p class="text-lg font-medium text-gray-800">Proyek terealisasi</p>
               </div>
           </div>
           <!-- Kolom 3 -->
           <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
               <div>
-                  <h3 class="text-5xl font-bold text-[#510300] mb-2">89</h3> <!-- Menambahkan margin bawah -->
+                  <h3 class="text-5xl font-bold text-[#510300] mb-2">{{ $jumlahMitra }}</h3> <!-- Menambahkan margin bawah -->
                   <p class="text-lg font-medium text-gray-800">Mitra bergabung</p>
               </div>
           </div>
@@ -124,11 +124,21 @@
           <p class="text-sm mb-6">Bidang sektor CSR Kabupaten Cirebon yang tersedia</p>
           <ul class="space-y-2">
             @foreach ($sektors as $sektors)
-            <li>
+            {{-- <li>
               <button class="w-full text-left py-2 px-4 {{ $loop->first ? 'bg-red-500' : 'hover:bg-gray-800' }} rounded text-sm">
                 {{ $sektors->nama }}
               </button>
-            </li>
+            </li> --}}
+            
+              <div class=" border-l-4 border-red-600  shadow-lg p-4 hover:bg-gray-700 cursor-pointer">
+                <a id="q1" class="text-lg font-semibold flex justify-between items-center">
+                  <span>{{ $sektors->nama }}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            
             @endforeach
           </ul>
         </div>
@@ -311,16 +321,6 @@
   </div>
 </div>
 
-<script>
-  document.querySelectorAll('.cursor-pointer').forEach(item => {
-    item.addEventListener('click', () => {
-      const answer = item.nextElementSibling;
-      answer.classList.toggle('hidden');
-      const svgIcon = item.querySelector('svg');
-      svgIcon.classList.toggle('rotate-90'); // Rotate the icon when clicked
-    });
-  });
-</script>
 
 
 

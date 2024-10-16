@@ -20,6 +20,7 @@ class Index extends Component
         $sektors = Sektor::all();
         $aktivitas = Activity::where('status', 'Terbit')->latest()->take(4)->get();
         $reports = Report::where('status', 'Approved')->latest()->take(4)->get();
+        $jumlahProyekTerealisasi = Project::where('status', 'terbit')->count();
         $jumlahMitra = Mitra::count();
         $jumlahCSR = Project::count();
         $jumlahApproved = Report::where('status', 'approved')->count();
@@ -29,6 +30,7 @@ class Index extends Component
             'sektors' => $sektors,
             'aktivitas' => $aktivitas,
             'reports' => $reports,
+            'jumlahProyekTerealisasi' => $jumlahProyekTerealisasi,
             'jumlahMitra' => $jumlahMitra,
             'jumlahCSR' => $jumlahCSR,
             'jumlahApproved' => $jumlahApproved,
