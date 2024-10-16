@@ -6,7 +6,7 @@
         <p class="text-lg text-white">Lapor dan ketahui program CSR Anda</p>
       </div>
     </div>
-  
+
     <!-- Filter Section -->
     <div class="container mx-auto mt-8 flex justify-center">
       <div class="flex items-center space-x-7">
@@ -19,12 +19,12 @@
           </select>
         </div>
         @endforeach
-  
+
         <!-- Filter and Download Buttons -->
         <div>
           <button class="bg-red-600 text-white py-1.5 px-3 rounded hover:bg-red-700 transition-colors">Terapkan filter</button>
         </div>
-      
+
         <div>
           <a href="{{ route('dashboard.downloadcsv') }}" class="border border-green-600 text-green-600 py-1.5 px-3 rounded hover:bg-green-600 hover:text-white transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,10 +41,10 @@
             Unduh .pdf
           </a>
         </div>
-        
+
       </div>
     </div>
-  
+
     <!-- Main Section -->
     <div class="container mx-auto mt-1">
       <div class="bg-white p-4 rounded-lg shadow-md">
@@ -65,7 +65,7 @@
               {{ $jumlahCSR }}
             </div>
           </div>
-    
+
           <div class="bg-[#7A5AF8] text-white p-3 rounded-lg">
             <div class="flex items-center text-base justify-start">
               <span class="mr-2">
@@ -79,7 +79,7 @@
               {{ $jumlahApproved }}
             </div>
           </div>
-    
+
           <div class="bg-[#2C5586] text-white p-3 rounded-[12px]">
             <div class="flex items-center text-base justify-start">
               <span class="mr-2">
@@ -93,7 +93,7 @@
               {{ $jumlahMitra }}
             </div>
           </div>
-    
+
           <div class="bg-[#1D9C53] text-white p-3 rounded-lg">
             <div class="flex items-center text-base justify-start">
               <span class="mr-2">
@@ -108,12 +108,12 @@
             </div>
           </div>
         </div>
-    
-        
+
+
       </div>
       <h2 class="text-3xl font-bold ml-8 mb-8 text-start mt-8">Realisasi Proyek CSR</h2>
     </div>
-  
+
     <!-- Realisasi Proyek CSR -->
     <div class="bg-gray-50 p-6 rounded-lg shadow-md">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
@@ -130,7 +130,7 @@
       </div>
     </div>
   </div>
-  
+
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   {{ $pieChart->script() }}
   {{ $barChart->script() }}

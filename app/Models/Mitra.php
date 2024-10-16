@@ -15,4 +15,9 @@ class Mitra extends Model
     {
         return $this->hasMany(Report::class, 'mitra_id');
     }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
 }

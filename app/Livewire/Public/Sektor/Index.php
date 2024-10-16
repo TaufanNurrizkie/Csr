@@ -2,15 +2,36 @@
 
 namespace App\Livewire\Public\Sektor;
 
+use App\Models\Project;
+use App\Models\Sektor;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
+    public $sector = 'Semua Sektor'; // Default value
+    public $sektors;
+    public $search = ''; // Properti untuk menyimpan input pencarian
+    public $projects; // Properti untuk menyimpan proyek yang sesuai pencarian
+
+    public function mount()
+    {
+        // Ambil semua sektor dari database saat komponen pertama kali dimuat
+        $this->sektors = Sektor::all();
+        $this->projects = Project::with('sektor')->get(); // Ambil semua proyek awalnya
+    }
+
+    public function updatedSearch($value)
+    {
+        // Filter proyek berdasarkan input pencarian
+        $this->projects = Project::with('sektor')
+            ->where('judul', 'like', "%{$value}%") // Ganti 'name' dengan kolom yang sesuai di tabel proyek
+            ->get();
+    }
+
     public function render()
     {
-        if(Auth::user() && Auth::user()->hasRole('public')) {
-            return view('livewire.public.sektor.index')->layout('components.layouts.public');
-        }
+        $sektor = Sektor::withCount('projects')->get(); // Ambil sektor dengan jumlah proyek
+
+        return view('livewire.public.sektor.index', compact('sektor'))->layout('components.layouts.public');
     }
 }

@@ -33,25 +33,25 @@
         <!-- Menu Navigasi di Tengah -->
         <ul class="flex-1 flex justify-center space-x-10 text-xl font-medium">
             <li>
-                <a href="/beranda" class="{{ Request::is('beranda*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Beranda</a>
+                <a href="/" wire:navigate class="{{ Request::is('beranda*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Beranda</a>
             </li>
             <li>
-                <a href="/tentang" class="{{ Request::is('tentang*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Tentang</a>
+                <a href="/tentang" wire:navigate class="{{ Request::is('tentang*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Tentang</a>
             </li>
             <li>
-                <a href="/kegiatan" class="{{ Request::is('kegiatan*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Kegiatan</a>
+                <a href="/kegiatan" wire:navigate class="{{ Request::is('kegiatan*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Kegiatan</a>
             </li>
             <li>
-                <a href="/statistik" class="{{ Request::is('statistik*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Statistik</a>
+                <a href="/statistik" wire:navigate class="{{ Request::is('statistik*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Statistik</a>
             </li>
             <li>
-                <a href="/sektor" class="{{ Request::is('sektor*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Sektor</a>
+                <a href="/sektor" wire:navigate class="{{ Request::is('sektor*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Sektor</a>
             </li>
             <li>
-                <a href="/laporan" class="{{ Request::is('laporan*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Laporan</a>
+                <a href="/laporan" wire:navigate class="{{ Request::is('laporan*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Laporan</a>
             </li>
             <li>
-                <a href="/mitra" class="{{ Request::is('mitra*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Mitra</a>
+                <a href="/mitra"  wire:navigate class="{{ Request::is('mitra*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Mitra</a>
             </li>
         </ul>
 
