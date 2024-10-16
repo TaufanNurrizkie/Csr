@@ -12,6 +12,7 @@ use App\Http\Controllers\NotificationController;
 
 
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -83,5 +84,10 @@ Route::middleware([
 
     // statistik
     Route::get('/statistik', App\Livewire\Public\Statistik\Index::class);
+
+    // mitra
+    Route::get('/mitra', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
+    Route::get('/mitra/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show');
+
 });
 
