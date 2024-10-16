@@ -12,15 +12,26 @@
             <div class="absolute inset-0 bg-black opacity-50"></div>
         </div>
         
-        <div class="relative z-10 text-white text-center flex flex-col justify-center items-center h-full">
-            @if($kegiatan->isNotEmpty())
-                <h1 class="text-4xl font-extrabold leading-tight">{{ $kegiatan->first()->title }}</h1>
-                <p class="text-gray-300 mt-2 text-lg">{{ \Carbon\Carbon::parse($kegiatan->first()->published_date)->format('d M, Y') }}</p>
-            @else
-                <h1 class="text-4xl font-extrabold leading-tight">No Kegiatan Available</h1>
-                <p class="text-gray-300 mt-2 text-lg">N/A</p>
-            @endif
+        <div class="absolute inset-0 flex items-center justify-start pl-20" style="top: 50%; transform: translateY(-50%);">
+            <div class="relative z-10 text-white text-left flex flex-col ml-20">
+                <p class="text-lg">
+                    <span class="text-[#E66445]">Beranda</span> /
+                    <span class="text-[#E66445]">Kegiatan</span>    /
+                    <span class="text-white">Detail</span>
+                </p>
+        
+                @if($kegiatan->isNotEmpty())
+                    <h1 class="text-7xl font-bold">{{ $kegiatan->first()->title }}</h1>
+                    <p class="mt-2 text-sm">{{ \Carbon\Carbon::parse($kegiatan->first()->published_date)->format('d M, Y') }}</p>
+                @else
+                    <h1 class="text-7xl font-bold">No Kegiatan Available</h1>
+                    <p class="mt-2 text-sm">N/A</p>
+                @endif
+        
+                
+            </div>
         </div>
+        
     </header>
     
     <!-- Main Content -->

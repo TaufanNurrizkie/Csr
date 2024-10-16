@@ -21,7 +21,7 @@ class Show extends Component
     public function render()
     {
         return view('livewire.public.kegiatan.show', [
-            'kegiatan' => $this->kegiatan
-        ]);
+            'kegiatan' => $this->kegiatan,
+        ])->layout('components.layouts.public');
     }
 }
