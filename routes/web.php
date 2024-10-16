@@ -75,6 +75,10 @@ Route::middleware([
 Route::middleware([
     // kalo mau nambahin middleware disini
 ])->group(function () {
+
+    //pengajuan
+    Route::get('pengajuan', App\Livewire\public\pengajuan\Index::class)->name('pengajuan');
+
     // home
     Route::get('/', App\Livewire\Public\Home\Index::class)->name('home');
 
