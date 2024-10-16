@@ -33,7 +33,7 @@
         <!-- Menu Navigasi di Tengah -->
         <ul class="flex-1 flex justify-center space-x-10 text-xl font-medium">
             <li>
-                <a href="/beranda" class="{{ Request::is('beranda*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Beranda</a>
+                <a href="/" class="{{ Request::is('beranda*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Beranda</a>
             </li>
             <li>
                 <a href="/tentang" class="{{ Request::is('tentang*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Tentang</a>
@@ -74,6 +74,64 @@
     @yield('content')
 </main>
 
+<div class="container mx-auto px-4 py-12">
+    <div class="bg-white shadow-md rounded-lg flex flex-wrap md:flex-nowrap p-8">
+        <!-- Contact Information -->
+        <div class="w-full md:w-1/2">
+            <div class="w-10 h-1 bg-[#FF5D56] mb-2 "></div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+            <p class="text-gray-600 mb-6">Hubungi kami melalui formulir di samping, atau melalui kontak di bawah</p>
+            
+            <div class="space-y-4">
+                <!-- Address -->
+                <div class="flex items-start">
+                    <div class="text-red-500 mr-4">
+                        <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Alamat</h3>
+                        <p class="text-red-500">Jl. Sunan Kalijaga No.2, Sumber, Kec. Sumber, Kabupaten Cirebon, Jawa Barat 45611</p>
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex items-start">
+                    <div class="text-red-500 mr-4">
+                        <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M6.62 10.79a15.91 15.91 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.26 1.12.31 2.33.48 3.57.48.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.17 2.45.48 3.57.1.35.01.74-.26 1.02l-2.2 2.2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Phone</h3>
+                        <p class="text-red-500">(0231) 321677 / 0231 321792 atau</p>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="flex items-start">
+                    <div class="text-red-500 mr-4">
+                        <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 14c-2.67 0-5.2-1.06-7.07-2.93C6.93 15.86 8.93 14.5 12 14.5s5.07 1.36 7.07 3.57C17.2 18.94 14.67 20 12 20z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Email</h3>
+                        <p class="text-red-500">pmtkc@cirebonkab.go.id</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="w-full md:w-1/2 mt-8 md:mt-0 md:ml-8">
+            <iframe class="w-full h-64 rounded-md" src="https://maps.google.com/maps?q=Jl.%20Sunan%20Kalijaga%20No.2,%20Sumber,%20Kec.%20Sumber,%20Kabupaten%20Cirebon,%20Jawa%20Barat&output=embed" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+
 <footer class="bottom-0 left-0 w-full bg-gray-900 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
         <div>
@@ -81,7 +139,7 @@
             <p>Pemkab Kabupaten Cirebon, Badan Pendapatan Daerah (Bapenda) Kabupaten Cirebon.</p>
         </div>
         <div>
-            <a href="/dashboard" class="border border-white text-white py-2 px-4 rounded hover:bg-white hover:text-gray-900 transition duration-300">
+            <a href="/" class="border border-white text-white py-2 px-4 rounded hover:bg-white hover:text-gray-900 transition duration-300">
                 Kembali Ke Halaman Utama
             </a >
         </div>

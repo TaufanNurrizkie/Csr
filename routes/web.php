@@ -78,6 +78,9 @@ Route::middleware([
     // home
     Route::get('/', App\Livewire\Public\Home\Index::class)->name('home');
 
+    //About
+    Route::get('/tentang', App\Livewire\Public\tentang\Index::class)->name('tentang');
+
     // kegiatan
     Route::get('/kegiatan', App\Livewire\public\Kegiatan\Index::class)->name('kegiatan.index');
     Route::get('/kegiatan/{id}', App\Livewire\public\Kegiatan\Show::class)->name('kegiatan.show');

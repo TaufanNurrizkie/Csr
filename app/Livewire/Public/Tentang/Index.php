@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Public\Tentang;
 
+use App\Models\Report;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,8 +10,9 @@ class Index extends Component
 {
     public function render()
     {
-        if(Auth::user() && Auth::user()->hasRole('public')) {
-            return view('livewire.public.tentang.index')->layout('components.layouts.public');
-        }
+        $reports = Report::all();
+        return view('livewire.public.tentang.index', [
+            'reports' => $reports
+        ])->layout('components.layouts.public');
     }
 }
