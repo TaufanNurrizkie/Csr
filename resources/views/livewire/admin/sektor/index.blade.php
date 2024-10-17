@@ -15,7 +15,7 @@
     </nav>
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-semibold">Sektor</h1>
-        <a href="/sektor/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Tambah Sektor Baru</a>
+        <a href="/sektors/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Tambah Sektor Baru</a>
     </div>
 
     <div class="mb-4">
