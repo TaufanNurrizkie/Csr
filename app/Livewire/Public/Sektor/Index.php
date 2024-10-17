@@ -20,6 +20,11 @@ class Index extends Component
         $this->perPage += 8;
     }
 
+    public function getPhotoAttribute($value)
+    {
+        return 'projects/photos/' . $value;
+    }
+
     public function mount()
     {
         // Ambil semua sektor dari database saat komponen pertama kali dimuat
