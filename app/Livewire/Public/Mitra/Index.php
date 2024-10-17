@@ -11,11 +11,19 @@ class Index extends Component
 {
 
     public $mitras;
+    public $search = '';
 
     public function mount()
     {
         // Ambil semua data kegiatan dari database
         $this->mitras = Mitra::latest()->get();
+    }
+
+    public function updatedSearch($value)
+    {
+        // Filter proyek berdasarkan input pencarian
+        $this->mitras = Mitra::where('nama', 'like', "%{$value}%") // Ganti 'name' dengan kolom yang sesuai di tabel proyek
+            ->get();
     }
 
     public function render()
