@@ -64,7 +64,7 @@
 
         <!-- Tombol Pengajuan -->
         <div>
-            <a href="/pengajuan" class="px-4 py-2 bg-[#98100A] text-white rounded-md mr-10">Pengajuan</a>
+            <a href="/pengajuan" wire:navigate class="px-4 py-2 bg-[#98100A] text-white rounded-md mr-10">Pengajuan</a>
         </div>
 
 
@@ -85,7 +85,7 @@
             <div class="w-10 h-1 bg-[#FF5D56] mb-2 "></div>
             <h2 class="text-3xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
             <p class="text-gray-600 mb-6">Hubungi kami melalui formulir di samping, atau melalui kontak di bawah</p>
-            
+
             <div class="space-y-4">
                 <!-- Address -->
                 <div class="flex items-start">
@@ -150,9 +150,12 @@
     </div>
 </footer>
 <!-- Tambahkan jQuery dan jQuery UI dari CDN -->
+<x-sweet-alert />
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <script>
     $(function() {

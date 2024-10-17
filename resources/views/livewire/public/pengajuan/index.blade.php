@@ -1,5 +1,5 @@
 <div>
-    
+
     <div class="hero-section relative w-full h-[450px] overflow-hidden -mt-5"> <!-- -mt-10 untuk menggeser ke atas -->
         <svg width="550" height="450" viewBox="0 0 602 450" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0">
             <rect width="602" height="450" fill="#510300"/>
@@ -15,7 +15,7 @@
                 <p class="text-lg">
                     <span class="text-[#E66445]">Beranda</span> /
                     <span class="text-[#E66445]">Tentang</span> /
-                    <span class="text-white">Pengajuan</span> 
+                    <span class="text-white">Pengajuan</span>
                 </p>
                 <h1 class="text-7xl font-bold">Pengajuan</h1>
                 <p class="mt-2 text-sm">Tentang CSR Kabupaten Cirebon</p>
@@ -27,31 +27,31 @@
     <div class="max-w-xl mx-auto my-10">
         <form wire:submit.prevent="submit" method="POST" class="bg-white p-6 rounded shadow-md">
             @csrf
-    
+
             <!-- Nama Lengkap -->
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Nama Lengkap *</label>
                 <input type="text" wire:model="nama_lengkap" name="nama_lengkap" class="w-full border border-gray-300 p-2 rounded" required>
             </div>
-    
+
             <!-- Tanggal Lahir -->
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Tanggal Lahir *</label>
                 <input type="date" wire:model="tanggal_lahir" name="tanggal_lahir" class="w-full border border-gray-300 p-2 rounded" required>
             </div>
-    
+
             <!-- No Handphone -->
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">No Handphone / Whatsapp *</label>
                 <input type="text" wire:model="no_handphone" name="no_handphone" class="w-full border border-gray-300 p-2 rounded" required>
             </div>
-    
+
             <!-- Nama Instansi -->
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Nama Instansi / Perseroan *</label>
                 <input type="text" wire:model="nama_instansi" name="nama_instansi" class="w-full border border-gray-300 p-2 rounded" required>
             </div>
-    
+
             <!-- Nama Program -->
 <!-- Nama Program -->
 <div class="mb-4">
@@ -75,14 +75,14 @@
     </select>
 </div>
 
-    
+
             <!-- Tombol Kirim -->
             <div class="text-right">
                 <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded">Kirim pengajuan</button>
             </div>
         </form>
     </div>
-    
+
 
 </div>
 
