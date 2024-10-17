@@ -23,4 +23,65 @@
         </div>
     </div>
 
+
+    <div class="max-w-xl mx-auto my-10">
+        <form wire:submit.prevent="submit" method="POST" class="bg-white p-6 rounded shadow-md">
+            @csrf
+    
+            <!-- Nama Lengkap -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Nama Lengkap *</label>
+                <input type="text" wire:model="nama_lengkap" name="nama_lengkap" class="w-full border border-gray-300 p-2 rounded" required>
+            </div>
+    
+            <!-- Tanggal Lahir -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Tanggal Lahir *</label>
+                <input type="date" wire:model="tanggal_lahir" name="tanggal_lahir" class="w-full border border-gray-300 p-2 rounded" required>
+            </div>
+    
+            <!-- No Handphone -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">No Handphone / Whatsapp *</label>
+                <input type="text" wire:model="no_handphone" name="no_handphone" class="w-full border border-gray-300 p-2 rounded" required>
+            </div>
+    
+            <!-- Nama Instansi -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2">Nama Instansi / Perseroan *</label>
+                <input type="text" wire:model="nama_instansi" name="nama_instansi" class="w-full border border-gray-300 p-2 rounded" required>
+            </div>
+    
+            <!-- Nama Program -->
+<!-- Nama Program -->
+<div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2">Nama Program *</label>
+    <select wire:model="nama_program" name="nama_program" class="w-full border border-gray-300 p-2 rounded" required>
+        <option value="">Pilih nama program</option>
+        @foreach($programs as $program)
+            <option value="{{ $program->judul }}">{{ $program->judul }}</option>
+        @endforeach
+    </select>
+</div>
+
+<!-- Nama Mitra -->
+<div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2">Nama Mitra *</label>
+    <select wire:model="nama_mitra" name="nama_mitra" class="w-full border border-gray-300 p-2 rounded" required>
+        <option value="">Pilih mitra</option>
+        @foreach($mitras as $mitra)
+            <option value="{{ $mitra->nama }}">{{ $mitra->nama }}</option>
+        @endforeach
+    </select>
+</div>
+
+    
+            <!-- Tombol Kirim -->
+            <div class="text-right">
+                <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded">Kirim pengajuan</button>
+            </div>
+        </form>
+    </div>
+    
+
 </div>

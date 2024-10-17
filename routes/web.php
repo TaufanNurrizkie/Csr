@@ -77,7 +77,7 @@ Route::middleware([
 ])->group(function () {
 
     //pengajuan
-    Route::get('pengajuan', App\Livewire\public\pengajuan\Index::class)->name('pengajuan');
+    Route::get('/pengajuan', App\Livewire\public\pengajuan\Index::class)->name('pengajuan');
 
     // home
     Route::get('/', App\Livewire\Public\Home\Index::class)->name('home');
@@ -110,4 +110,5 @@ Route::middleware([
     
     //semualaporan
     Route::get('/semualaporan', App\Livewire\public\Semualaporan\Index::class)->name('semualaporan.index');
+    
 });
