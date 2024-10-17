@@ -13,6 +13,24 @@
     <h1 class="text-2xl font-semibold mb-4">Buat Proyek Baru</h1>
     <form wire:submit.prevent="store" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
+            <label for="photo" class="block text-sm font-medium mb-2">Upload Foto Proyek *</label>
+            <input type="file" wire:model="photo" multiple class="border p-2 rounded w-full @error('photo.*') border-red-500 @enderror">
+            @error('photo.*')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
+        
+            <!-- Show photo previews if selected -->
+            @if ($photo)
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                    @foreach ($photo as $photos)
+                        <img src="{{ $photos->temporaryUrl() }}" alt="Preview" class="h-32 w-32 rounded object-cover">
+                    @endforeach
+                </div>
+            @endif
+        </div>
+        
+
+        <div class="mb-4">
             <label for="judul" class="block text-sm font-medium mb-2">Judul Proyek *</label>
             <input type="text" wire:model.defer="judul" class="border p-2 rounded w-full @error('judul') border-red-500 @enderror" required>
             @error('judul')
@@ -24,6 +42,14 @@
             <label for="lokasi" class="block text-sm font-medium mb-2">Lokasi *</label>
             <input type="text" wire:model.defer="lokasi" class="border p-2 rounded w-full @error('lokasi') border-red-500 @enderror" required>
             @error('lokasi')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="mb-4">
+            <label for="deskripsi" class="block text-sm font-medium mb-2">Deskripsi *</label>
+            <input type="text" wire:model.defer="deskripsi" class="border p-2 rounded w-full @error('deskripsi') border-red-500 @enderror" required>
+            @error('deskripsi')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>

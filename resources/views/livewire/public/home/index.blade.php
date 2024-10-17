@@ -123,46 +123,42 @@
           <h2 class="text-xl font-bold mb-4">Sektor CSR</h2>
           <p class="text-sm mb-6">Bidang sektor CSR Kabupaten Cirebon yang tersedia</p>
           <ul class="space-y-2">
-            @foreach ($sektors as $sektors)
-            {{-- <li>
-              <button class="w-full text-left py-2 px-4 {{ $loop->first ? 'bg-red-500' : 'hover:bg-gray-800' }} rounded text-sm">
-                {{ $sektors->nama }}
-              </button>
-            </li> --}}
-            
-              <div class=" border-l-4 border-red-600  shadow-lg p-4 hover:bg-gray-700 cursor-pointer">
-                <a id="q1" class="text-lg font-semibold flex justify-between items-center">
-                  <span>{{ $sektors->nama }}</span>
+            @foreach ($sektors as $sektor)
+            <li>
+              <div class="border-l-4 border-red-600 shadow-lg p-4 hover:bg-gray-700 cursor-pointer"
+                   onclick="showContent('{{ 'storage/' . $sektor->thumbnail }}', '{{ $sektor->deskripsi }}')">
+                <a class="text-lg font-semibold flex justify-between items-center">
+                  <span>{{ $sektor->nama }}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                   </svg>
                 </a>
               </div>
-            
+            </li>
             @endforeach
           </ul>
         </div>
-    
+        
         <!-- Content Section -->
         <div class="w-2/3 flex">
           <div class="w-full">
             <div class="w-full mb-4">
-              <img src="{{ asset('aboutCsr1.png') }}" alt="Image" class="rounded w-full">
+              <img id="gambarSektor" src="" alt="Image" class="rounded w-full">
             </div>
-            <p class="text-sm mb-4">
-              CSR dalam lingkup sosial merupakan komitmen perusahaan untuk memberikan kontribusi positif bagi masyarakat sekitar...
+            <p id="deskripsiSektor" class="text-sm mb-4">
+              <!-- Deskripsi akan diisi oleh fungsi showContent -->
             </p>
             <div class="space-x-4">
-              <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
+              <button id="btnProgram" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
                 Lihat program tersedia
               </button>
-              <button class="border border-gray-500 text-gray-300 py-2 px-4 rounded hover:bg-gray-700">
+              <button id="btnRealisasi" class="border border-gray-500 text-gray-300 py-2 px-4 rounded hover:bg-gray-700">
                 Lihat realisasi program
               </button>
             </div>
           </div>
-        </div>
-      </div>
+        </div>     
+      </div>  
     </div>
 
     <div class="bg-white min-h-screen flex items-center justify-center p-8">
@@ -199,17 +195,19 @@
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             @foreach ($aktivitas as $aktif)
             <!-- Card -->
-            <div class="bg-white shadow-lg overflow-hidden">
-                <!-- Use dynamic image path -->
-                <img src="{{ asset('storage/' . $aktif->photo) }}" alt="Kegiatan" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <span class="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded mb-2">{{ $aktif->published_date }}</span>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $aktif->title }}</h3>
-                    <p class="text-sm text-gray-600 mb-4">
-                        {{ $aktif->description }}
-                    </p>
-                </div>
-            </div>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+              <a href="/">
+              <img src="{{'storage/' . $aktif->photo ?? 'https://via.placeholder.com/600x400' }}" alt="aktif Image"
+                  class="w-full h-48 object-cover">
+                </a>
+              <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
+                {{ \Carbon\Carbon::parse($aktif->published_date)->format('d F, Y') }}
+              </div>
+              <div class="p-4">
+                  <h3 class="text-lg font-bold text-gray-800">{{ $aktif->title }}</h3>
+                  <p class="text-gray-600 text-sm mt-2">{{ Str::limit($aktif->description, 100) }}</p>
+              </div>
+          </div>
             @endforeach
         </div>
         
@@ -229,17 +227,24 @@
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             @foreach ($reports as $report)
             <!-- Card -->
-            <div class="bg-white shadow-lg overflow-hidden">
-                <!-- Use dynamic image path -->
-                <img src="{{ asset('storage/' . $report->foto) }}" alt="Kegiatan" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <span class="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded mb-2">{{ $report->tgl_realisasi }}</span>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $report->title }}</h3>
-                    <p class="text-sm text-gray-600 mb-4">
-                        {{ $report->deskripsi }}
-                    </p>
-                </div>
-            </div>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+              <a href="/">
+              <img src="{{'storage/' . $report->foto ?? 'https://via.placeholder.com/600x400' }}" alt="report Image"
+                  class="w-full h-48 object-cover">
+                </a>
+              <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
+                {{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d F, Y') }}
+
+              </div>
+              <div class="p-4">
+                  <div class="flex items-center mb-2">
+                      <img class="w-8 h-8 rounded-full mr-2" src="https://via.placeholder.com/40" alt="Avatar">
+                      <span class="font-semibold text-gray-700">{{ $report->reviewed_by }}</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-gray-800">{{ $report->title }}</h3>
+                  
+              </div>
+          </div>
             @endforeach
         </div>
         
@@ -260,59 +265,58 @@
       <!-- Sidebar -->
       <div class="w-1/3 pr-8">
         <div class="">
-          <div class=" border-l-4 border-red-600  shadow-lg p-4 hover:bg-gray-700 cursor-pointer">
+          <div class=" border-l-4 border-red-600 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(1)">
             <a id="q1" class="text-lg font-semibold flex justify-between items-center">
               <span>Apa itu CSR?</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
-            <p class="mt-2 text-gray-400 hidden">CSR atau Corporate Social Responsibility adalah komitmen perusahaan untuk berkontribusi pada pembangunan ekonomi yang berkelanjutan.</p>
           </div>
-          <div class=" border-l-4 border-gray-700  shadow-lg p-4 hover:bg-gray-700 cursor-pointer">
+      
+          <div class=" border-l-4 border-gray-700 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(2)">
             <a id="q2" class="text-lg font-semibold flex justify-between items-center">
               <span>Mengapa CSR penting di Kabupaten Cirebon?</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
-            <p class="mt-2 text-gray-400 hidden">CSR membantu perkembangan sosial dan ekonomi di Kabupaten Cirebon.</p>
           </div>
-          <div class=" border-l-4 border-gray-700  shadow-lg p-4 hover:bg-gray-700 cursor-pointer">
+      
+          <div class=" border-l-4 border-gray-700 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(3)">
             <a id="q3" class="text-lg font-semibold flex justify-between items-center">
               <span>Bagaimana cara perusahaan di Kabupaten Cirebon menjalankan program CSR?</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
-            <p class="mt-2 text-gray-400 hidden">Perusahaan dapat menjalankan program CSR dengan melibatkan masyarakat.</p>
           </div>
-          <div class=" border-l-4 border-gray-700  shadow-lg p-4 hover:bg-gray-700 cursor-pointer">
+      
+          <div class=" border-l-4 border-gray-700 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(4)">
             <a id="q4" class="text-lg font-semibold flex justify-between items-center">
               <span>Apa saja contoh program CSR di Kabupaten Cirebon?</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
-            <p class="mt-2 text-gray-400 hidden">Contoh program CSR dapat berupa pendidikan, kesehatan, dan lingkungan hidup.</p>
           </div>
-          <div class=" border-l-4 border-gray-700  shadow-lg p-4 hover:bg-gray-700 cursor-pointer">
+      
+          <div class=" border-l-4 border-gray-700 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(5)">
             <a id="q5" class="text-lg font-semibold flex justify-between items-center">
               <span>Bagaimana pemerintah Kabupaten Cirebon mendukung program CSR?</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
-            <p class="mt-2 text-gray-400 hidden">Pemerintah Kabupaten Cirebon mendukung program CSR dengan menyediakan fasilitas dan regulasi.</p>
           </div>
         </div>
       </div>
-
+      
       <!-- FAQ Content -->
       <div class="w-2/3">
-        <div class=" p-6 rounded-lg shadow-lg">
-          <h3 class="text-xl font-semibold mb-4">CSR di Kabupaten Cirebon</h3>
-          <p class="text-gray-400">
+        <div class="p-6 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold mb-4" id="faq-title">CSR di Kabupaten Cirebon</h3>
+          <p class="text-gray-400" id="faq-content">
             CSR atau Corporate Social Responsibility adalah komitmen perusahaan untuk berkontribusi dalam pembangunan berkelanjutan dengan cara memberikan dampak positif bagi masyarakat dan lingkungan sekitar. Di Kabupaten Cirebon, CSR dapat diwujudkan melalui berbagai program seperti pendidikan, kesehatan, lingkungan, dan pemberdayaan masyarakat.
           </p>
         </div>
@@ -321,7 +325,45 @@
   </div>
 </div>
 
+<script>
+  function showAnswer(questionNumber) {
+    let faqTitle = document.getElementById("faq-title");
+    let faqContent = document.getElementById("faq-content");
 
+    if (questionNumber === 1) {
+      faqTitle.textContent = "Apa itu CSR?";
+      faqContent.textContent = "CSR atau Corporate Social Responsibility adalah komitmen perusahaan untuk berkontribusi pada pembangunan ekonomi yang berkelanjutan.";
+    } else if (questionNumber === 2) {
+      faqTitle.textContent = "Mengapa CSR penting di Kabupaten Cirebon?";
+      faqContent.textContent = "CSR membantu perkembangan sosial dan ekonomi di Kabupaten Cirebon.";
+    } else if (questionNumber === 3) {
+      faqTitle.textContent = "Bagaimana cara perusahaan di Kabupaten Cirebon menjalankan program CSR?";
+      faqContent.textContent = "Perusahaan dapat menjalankan program CSR dengan melibatkan masyarakat.";
+    } else if (questionNumber === 4) {
+      faqTitle.textContent = "Apa saja contoh program CSR di Kabupaten Cirebon?";
+      faqContent.textContent = "Contoh program CSR dapat berupa pendidikan, kesehatan, dan lingkungan hidup.";
+    } else if (questionNumber === 5) {
+      faqTitle.textContent = "Bagaimana pemerintah Kabupaten Cirebon mendukung program CSR?";
+      faqContent.textContent = "Pemerintah Kabupaten Cirebon mendukung program CSR dengan menyediakan fasilitas dan regulasi.";
+    }
+  }
+
+  function showContent(thumbnail, deskripsi) {
+    // Update gambar sektor
+    document.getElementById('gambarSektor').src = thumbnail;
+    
+    // Update deskripsi sektor
+    document.getElementById('deskripsiSektor').textContent = deskripsi;
+
+    // Jika diperlukan, kamu bisa memperbarui fungsi tombol di sini
+    document.getElementById('btnProgram').onclick = function() {
+      alert("Program tersedia untuk sektor ini.");
+    };
+    document.getElementById('btnRealisasi').onclick = function() {
+      alert("Realisasi program untuk sektor ini.");
+    };
+  }
+</script>
 
 
 

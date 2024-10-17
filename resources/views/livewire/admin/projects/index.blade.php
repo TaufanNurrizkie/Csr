@@ -75,6 +75,7 @@
             <tr>
                 <th class="px-6 py-3 border-b text-left">Judul</th>
                 <th class="px-6 py-3 border-b text-left">Lokasi</th>
+                <th class="px-6 py-3 border-b text-left">Deskripsi</th>
                 <th class="px-6 py-3 border-b text-left">Jumlah Mitra</th>
                 <th class="px-6 py-3 border-b text-left">Tgl Mulai</th>
                 <th class="px-6 py-3 border-b text-left">Tgl Akhir</th>
@@ -85,24 +86,25 @@
         </thead>
         <tbody>
             @foreach($projects as $project)
-            <tr>
-                <td class="px-6 py-4 border-b">{{ $project->judul }}</td>
-                <td class="px-6 py-4 border-b">{{ $project->lokasi }}</td>
-                <td class="px-6 py-4 border-b">    {{ $project->jumlah_mitra > 0 ? $project->jumlah_mitra : '-' }}</td>
-                <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($project->tgl_mulai)->format('d M Y') }}</td>
-                <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($project->tgl_akhir)->format('d M Y') }}</td>
-                <td class="px-6 py-4 border-b">{{ $project->tgl_diterbitkai ? \Carbon\Carbon::parse($project->tgl_diterbitkai)->format('d M Y') : '-' }}</td> <!-- Tanggal diterbitkan -->
-                <td class="px-6 py-4 border-b">
-                    <span class="px-2 py-1 text-xs rounded 
-                        {{ $project->status === 'Terbit' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                        {{ $project->status }}
-                    </span>
-                </td>
-                <td class="px-6 py-4 border-b">
-                    <a href="{{ route('projects.show', $project->id) }}" wire:navigate><i class="fa-regular fa-eye"></i></a>
-                </td>
-            </tr>
-            @endforeach
+        <tr>
+            <td class="px-6 py-4 border-b">{{ $project->judul }}</td>
+            <td class="px-6 py-4 border-b">{{ $project->lokasi }}</td>
+            <td class="px-6 py-4 border-b">{{ $project->deskripsi }}</td>
+            <td class="px-6 py-4 border-b">{{ $project->jumlah_mitra > 0 ? $project->jumlah_mitra : '-' }}</td>
+            <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($project->tgl_mulai)->format('d M Y') }}</td>
+            <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($project->tgl_akhir)->format('d M Y') }}</td>
+            <td class="px-6 py-4 border-b">{{ $project->tgl_diterbitkai ? \Carbon\Carbon::parse($project->tgl_diterbitkai)->format('d M Y') : '-' }}</td>
+            <td class="px-6 py-4 border-b">
+                <span class="px-2 py-1 text-xs rounded 
+                    {{ $project->status === 'Terbit' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                    {{ $project->status }}
+                </span>
+            </td>
+            <td class="px-6 py-4 border-b">
+                <a href="{{ route('projects.show', $project->id) }}" wire:navigate><i class="fa-regular fa-eye"></i></a>
+            </td>
+        </tr>
+        @endforeach
         </tbody>
     </table>
 

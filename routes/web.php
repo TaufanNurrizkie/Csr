@@ -91,7 +91,6 @@ Route::middleware([
 
     // statistik
     Route::get('/statistik', App\Livewire\Public\Statistik\Index::class);
-
     // sektor
     Route::get('/sektor', App\Livewire\Public\Sektor\Index::class);
     Route::get('/sektor/{id}', App\Livewire\Public\Sektor\Show::class)->name('sektor.details');
@@ -102,6 +101,7 @@ Route::middleware([
     Route::get('/laporan/{id}' ,  App\Livewire\Public\Laporan\Show::class)->name('laporan.detail');
 
     // mitra
+
     Route::get('/mitra', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
     Route::get('/mitra/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show');
 
