@@ -3,19 +3,26 @@
 namespace App\Livewire\Public\Laporan;
 
 
+use App\Models\Mitra;
 use App\Models\Report;
 use Livewire\Component;
 
 class Show extends Component
 {
     public $laporan;
+    
+
 
     public function mount($id)
     {
         // Ambil laporan berdasarkan ID yang diterima
+        
         $this->laporan = Report::findOrFail($id);
         $this->laporan = Report::with('sektor')->findOrFail($id);
+        $this->laporan = Report::with('mitra')->find($id);
     }
+
+
 
     public function render()
     {

@@ -97,7 +97,7 @@
                 <!-- Kolom 4 -->
                 <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
                     <div>
-                        <h3 class="text-5xl font-bold text-[#510300] mb-2"> {{ 'Rp. ' . number_format($totalDanaCsr, 0, ',', '.') }}</h3> <!-- Menambahkan margin bawah -->
+                        <h3 class="text-5xl font-bold text-[#510300] mb-2"> {{ 'Rp' . number_format($totalDanaCsr, 0, ',', '.') }}</h3> <!-- Menambahkan margin bawah -->
                         <p class="text-lg font-medium text-gray-800">Dana realisasi CSR</p>
                     </div>
                 </div>

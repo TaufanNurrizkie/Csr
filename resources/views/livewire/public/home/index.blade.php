@@ -1,5 +1,5 @@
 <div>
-  <div class="container mx-auto  relative" style="width: 1344px; height: 810px; overflow: hidden;">
+  {{-- <div class="container mx-auto  relative" style="width: 1344px; height: 810px; overflow: hidden;">
     <!-- Hero Section -->
     <div class="hero-section relative" style="width: 100%; height: 100%; overflow: hidden;">
         <svg width="550" height="750" viewBox="0 0 602 750" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0">
@@ -29,6 +29,37 @@
             <a href="#" class="text-red-500 mt-4 inline-block hover:underline">Baca selengkapnya</a>
         </div>
     </div>
+</div> --}}
+
+<div class="hero-section relative w-full h-[750px] overflow-hidden -mt-5"> <!-- -mt-10 untuk menggeser ke atas -->
+  <svg width="550" height="750" viewBox="0 0 602 750" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0">
+      <rect width="602" height="750" fill="#510300"/>
+  </svg>
+  <!-- Adjust the size and position of the gray overlay -->
+
+  <div class="absolute inset-0" style="top: 45%; left: 50%;  width: 93%; height: 70%; transform: translate(-50%, -50%);">
+      <img src="{{ asset('backgroundPublic.png') }}" alt="Overlay Image" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black opacity-70"></div>
+  </div>
+  <div class="absolute inset-0 flex items-center justify-start pl-20" style="top: 50%; transform: translateY(-50%);">
+      <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
+
+          <div class="relative z-10 text-white text-start flex flex-col justify-center ml-16 items-start h-full">
+            <h1 class="text-4xl font-bold md:text-5xl">Selamat datang <br> di portal CSR <br> Kab. Cirebon</h1>
+            <p class="mt-2 text-lg">Ketahui dan kenali customer social responsibility <br> terhadap Kabupaten Cirebon dari para Mitra.</p>
+            <div class="w-[400px] h-[1px] bg-white mb-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-[30px] right-[140px] bg-gray-900 text-white p-6  shadow-lg w-[500px] opacity-[.8]">
+      <h2 class="text-2xl font-semibold mb-2">Pemkab Cirebon Terima Bantuan PJU Tematik Dari Bank BJB</h2>
+      <p class="text-sm text-gray-400 mb-4">11 Oktober 2024</p>
+      <p class="text-base">
+          Penerangan Jalan Umum (PJU) di Kecamatan Lemahabang Desa Cipeujeuh Barat Kab. Cirebon, Jawa Barat, kini telah mendapat bantuan. CSR ini disalurkan langsung oleh CSR Bank BJB bersama dengan Pemkab Cirebon dalam upaya meningkatkan kenyamanan masyarakat setempat...
+      </p>
+      <a href="#" class="text-red-500 mt-4 inline-block hover:underline">Baca selengkapnya</a>
+  </div>
 </div>
 
 
@@ -46,7 +77,7 @@
         </div>
     </section>
 
-  <div class="flex flex-col items-center py-4">
+  <div class="flex flex-col items-center py-4 mt-40 ">
       <div class="w-10 h-1 bg-[#FF5D56] mb-2"></div> <!-- Garis merah di atas -->
       <h2 class="text-3xl font-extrabold text-center mb-4">Data Statistik</h2>
   </div>

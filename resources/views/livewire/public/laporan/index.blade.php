@@ -67,10 +67,11 @@
         @foreach ($laporans as $laporan)
             <a href="{{ route('laporan.detail', $laporan->id) }}" class="block">
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
-                    <img src="{{ $laporan->foto ?? 'https://via.placeholder.com/600x400' }}" alt="Laporan Image"
+                    <img src="{{'storage/' . $laporan->foto ?? 'https://via.placeholder.com/600x400' }}" alt="Laporan Image"
                         class="w-full h-48 object-cover">
                     <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
                         {{ $laporan->created_at ? $laporan->created_at->format('d M, Y') : 'Tanggal tidak tersedia' }}
+
                     </div>
                     <div class="p-4">
                         <div class="flex items-center mb-2">
