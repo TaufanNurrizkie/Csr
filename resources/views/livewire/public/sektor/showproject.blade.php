@@ -34,23 +34,14 @@
 
     <div class="container mx-auto py-10 mt-16">
         <h2 class="text-3xl font-bold mb-5 text-left">Galeri</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="relative">
-                <img src="{{ asset('403.png') }}" alt="Gallery Image 1" class="w-full h-full object-cover rounded-lg shadow-md">
-                <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
-            </div>
-            <div class="relative">
-                <img src="{{ asset('image2.png') }}" alt="Gallery Image 2" class="w-full h-full object-cover rounded-lg shadow-md">
-                <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
-            </div>
-            <div class="relative">
-                <img src="{{ asset('image3.png') }}" alt="Gallery Image 3" class="w-full h-full object-cover rounded-lg shadow-md">
-                <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
-            </div>
-            <div class="relative">
-                <img src="{{ asset('image4.jpg') }}" alt="Gallery Image 4" class="w-full h-full object-cover rounded-lg shadow-md">
-                <div class="absolute inset-0 bg-black opacity-20 rounded-lg"></div>
-            </div>
+        <div class="grid grid-cols-{{ $project->photo ? (count(json_decode($project->photo)) > 1 ? '2' : '1') : '1' }} md:grid-cols-{{ $project->photo ? (count(json_decode($project->photo)) >= 4 ? '4' : count(json_decode($project->photo))) : '1' }} gap-4 mb-6">
+            @if ($project->photo)
+                @foreach (json_decode($project->photo) as $photo)
+                    <img src="{{ asset('storage/' . $photo) }}" alt="Project Photo" class="rounded-lg shadow-md w-full h-32 object-cover">
+                @endforeach
+            @else
+                <p class="text-gray-500">Tidak ada foto tersedia.</p>
+            @endif
         </div>
     </div>
 

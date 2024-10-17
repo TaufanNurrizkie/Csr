@@ -17,7 +17,8 @@ class Project extends Model
         'tgl_mulai',
         'tgl_akhir',
         'tgl_diterbitkan',
-        'status'
+        'status',
+        'photo'
     ];
 
     public function mitras()
