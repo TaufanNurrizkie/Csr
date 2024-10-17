@@ -44,7 +44,9 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 container mx-auto">
         @foreach($kegiatan as $item)
         <div class="bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <a href="{{ route('kegiatan.show', $item->id) }}" wire:navigate>
             <img src="{{ asset('storage/' . $item->photo) }}" alt="{{ $item->title }}" class="w-full h-48 object-cover">
+            </a>
             <div class="p-4">
                 <span class="inline-block bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">{{ \Carbon\Carbon::parse($item->published_date)->format('d M, Y') }}</span>
                 <h5 class="mt-3 text-xl font-bold">{{ $item->title }}</h5>
