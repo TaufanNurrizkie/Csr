@@ -96,6 +96,10 @@ Route::middleware([
     Route::get('/sektor/{id}', App\Livewire\Public\Sektor\Show::class)->name('sektor.details');
     Route::get('/sektor/project/{id}', App\Livewire\Public\Sektor\Showproject::class )->name('project.details');
 
+    // laporan
+    Route::get('/laporan' ,  App\Livewire\Public\Laporan\Index::class);
+    Route::get('/laporan/{id}' ,  App\Livewire\Public\Laporan\Show::class)->name('laporan.detail');
+
     // mitra
 
     Route::get('/mitra', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
