@@ -243,7 +243,7 @@
         </div>
         
         <div class="flex justify-center mt-8">
-            <a href="#" class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
+            <a href="/kegiatan" class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
                 Lihat semua kegiatan
             </a>
         </div>
@@ -280,7 +280,7 @@
         </div>
         
         <div class="flex justify-center mt-8">
-            <a href="#" class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
+            <a href="/laporan" class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
                 Lihat semua laporan
             </a>
         </div>
