@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nama_program');
             $table->string('nama_mitra');
             $table->timestamps();
+            
         });
     }
     
