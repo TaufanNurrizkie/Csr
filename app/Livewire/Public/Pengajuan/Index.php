@@ -44,10 +44,16 @@ class Index extends Component
             'nama_mitra' => $this->nama_mitra,
         ]);
 
+        $this->dispatch('sweet-alert', icon: 'success', title: 'Data berhasil disimpan');
+
+        return redirect()->route('pengajuan'); 
+
         // Flash a success message
+
         $this->dispatch('sweet-alert', icon: 'success', title: 'Data berhasil disimpan');
 
         return redirect()->route('pengajuan');
+
 
         // Reset the form fields after submission
         $this->reset();
@@ -59,4 +65,5 @@ class Index extends Component
         return view('livewire.public.pengajuan.index')
             ->layout('components.layouts.public');
     }
+
 }

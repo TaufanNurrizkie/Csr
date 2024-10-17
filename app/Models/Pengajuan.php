@@ -21,3 +21,4 @@ class Pengajuan extends Model
         'nama_mitra',
     ];
 }
+
