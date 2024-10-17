@@ -88,10 +88,7 @@
     <!-- Card End -->
     @if ($laporans->count() >= 8)
         <div class="flex justify-center mt-8">
-            <button wire:click="loadMore"
-                class="border text-black px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:bg-black hover:text-white hover:shadow-lg hover:-translate-y-1">
-                Muat lebih banyak
-            </button>
+            <a href="/semualaporan" class="border text-black px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:bg-black hover:text-white hover:shadow-lg hover:-translate-y-1">Muat Lebih Banyak</a>
         </div>
     @endif
 

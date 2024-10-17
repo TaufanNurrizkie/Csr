@@ -54,7 +54,7 @@
         @endforeach
     </div>
     <div class="flex justify-center mt-6">
-        <a href="{{ route('kegiatan.index') }}" class="text-[#344054] font-semibold hover:underline">Muat lebih banyak</a>
+        <a href="{{ route('semuakegiatan.index') }}" class="text-[#344054] font-semibold hover:underline">Muat lebih banyak</a>
     </div>
     
     
