@@ -97,6 +97,8 @@ Route::middleware([
     Route::get('/sektor/project/{id}', App\Livewire\Public\Sektor\Showproject::class )->name('project.details');
 
     // mitra
+
     Route::get('/mitra', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
     Route::get('/mitra/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show');
+
 });
