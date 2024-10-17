@@ -45,7 +45,7 @@
                 <div class="flex justify-between items-center bg-white py-4 px-5 border-b border-gray-200">
                         <h3 class="text-gray-800 text-lg font-semibold">{{ $project->judul }}</h3>
                         <p class="text-gray-600">{{ $project->lokasi }}</p>
-                        <a href="{{ route('project.details', $project->id) }}" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                        <a href="{{ route('project.details', $project->id) }}" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
                             Lihat Detail Proyek
                         </a>
                 </div>

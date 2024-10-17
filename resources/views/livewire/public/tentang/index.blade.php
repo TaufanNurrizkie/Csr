@@ -5,7 +5,7 @@
                 <rect width="602" height="450" fill="#510300"/>
             </svg>
             <!-- Adjust the size and position of the gray overlay -->
-    
+
             <div class="absolute inset-0" style="top: 50%; left: 50%;  width: 93%; height: 70%; transform: translate(-50%, -50%);">
                 <img src="{{ asset('backgroundPublic.png') }}" alt="Overlay Image" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black opacity-70"></div>
@@ -27,19 +27,19 @@
         <!-- Judul -->
         <div class="flex items-start mb-6">
             <h2 class="text-5xl font-bold text-gray-800 mr-60">
-                Apa Itu 
-               <span>Kegiatan CSR?</span> 
+                Apa Itu
+               <span>Kegiatan CSR?</span>
             </h2>
             <p class="text-sm text-gray-600 leading-relaxed mt-2">
                 Corporate Social Responsibility (CSR) merupakan konsep di mana perusahaan secara sadar mengintegrasikan kepedulian sosial dan lingkungan ke dalam operasional bisnisnya. Ini melibatkan tindakan sukarela yang memberikan manfaat bagi masyarakat, seperti program pendidikan, kesehatan, dan lingkungan, serta upaya untuk mengurangi dampak negatif terhadap lingkungan. CSR tidak hanya mencerminkan tanggung jawab perusahaan terhadap masyarakat, tetapi juga dapat meningkatkan reputasi dan daya saing bisnis.
             </p>
         </div>
-        
 
 
-        
+
+
         <!-- Garis bawah (border dotted) -->
-        
+
         <!-- Paragraf Undang-undang -->
         <p class="text-sm text-gray-500 leading-relaxed">
             Berdasarkan Undang-Undang nomor 40 Tahun 2007 tentang Perseroan Terbatas (UUPT) pasal 1 ayat 3, pengertian Tanggung Jawab Sosial dan Lingkungan Perusahaan (TJSLP) atau Corporate Social Responsibility (CSR) adalah komitmen perseroan untuk berperan serta dalam pembangunan ekonomi berkelanjutan guna meningkatkan kualitas kehidupan dan lingkungan yang bermanfaat, baik bagi perseroan sendiri, komunitas setempat, maupun masyarakat pada umumnya.
@@ -63,7 +63,7 @@
               <img src="{{ asset('aboutCsr3.png') }}" alt="Image 3">
             </div>
           </div>
-          
+
         <div class="w-full md:w-1/2 px-6 md:px-12">
           <div class="w-10 h-1 bg-[#FF5D56] mb-2"></div> <!-- Garis merah di atas -->
             <h2 class="text-2xl font-bold mb-4">Tujuan</h2>
@@ -84,7 +84,7 @@
                 Pemerintah kabupaten memperoleh banyak manfaat dari pelaksanaan CSR. Salah satu manfaat utama adalah percepatan pembangunan di berbagai sektor. Dengan adanya dukungan dana dan sumber daya dari perusahaan, pemerintah dapat lebih cepat mewujudkan program-program pembangunan yang telah direncanakan, seperti pembangunan infrastruktur, peningkatan kualitas pendidikan dan kesehatan, serta pengembangan ekonomi masyarakat.
             </p>
         </div>
-        
+
         <!-- Image Section -->
         <div class="flex items-center justify-end">
             <img src="{{ asset('manfaat.png') }}" alt="Bupati Kabupaten Cirebon" class="object-cover w-full h-auto">
@@ -113,7 +113,7 @@
             </div>
             @endforeach
         </div>
-        
+
         <div class="flex justify-center mt-8">
             <a href="#" class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
                 Lihat semua laporan
@@ -139,7 +139,7 @@
                 <p class="text-gray-500">Bupati Kabupaten Cirebon</p>
             </div>
         </div>
-        
+
         <!-- Image Section -->
         <div class="flex items-center justify-end">
             <img src="{{ asset('Sambutan.png') }}" alt="Bupati Kabupaten Cirebon" class=" w-full h-auto">
@@ -183,7 +183,7 @@
             </div>
 
             <br>
-            
+
             <!-- Horizontal Line -->
             <div class="absolute border-t-2 border-gray-400 top-[20px] z-0" style="width: calc(100% - 320px); left: 160px;"></div>
         </div>
@@ -191,9 +191,9 @@
 
         <!-- Button -->
         <div class="mt-12">
-            <button wire:click="ajukanSurat" class="bg-[#98100A] hover:bg-red-700 text-white font-bold py-2 px-6 rounded">
+            <a  href="{{ route('pengajuan') }}" wire:navigate class="bg-[#98100A] hover:bg-red-700 text-white font-bold py-2 px-6 rounded">
                 Ajukan surat rekomendasi CSR
-            </button>
+            </a>
         </div>
     </div>
 

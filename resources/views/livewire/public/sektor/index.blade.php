@@ -39,7 +39,7 @@
                   <p class="bg-[#F4F4F4] text-gray-500 text-base px-2 py-1 rounded-md inline-block">
                       Tersedia: {{ $item->projects_count }}
                     </p>
-                    <a href="{{ route('sektor.details', $item->id) }}" class="mt-4 bg-[#98100A] text-white px-4 py-2 rounded-xl hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg block w-full text-center">
+                    <a href="{{ route('sektor.details', $item->id) }}" wire:navigate class="mt-4 bg-[#98100A] text-white px-4 py-2 rounded-xl hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg block w-full text-center">
                         Lihat detail
                     </a>
                 </div>
@@ -83,16 +83,16 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($projects as $project)
-                <a href="{{ route('project.details', $project->id) }}" class="block bg-white rounded-lg shadow-lg overflow-hidden">
+                <a href="{{ route('project.details', $project->id) }}" wire:navigate class="block bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     {{-- Ambil gambar pertama dari array path --}}
                     @php
                         $photoArray = json_decode($project->photo, true);
                         $firstPhoto = is_array($photoArray) ? $photoArray[0] : $project->photo;
                     @endphp
-        
+
                     <img src="{{ asset('storage/' . $firstPhoto) }}" alt="{{ $project->judul }}" class="w-full h-48 object-cover">
-        
+
                     <div class="p-4">
                         <h3 class="text-lg font-semibold mb-2">{{ $project->judul }}</h3>
                         <p class="bg-[#F4F4F4] text-gray-500 text-base px-2 py-2 mb-3">

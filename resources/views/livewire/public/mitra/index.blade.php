@@ -33,25 +33,24 @@
             </div>
             <input type="text" placeholder="Cari Proyek" class="border-gray-300 p-2 rounded-lg w-full" wire:model.live="search" />
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-6">
             @foreach($mitras as $mitra)
             <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <!-- Make image clickable by wrapping it in a link -->
-                <a href="{{ route('mitra.show', $mitra->id) }}">
+                <a href="{{ route('mitra.show', $mitra->id) }}" wire:navigate>
                     <img src="{{ asset('storage/' . $mitra->foto) }}" alt="{{ $mitra->nama_pt }}" class="w-full h-48 object-cover">
                 </a>
                 <div class="p-4">
                     <!-- Make title clickable by wrapping it in a link -->
-                    <a href="{{ route('mitra.show', $mitra->id) }}">
+                    <a href="{{ route('mitra.show', $mitra->id) }}" wire:navigate>
                         <h5 class="mt-3 text-xl font-bold">{{ $mitra->nama }}</h5>
                     </a>
-                   
                 </div>
             </div>
             @endforeach
         </div>
-        
+
     </div>
 
     <!-- Hubungi Kami Section -->

@@ -45,7 +45,9 @@ class Index extends Component
         ]);
 
         // Flash a success message
-        session()->flash('message', 'Pengajuan berhasil dikirim!');
+        $this->dispatch('sweet-alert', icon: 'success', title: 'Data berhasil disimpan');
+
+        return redirect()->route('pengajuan');
 
         // Reset the form fields after submission
         $this->reset();

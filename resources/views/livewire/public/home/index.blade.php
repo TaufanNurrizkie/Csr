@@ -11,7 +11,7 @@
             <img src="{{ asset('backgroundPublic.png') }}" alt="Overlay Image" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black opacity-50"></div>
         </div>
-        
+
         <!-- Text content -->
         <div class="relative z-10 text-white text-start flex flex-col justify-center ml-16 items-start h-full">
             <h1 class="text-4xl font-bold md:text-5xl">Selamat datang <br> di portal CSR <br> Kab. Cirebon</h1>
@@ -132,7 +132,7 @@
                   <img src="{{ asset('aboutCsr3.png') }}" alt="Image 3">
                 </div>
               </div>
-              
+
             <div class="w-full md:w-1/2 px-6 md:px-12">
               <div class="w-10 h-1 bg-[#FF5D56] mb-2"></div> <!-- Garis merah di atas -->
                 <h2 class="text-2xl font-bold mb-4">Apa Itu Kegiatan CSR?</h2>
@@ -169,7 +169,7 @@
             @endforeach
           </ul>
         </div>
-        
+
         <!-- Content Section -->
         <div class="w-2/3 flex">
           <div class="w-full">
@@ -188,8 +188,8 @@
               </button>
             </div>
           </div>
-        </div>     
-      </div>  
+        </div>
+      </div>
     </div>
 
     <div class="bg-white min-h-screen flex items-center justify-center p-8">
@@ -209,14 +209,14 @@
                   <p class="text-gray-500">Bupati Kabupaten Cirebon</p>
               </div>
           </div>
-          
+
           <!-- Image Section -->
           <div class="flex items-center justify-end">
               <img src="{{ asset('Sambutan.png') }}" alt="Bupati Kabupaten Cirebon" class=" w-full h-auto">
           </div>
       </div>
   </div>
-  
+
 
   <div class="bg-gray-50 py-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -227,7 +227,7 @@
             @foreach ($aktivitas as $aktif)
             <!-- Card -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
-              <a href="/">
+              <a href="/" wire:navigate>
               <img src="{{'storage/' . $aktif->photo ?? 'https://via.placeholder.com/600x400' }}" alt="aktif Image"
                   class="w-full h-48 object-cover">
                 </a>
@@ -241,9 +241,9 @@
           </div>
             @endforeach
         </div>
-        
+
         <div class="flex justify-center mt-8">
-            <a href="/kegiatan" class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
+            <a href="/kegiatan" wire:navigate class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
                 Lihat semua kegiatan
             </a>
         </div>
@@ -273,14 +273,14 @@
                       <span class="font-semibold text-gray-700">{{ $report->reviewed_by }}</span>
                   </div>
                   <h3 class="text-lg font-bold text-gray-800">{{ $report->title }}</h3>
-                  
+
               </div>
           </div>
             @endforeach
         </div>
-        
+
         <div class="flex justify-center mt-8">
-            <a href="/laporan" class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
+            <a href="/laporan" wire:navigate class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
                 Lihat semua laporan
             </a>
         </div>
@@ -304,7 +304,7 @@
               </svg>
             </a>
           </div>
-      
+
           <div class=" border-l-4 border-gray-700 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(2)">
             <a id="q2" class="text-lg font-semibold flex justify-between items-center">
               <span>Mengapa CSR penting di Kabupaten Cirebon?</span>
@@ -313,7 +313,7 @@
               </svg>
             </a>
           </div>
-      
+
           <div class=" border-l-4 border-gray-700 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(3)">
             <a id="q3" class="text-lg font-semibold flex justify-between items-center">
               <span>Bagaimana cara perusahaan di Kabupaten Cirebon menjalankan program CSR?</span>
@@ -322,7 +322,7 @@
               </svg>
             </a>
           </div>
-      
+
           <div class=" border-l-4 border-gray-700 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(4)">
             <a id="q4" class="text-lg font-semibold flex justify-between items-center">
               <span>Apa saja contoh program CSR di Kabupaten Cirebon?</span>
@@ -331,7 +331,7 @@
               </svg>
             </a>
           </div>
-      
+
           <div class=" border-l-4 border-gray-700 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(5)">
             <a id="q5" class="text-lg font-semibold flex justify-between items-center">
               <span>Bagaimana pemerintah Kabupaten Cirebon mendukung program CSR?</span>
@@ -342,7 +342,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- FAQ Content -->
       <div class="w-2/3">
         <div class="p-6 rounded-lg shadow-lg">
@@ -382,7 +382,7 @@
   function showContent(thumbnail, deskripsi) {
     // Update gambar sektor
     document.getElementById('gambarSektor').src = thumbnail;
-    
+
     // Update deskripsi sektor
     document.getElementById('deskripsiSektor').textContent = deskripsi;
 
@@ -401,7 +401,7 @@
 
 
 
-  
-  
-      
+
+
+
 </div>
