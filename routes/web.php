@@ -102,7 +102,12 @@ Route::middleware([
 
     // mitra
 
-    Route::get('/mitra', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
-    Route::get('/mitra/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show');
+    Route::get('/mitras', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
+    Route::get('/mitras/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show');
 
+    // semuakegiatan
+    Route::get('/semuakegiatan', App\Livewire\public\Semuakegiatan\Index::class)->name('semuakegiatan.index');
+    
+    //semualaporan
+    Route::get('/semualaporan', App\Livewire\public\Semualaporan\Index::class)->name('semualaporan.index');
 });
