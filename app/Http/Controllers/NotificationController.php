@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mitra;
+use App\Models\Pengajuan;
 use App\Models\Report;
 use Illuminate\Http\Request;
 
@@ -18,10 +19,13 @@ class NotificationController extends Controller
             ->whereDate('updated_at', now()->toDateString())
             ->get();
 
+        $newPengajuan = Pengajuan::whereDate('created_at', now()->toDateString())->get();
+
         // Kembalikan dalam format JSON
         return response()->json([
             'newMitra' => $newMitra,
             'newReports' => $newReports,
+            'newPengajuan' => $newPengajuan
         ]);
     }
 }

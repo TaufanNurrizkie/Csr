@@ -141,14 +141,28 @@ function fetchNotifications() {
             notificationList.appendChild(listItem);
         });
 
+        // Tampilkan pengajuan baru
+        notifications.newPengajuan.forEach(pengajuan => {
+            let listItem = document.createElement('div');
+            listItem.classList.add('p-3', 'bg-yellow-100', 'rounded-lg', 'shadow', 'hover:bg-yellow-200');
+            listItem.innerHTML = `
+                <div class="flex items-center">
+                    <span class="font-bold text-yellow-600 mr-2">Pengajuan Baru:</span>
+                    <a href="/pengajuan/${pengajuan.id}" class="text-gray-700">${pengajuan.nama_lengkap}</a>
+                </div>
+            `;
+            notificationList.appendChild(listItem);
+        });
+
         // Hitung jumlah total notifikasi
-        let notificationCount = notifications.newMitra.length + notifications.newReports.length;
+        let notificationCount = notifications.newMitra.length + notifications.newReports.length + notifications.newPengajuan.length;
         document.getElementById('notification-count').textContent = notificationCount;
     })
     .catch(error => {
         console.error("Terjadi kesalahan saat mengambil notifikasi: ", error);
     });
 }
+
 
 
 
