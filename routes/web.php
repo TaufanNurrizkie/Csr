@@ -20,6 +20,8 @@ Route::middleware([
     'role:admin',
 ])->group(function () {
 
+    Route::get('/pengajuan/{id}', App\Livewire\public\pengajuan\Show::class)->name('pengajuan.show');
+
     Route::get('/dashboard', App\Livewire\admin\Dashboard\Chart::class)->name('dashboard');
     Route::get('/dashboard/download/pdf', [ChartController::class, 'download_pdf'])->name('dashboard.downloadpdf');
     Route::get('/dashboard/download/csv', [ChartController::class, 'download_csv'])->name('dashboard.downloadcsv');
