@@ -55,7 +55,7 @@
                 <a href="/laporan" wire:navigate class="{{ Request::is('laporan*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Laporan</a>
             </li>
             <li>
-                <a href="/mitra"  wire:navigate class="{{ Request::is('mitra*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Mitra</a>
+                <a href="/mitras"  wire:navigate class="{{ Request::is('mitra*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Mitra</a>
             </li>
         </ul>
 

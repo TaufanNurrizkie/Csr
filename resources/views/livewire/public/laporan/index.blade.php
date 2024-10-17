@@ -70,7 +70,7 @@
                     <img src="{{ $laporan->foto ?? 'https://via.placeholder.com/600x400' }}" alt="Laporan Image"
                         class="w-full h-48 object-cover">
                     <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
-                        {{ $laporan->created_at->format('d M, Y') }}
+                        {{ $laporan->created_at ? $laporan->created_at->format('d M, Y') : 'Tanggal tidak tersedia' }}
                     </div>
                     <div class="p-4">
                         <div class="flex items-center mb-2">
@@ -87,10 +87,7 @@
     <!-- Card End -->
     @if ($laporans->count() >= 8)
         <div class="flex justify-center mt-8">
-            <button wire:click="loadMore"
-                class="border text-black px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:bg-black hover:text-white hover:shadow-lg hover:-translate-y-1">
-                Muat lebih banyak
-            </button>
+            <a href="/semualaporan" class="border text-black px-4 py-2 rounded-md transition duration-300 ease-in-out transform hover:bg-black hover:text-white hover:shadow-lg hover:-translate-y-1">Muat Lebih Banyak</a>
         </div>
     @endif
 
