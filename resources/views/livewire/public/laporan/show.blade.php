@@ -19,7 +19,7 @@
                     <span class="text-[#E66445]">Laporan</span> /   <span class="text-white">Rincian</span>
                 </p>
                 <h1 class="text-7xl font-bold">{{ $laporan->title }}</h1>
-                <p class="mt-2 text-sm">{{ $laporan->mitra }} · {{ $laporan->created_at->format('d M, Y') }}</p>
+                <p class="mt-2 text-sm">{{ $laporan->mitra }} · {{ $laporan->created_at->format('F d, Y') }}</p>
                 <span class="bg-[#F2F4F74D] text-white px-4 py-1 rounded-full mt-5 w-20">
                     {{ optional($laporan->sektor)->nama ?? 'Sektor tidak tersedia' }}
                 </span>
@@ -105,9 +105,9 @@
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="bg-white shadow-md rounded-lg overflow-hidden relative">
-                <img alt="Laporan Image" class="w-full h-48 object-cover" height="400" src="{{ $laporan->foto ?? 'https://via.placeholder.com/600x400' }}" width="600"/>
+                <img alt="Laporan Image" class="w-full h-48 object-cover" height="400" src="{{'../storage/' . $laporan->foto ?? 'https://via.placeholder.com/600x400' }}" width="600"/>
                 <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
-                    {{ $laporan->created_at->format('d M, Y') }}
+                    {{ \Carbon\Carbon::parse($laporan->tgl_realisasi)->format('d F, Y') }}
                 </div>
                 <div class="p-4">
                     <h3 class="text-lg font-bold text-gray-900 mb-2">
