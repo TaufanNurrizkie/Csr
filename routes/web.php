@@ -90,13 +90,13 @@ Route::middleware([
     Route::get('/kegiatan/{id}', App\Livewire\public\Kegiatan\Show::class)->name('kegiatan.show');
 
     // statistik
-    Route::get('/statistik', App\Livewire\Public\Statistik\Index::clas
+    Route::get('/statistik', App\Livewire\Public\Statistik\Index::class);
     // sektor
     Route::get('/sektor', App\Livewire\Public\Sektor\Index::class);
     Route::get('/sektor/{id}', App\Livewire\Public\Sektor\Show::class)->name('sektor.details');
     Route::get('/sektor/project/{id}', App\Livewire\Public\Sektor\Showproject::class )->name('project.details');
 
     // mitra
-    Route::get('/mitra', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
-    Route::get('/mitra/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show'
+    Route::get('/mitras', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
+    Route::get('/mitras/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show');
 });

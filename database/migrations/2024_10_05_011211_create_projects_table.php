@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->longText('photo')->nullable(); // Menggunakan longText untuk menyimpan banyak foto dalam format JSON
             $table->string('judul');
             $table->string('lokasi');
+            $table->string('deskripsi');
             $table->date('tgl_mulai');
             $table->date('tgl_akhir');
             $table->date('tgl_diterbitkai')->nullable();
