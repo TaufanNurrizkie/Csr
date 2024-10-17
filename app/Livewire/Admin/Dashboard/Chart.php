@@ -136,7 +136,7 @@ class Chart extends Component
                 'projects' => $projects, // Tambahkan variabel projects
             ])->layout('components.layouts.admin');
         }
-        
+
     }
 }
 

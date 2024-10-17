@@ -54,10 +54,10 @@ Route::middleware([
 
 
     //Route Sektor
-    Route::get('/sektor', App\Livewire\admin\Sektor\Index::class)->name('sektor.index');
-    Route::get('/sektor/create', App\Livewire\admin\Sektor\Create::class)->name('sektor.create');
-    Route::get('/sektor/{id}', App\Livewire\admin\Sektor\Show::class)->name('sektor.show');
-    Route::get('/sektor/edit/{id}',  App\Livewire\admin\Sektor\Edit::class)->name('sektor.edit');
+    Route::get('/sektors', App\Livewire\admin\Sektor\Index::class)->name('sektor.index');
+    Route::get('/sektors/create', App\Livewire\admin\Sektor\Create::class)->name('sektor.create');
+    Route::get('/sektors/{id}', App\Livewire\admin\Sektor\Show::class)->name('sektor.show');
+    Route::get('/sektors/edit/{id}',  App\Livewire\admin\Sektor\Edit::class)->name('sektor.edit');
 
     //Route Mitra
     Route::get('/mitra', App\Livewire\admin\Mitra\Index::class)->name('mitra.index');
@@ -90,11 +90,13 @@ Route::middleware([
     Route::get('/kegiatan/{id}', App\Livewire\public\Kegiatan\Show::class)->name('kegiatan.show');
 
     // statistik
-    Route::get('/statistik', App\Livewire\Public\Statistik\Index::class);
+    Route::get('/statistik', App\Livewire\Public\Statistik\Index::clas
+    // sektor
+    Route::get('/sektor', App\Livewire\Public\Sektor\Index::class);
+    Route::get('/sektor/{id}', App\Livewire\Public\Sektor\Show::class)->name('sektor.details');
+    Route::get('/sektor/project/{id}', App\Livewire\Public\Sektor\Showproject::class )->name('project.details');
 
     // mitra
     Route::get('/mitra', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
-    Route::get('/mitra/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show');
-
+    Route::get('/mitra/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show'
 });
-

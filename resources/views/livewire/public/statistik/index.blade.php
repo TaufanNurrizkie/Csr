@@ -28,7 +28,7 @@
         </div>
 
         <!-- Kotak-kotak image -->
-        <img src="{{ asset('dekor2.png') }}" alt="" class="absolute top-0 right-4 w-40 h-40 mt-[-20px] mr-[-20px]"> <!-- Adjust mt and mr as needed -->
+        <img src="{{ asset('dekor2.png') }}" alt="" class="absolute top-0 right-6 w-40 h-40 mt-[-20px] mr-[-20px]"> <!-- Adjust mt and mr as needed -->
 
         <div class="grid grid-cols-4 gap-6 mb-10">
             <!-- Input Tahun -->
@@ -76,28 +76,28 @@
                 <!-- Kolom 1 -->
                 <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
                     <div>
-                        <h3 class="text-5xl font-bold text-[#510300] mb-2">124</h3> <!-- Menambahkan margin bawah -->
+                        <h3 class="text-5xl font-bold text-[#510300] mb-2">  {{ $jumlahCSR }} </h3> <!-- Menambahkan margin bawah -->
                         <p class="text-lg font-medium text-gray-800">Total Proyek CSR</p>
                     </div>
                 </div>
                 <!-- Kolom 2 -->
                 <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
                     <div>
-                        <h3 class="text-5xl font-bold text-[#510300] mb-2">119</h3> <!-- Menambahkan margin bawah -->
+                        <h3 class="text-5xl font-bold text-[#510300] mb-2">{{ $jumlahApproved }}</h3> <!-- Menambahkan margin bawah -->
                         <p class="text-lg font-medium text-gray-800">Proyek terealisasi</p>
                     </div>
                 </div>
                 <!-- Kolom 3 -->
                 <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
                     <div>
-                        <h3 class="text-5xl font-bold text-[#510300] mb-2">89</h3> <!-- Menambahkan margin bawah -->
+                        <h3 class="text-5xl font-bold text-[#510300] mb-2">{{ $jumlahMitra }}</h3> <!-- Menambahkan margin bawah -->
                         <p class="text-lg font-medium text-gray-800">Mitra bergabung</p>
                     </div>
                 </div>
                 <!-- Kolom 4 -->
                 <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
                     <div>
-                        <h3 class="text-5xl font-bold text-[#510300] mb-2">Rp200T +</h3> <!-- Menambahkan margin bawah -->
+                        <h3 class="text-5xl font-bold text-[#510300] mb-2"> {{ 'Rp. ' . number_format($totalDanaCsr, 0, ',', '.') }}</h3> <!-- Menambahkan margin bawah -->
                         <p class="text-lg font-medium text-gray-800">Dana realisasi CSR</p>
                     </div>
                 </div>
@@ -112,221 +112,26 @@
             <h2 class="text-3xl font-extrabold mb-4">Realisasi <br> Proyek CSR</h2>
         </div>
 
-     <!-- Chart Section -->
-<div class="py-10 px-8">
-    <!-- Combined chart rows -->
-    <div class="bg-gray-100 py-10 px-8">
-        <div class="grid grid-cols-2 gap-8">
-            <!-- Pie Chart -->
-            <div class="col-span-1 p-6 bg-white rounded-lg shadow">
-                <h3 class="font-bold mb-4">Persentase jumlah realisasi proyek per sektor</h3>
-                <canvas id="pieChart"></canvas>
-            </div>
-            <!-- Bar Chart -->
-            <div class="col-span-1 p-6 bg-white rounded-lg shadow">
-                <h3 class="font-bold mb-4">Total realisasi proyek per sektor</h3>
-                <canvas id="barChart"></canvas>
-            </div>
+  <!-- Realisasi Proyek CSR -->
+ <!-- Realisasi Proyek CSR -->
+ <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+      <!-- Charts Section -->
+      @foreach ([$pieChart, $barChart, $barChart2, $barChart3] as $chart)
+      <div class="bg-white p-5 rounded-lg shadow-lg">
+        <div class="w-full h-full flex items-center justify-center">
+          <div class="w-full h-full">
+            {!! $chart->container() !!}
+          </div>
         </div>
-
-        <div class="grid grid-cols-2 gap-8 mt-8">
-            <!-- Mitra Chart -->
-            <div class="col-span-1 p-6 bg-white rounded-lg shadow">
-                <h3 class="font-bold mb-4">Jumlah realisasi terbanyak berdasarkan mitra</h3>
-                <canvas id="mitraChart"></canvas>
-            </div>
-            <!-- Kecamatan Chart -->
-            <div class="col-span-1 p-6 bg-white rounded-lg shadow">
-                <h3 class="font-bold mb-4">Jumlah realisasi terbanyak berdasarkan kecamatan</h3>
-                <canvas id="kecamatanChart"></canvas>
-            </div>
-        </div>
+      </div>
+      @endforeach
     </div>
-
+  </div>
 
 </div>
-<script>
-    const data = {
-  labels: [
-    'Lainnya',
-    'Sarana dan prasarana keagmaan',
-    'Infrastruktur dan lingkungan',
-    'Pendidikan',
-    'Kesehatan',
-    'Lingkungan',
-    'Sosial',
-  ],
-  datasets: [
-    {
-      label: 'Total realisasi proyek per sektor',
-      data: [
-        '###,###,###',
-        '###,###,###',
-        '###,###,###',
-        '###,###,###',
-        '###,###,###',
-        '###,###,###',
-        '###,###,###',
-      ],
-      backgroundColor: [
-        'gold',
-        'orangered',
-        'firebrick',
-        'hotpink',
-        'mediumpurple',
-        'slategray',
-        'dodgerblue',
-      ],
-      borderColor: [
-        'gold',
-        'orangered',
-        'firebrick',
-        'hotpink',
-        'mediumpurple',
-        'slategray',
-        'dodgerblue',
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-
-const config = {
-  type: 'horizontalBar',
-  data: data,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          callback: function (value, index, ticks) {
-            return 'Rp.' + value;
-          },
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        text: 'Total realisasi proyek per sektor',
-      },
-    },
-  },
-};
-
-const myChart = new Chart(document.getElementById(''), config);
-    // Pie Chart
-    var pieCtx = document.getElementById('pieChart').getContext('2d');
-    new Chart(pieCtx, {
-        type: 'pie',
-        data: @json($pieData)
-    });
-
-    // Bar Chart (data dummy)
-    var barCtx = document.getElementById('barChart').getContext('2d');
-    new Chart(barCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Sosial', 'Lingkungan', 'Kesehatan', 'Pendidikan', 'Infrastruktur', 'Keagamaan', 'Lainnya'],
-            datasets: [{
-                label: 'Total Realisasi',
-                data: [500000000, 400000000, 300000000, 200000000, 100000000, 50000000, 250000000],
-                backgroundColor: ['#36A2EB', '#8E44AD', '#1ABC9C', '#E74C3C', '#F39C12', '#D35400', '#F1C40F']
-            }]
-        }
-    });
-
-    // Mitra Chart (data dummy)
-    var mitraCtx = document.getElementById('mitraChart').getContext('2d');
-    new Chart(mitraCtx, {
-        type: 'bar',
-        data: {
-            labels: ['PT A', 'PT B', 'PT C', 'PT D', 'PT E'],
-            datasets: [{
-                label: 'Realisasi',
-                data: [120000000, 100000000, 80000000, 60000000, 40000000],
-                backgroundColor: ['#3498DB', '#9B59B6', '#E74C3C', '#1ABC9C', '#F39C12']
-            }]
-        }
-    });
-
-    // Kecamatan Chart (data dummy)
-    var kecamatanCtx = document.getElementById('kecamatanChart').getContext('2d');
-    new Chart(kecamatanCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Kec. A', 'Kec. B', 'Kec. C', 'Kec. D', 'Kec. E'],
-            datasets: [{
-                label: 'Realisasi',
-                data: [150000000, 130000000, 110000000, 90000000, 70000000],
-                backgroundColor: ['#2ECC71', '#E74C3C', '#3498DB', '#F39C12', '#9B59B6']
-            }]
-        }
-    });
-</script>
-
- <!-- Hubungi Kami Section -->
-    <div class="container mx-auto my-12">
-        <div class="bg-white rounded-lg shadow-lg p-8 md:flex md:space-x-12">
-            <!-- Info Kontak -->
-            <div class="contact-info md:w-1/2 space-y-4">
-                <h2 class="text-3xl font-bold mb-4">Hubungi Kami</h2>
-                <p class="text-gray-600">Hubungi kami melalui formulir di samping, atau melalui kontak di bawah</p>
-
-                <div class="space-y-4">
-                    <!-- Alamat -->
-                    <div class="flex items-start space-x-4">
-                        <span class="text-red-500 text-2xl">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </span>
-                        <div>
-                            <h4 class="text-xl font-semibold">Alamat</h4>
-                            <p class="text-gray-700">Jl. Sunan Kalijaga No. 7, Sumber, Kec. Sumber, Kabupaten Cirebon, Jawa Barat 45611</p>
-                        </div>
-                    </div>
-
-                    <!-- Telepon -->
-                    <div class="flex items-start space-x-4">
-                        <span class="text-red-500 text-2xl">
-                            <i class="fas fa-phone"></i>
-                        </span>
-                        <div>
-                            <h4 class="text-xl font-semibold">Telepon</h4>
-                            <p class="text-gray-700">(0231) 321107 atau (0231) 3211792</p>
-                        </div>
-                    </div>
-
-                    <!-- Email -->
-                    <div class="flex items-start space-x-4">
-                        <span class="text-red-500 text-2xl">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-                        <div>
-                            <h4 class="text-xl font-semibold">Email</h4>
-                            <p class="text-gray-700">pemkab@cirebonkab.go.id</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Peta Lokasi -->
-            <div class="map md:w-1/2 mt-8 md:mt-0">
-                <div class="bg-gray-200 rounded-lg overflow-hidden shadow-md">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31693.25337038745!2d108.53208806664193!3d-6.717044799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee2b1c2d4a93f%3A0x4f4b7d9b9901306a!2sSumber%2C%20Kabupaten%20Cirebon%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1677624793881!5m2!1sid!2sid"
-                        width="100%"
-                        height="300"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  {{ $pieChart->script() }}
+  {{ $barChart->script() }}
+  {{ $barChart2->script() }}
+  {{ $barChart3->script() }}

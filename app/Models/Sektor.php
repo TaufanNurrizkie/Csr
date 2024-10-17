@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sektor extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['thumbnail', 'nama', 'deskripsi'];
 
     protected $table = 'sektors'; // Nama tabel
@@ -18,5 +18,10 @@ class Sektor extends Model
     {
         return $this->hasMany(Report::class, 'sektor_id'); // Pastikan 'sektor_id' adalah kolom yang digunakan di tabel 'reports'
     }
-    
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
 }

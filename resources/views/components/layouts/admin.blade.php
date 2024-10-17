@@ -30,11 +30,11 @@
         <li><a href="/dashboard" wire:navigate class="{{ Request::is('dashboard*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Dashboard</a></li>
         <li><a href="/activities" wire:navigate class="{{ Request::is('activities*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Kegiatan</a></li>
         <li><a href="/projects" wire:navigate class="{{ Request::is('projects*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Proyek</a></li>
-        <li><a href="/sektor" wire:navigate class="{{ Request::is('sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a></li>
+        <li><a href="/sektors" wire:navigate class="{{ Request::is('sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a></li>
         <li><a href="/reports" wire:navigate class="{{ Request::is('reports*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Laporan</a></li>
         <li><a href="/mitra" wire:navigate class="{{ Request::is('mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a></li>
     </ul>
-    
+
 
     <!-- Info User dan Notifikasi -->
     <div class="flex items-center space-x-6">
@@ -54,7 +54,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341A6.002 6.002 0 006 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m0 0v1a3 3 0 106 0v-1m-6 0h6" />
             </svg>
             <span id="notification-count" class="absolute top-0 right-0 inline-block w-5 h-5 bg-red-600 text-white text-xs font-bold rounded-full flex justify-center items-center">0</span>
-            
+
         <!-- Dropdown Notifikasi -->
         <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-80 bg-white shadow-lg rounded-lg p-4 z-50 max-h-96 overflow-y-auto">
             <h3 class="font-bold mb-2">Notifikasi</h3>

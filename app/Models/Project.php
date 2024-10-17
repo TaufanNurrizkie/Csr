@@ -36,4 +36,9 @@ class Project extends Model
      {
          return $this->hasMany(Report::class);
      }
+
+     public function sektor()
+     {
+         return $this->belongsTo(Sektor::class);
+     }
 }
