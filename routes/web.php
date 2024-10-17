@@ -12,6 +12,7 @@ use App\Http\Controllers\NotificationController;
 
 
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -74,19 +75,28 @@ Route::middleware([
 Route::middleware([
     // kalo mau nambahin middleware disini
 ])->group(function () {
+
+    //pengajuan
+    Route::get('pengajuan', App\Livewire\public\pengajuan\Index::class)->name('pengajuan');
+
     // home
     Route::get('/', App\Livewire\Public\Home\Index::class)->name('home');
+
+    //About
+    Route::get('/tentang', App\Livewire\Public\tentang\Index::class)->name('tentang');
 
     // kegiatan
     Route::get('/kegiatan', App\Livewire\public\Kegiatan\Index::class)->name('kegiatan.index');
     Route::get('/kegiatan/{id}', App\Livewire\public\Kegiatan\Show::class)->name('kegiatan.show');
 
     // statistik
-    Route::get('/statistik', App\Livewire\Public\Statistik\Index::class);
-
+    Route::get('/statistik', App\Livewire\Public\Statistik\Index::clas
     // sektor
     Route::get('/sektor', App\Livewire\Public\Sektor\Index::class);
     Route::get('/sektor/{id}', App\Livewire\Public\Sektor\Show::class)->name('sektor.details');
     Route::get('/sektor/project/{id}', App\Livewire\Public\Sektor\Showproject::class )->name('project.details');
-});
 
+    // mitra
+    Route::get('/mitra', App\Livewire\public\Mitra\Index::class)->name('mitra.index');
+    Route::get('/mitra/{id}', App\Livewire\Public\Mitra\Show::class)->name('mitra.show'
+});
