@@ -12,6 +12,13 @@ class Index extends Component
     use WithPagination;
 
     public $search = '';
+    public $perPage = 8;
+
+    public function loadMore()
+    {
+        // Menambah jumlah laporan yang ditampilkan
+        $this->perPage += 8;
+    }
 
     protected $queryString = ['search'];
 
@@ -24,7 +31,7 @@ class Index extends Component
     {
         // Mengambil data sektor dan melakukan pencarian berdasarkan nama
         $sektor = Sektor::where('nama', 'like', '%' . $this->search . '%')->paginate(10);
-
+        
         if(Auth::user() && Auth::user()->hasRole('admin')) {
             return view('livewire.admin.sektor.index', [
                 'sektor' => $sektor

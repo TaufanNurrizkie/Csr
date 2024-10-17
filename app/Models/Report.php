@@ -24,7 +24,7 @@ class Report extends Model
       {
           return $this->belongsTo(Project::class);
       }
-  
+      
       // Relasi dengan Mitra
       public function mitra()
       {

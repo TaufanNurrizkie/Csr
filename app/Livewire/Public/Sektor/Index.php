@@ -12,6 +12,13 @@ class Index extends Component
     public $sektors;
     public $search = ''; // Properti untuk menyimpan input pencarian
     public $projects; // Properti untuk menyimpan proyek yang sesuai pencarian
+    public $perPage = 8;
+
+    public function loadMore()
+    {
+        // Menambah jumlah laporan yang ditampilkan
+        $this->perPage += 8;
+    }
 
     public function mount()
     {
@@ -30,7 +37,7 @@ class Index extends Component
 
     public function render()
     {
-        $sektor = Sektor::withCount('projects')->get(); // Ambil sektor dengan jumlah proyek
+        $sektor = Sektor::withCount('projects')->paginate($this->perPage); // Ambil sektor dengan jumlah proyek
 
         return view('livewire.public.sektor.index', compact('sektor'))->layout('components.layouts.public');
     }
