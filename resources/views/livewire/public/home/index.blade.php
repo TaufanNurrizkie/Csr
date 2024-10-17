@@ -199,17 +199,19 @@
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             @foreach ($aktivitas as $aktif)
             <!-- Card -->
-            <div class="bg-white shadow-lg overflow-hidden">
-                <!-- Use dynamic image path -->
-                <img src="{{ asset('storage/' . $aktif->photo) }}" alt="Kegiatan" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <span class="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded mb-2">{{ $aktif->published_date }}</span>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $aktif->title }}</h3>
-                    <p class="text-sm text-gray-600 mb-4">
-                        {{ $aktif->description }}
-                    </p>
-                </div>
-            </div>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+              <a href="/">
+              <img src="{{'storage/' . $aktif->photo ?? 'https://via.placeholder.com/600x400' }}" alt="aktif Image"
+                  class="w-full h-48 object-cover">
+                </a>
+              <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
+                {{ \Carbon\Carbon::parse($aktif->published_date)->format('d F, Y') }}
+              </div>
+              <div class="p-4">
+                  <h3 class="text-lg font-bold text-gray-800">{{ $aktif->title }}</h3>
+                  <p class="text-gray-600 text-sm mt-2">{{ Str::limit($aktif->description, 100) }}</p>
+              </div>
+          </div>
             @endforeach
         </div>
         
@@ -229,17 +231,24 @@
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             @foreach ($reports as $report)
             <!-- Card -->
-            <div class="bg-white shadow-lg overflow-hidden">
-                <!-- Use dynamic image path -->
-                <img src="{{ asset('storage/' . $report->foto) }}" alt="Kegiatan" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <span class="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded mb-2">{{ $report->tgl_realisasi }}</span>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $report->title }}</h3>
-                    <p class="text-sm text-gray-600 mb-4">
-                        {{ $report->deskripsi }}
-                    </p>
-                </div>
-            </div>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+              <a href="/">
+              <img src="{{'storage/' . $report->foto ?? 'https://via.placeholder.com/600x400' }}" alt="report Image"
+                  class="w-full h-48 object-cover">
+                </a>
+              <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
+                {{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d F, Y') }}
+
+              </div>
+              <div class="p-4">
+                  <div class="flex items-center mb-2">
+                      <img class="w-8 h-8 rounded-full mr-2" src="https://via.placeholder.com/40" alt="Avatar">
+                      <span class="font-semibold text-gray-700">{{ $report->reviewed_by }}</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-gray-800">{{ $report->title }}</h3>
+                  
+              </div>
+          </div>
             @endforeach
         </div>
         
