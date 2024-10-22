@@ -3,15 +3,15 @@
         <a href="/dashboard" wire:navigate class="text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M10 3.293l6 6V16a1 1 0 01-1 1h-4v-4H9v4H5a1 1 0 01-1-1v-6.707l6-6z" fill="black"/>
-            </svg>            
+            </svg>
         </a>
         <span class="text-black">›</span>
         <span class="bg-red-100 text-red-600 px-3 py-1 rounded">Proyek</span>
     </nav>
-    
+
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-semibold">Proyek</h1>
-        <a href="/projects/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Buat Proyek Baru</a>
+        <a href="/admin/projects/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Buat Proyek Baru</a>
     </div>
 
     <div class="flex justify-between items-center mb-8">
@@ -19,10 +19,10 @@
             <button class="{{ $status === 'all' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'all')" data-status="all">Semua</button>
             <button class="{{ $status === 'Terbit' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'Terbit')" data-status="Terbit">Terbit</button>
             <button class="{{ $status === 'draft' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'draft')" data-status="draft">Draf</button>
-            
+
         </div>
     </div>
-    
+
 
     <div class="flex justify-between items-center mb-4">
         <div class="flex gap-2">
@@ -42,20 +42,20 @@
                     @endforeach
                 </select>
             </div>
-            
+
         </div>
 
         <div class="flex gap-2">
             <button wire:click="applyFilters" class="bg-red-600 text-white py-1.5 px-3 rounded hover:bg-red-700 transition-colors">Terapkan filter</button>
 
-            
+
             <a href="{{ route('project.downloadcsv') }}"  class="border border-green-600 text-green-600 py-1.5 px-3 rounded hover:bg-green-600 hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
                 Unduh .csv
             </a >
-            
+
             <a href="{{ route('project.downloadpdf') }}" class="border border-red-600 text-red-600 py-1.5 px-3 rounded hover:bg-red-600 hover:text-white transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -63,7 +63,7 @@
                 Unduh .pdf
             </a>
         </div>
-        
+
     </div>
 
     <div class="mb-4">
@@ -95,7 +95,7 @@
             <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($project->tgl_akhir)->format('d M Y') }}</td>
             <td class="px-6 py-4 border-b">{{ $project->tgl_diterbitkai ? \Carbon\Carbon::parse($project->tgl_diterbitkai)->format('d M Y') : '-' }}</td>
             <td class="px-6 py-4 border-b">
-                <span class="px-2 py-1 text-xs rounded 
+                <span class="px-2 py-1 text-xs rounded
                     {{ $project->status === 'Terbit' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                     {{ $project->status }}
                 </span>

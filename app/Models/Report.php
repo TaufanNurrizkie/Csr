@@ -11,20 +11,25 @@ class Report extends Model
 
     protected $fillable = [
         'title',
-        'description',
+        'mitra_id',
+        'lokasi',
+        'realisasi',
+        'deskripsi',
+        'tgl_realisasi',
+        'laporan_dikirim',
         'status',
-        'submitted_by',
-        'reporter_name',
-        'image_url', // Tambahkan ini
-        // Kolom lainnya...
+        'suggestion',
+        'sektor_id',
+        'project_id',
     ];
+
 
       // Relasi dengan Project
       public function project()
       {
           return $this->belongsTo(Project::class);
       }
-      
+
       // Relasi dengan Mitra
       public function mitra()
       {

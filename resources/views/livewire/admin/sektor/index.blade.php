@@ -1,11 +1,11 @@
 <div class="container mx-auto p-4">
-    
+
     <nav class=" top-4 left-4 flex items-center space-x-2 text-lg px-3 py-1 rounded mb-8">
         <!-- Icon home -->
         <a href="/dashboard" class="text-white" wire:navigate>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M10 3.293l6 6V16a1 1 0 01-1 1h-4v-4H9v4H5a1 1 0 01-1-1v-6.707l6-6z" fill="black"/>
-            </svg>            
+            </svg>
         </a>
         <!-- Separator -->
         <span class="text-black">›</span>
@@ -15,7 +15,7 @@
     </nav>
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-semibold">Sektor</h1>
-        <a href="/sektors/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Tambah Sektor Baru</a>
+        <a href="/admin/sektors/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Tambah Sektor Baru</a>
     </div>
 
     <div class="mb-4">
@@ -28,7 +28,7 @@
                 <th class="px-6 py-3 border-b text-left">Nama Sektor</th>
                 <th class="px-6 py-3 border-b text-left">Deskripsi</th>
                 <th class="px-6 py-3 border-b text-left">Aksi</th>
-            </tr>   
+            </tr>
         </thead>
         <tbody>
             @foreach($sektor as $item)
@@ -39,7 +39,7 @@
                 </td>
                 <td class="px-6 py-4 border-b">
                     <a href="{{ route('sektor.show', $item->id) }}" wire:navigate ><i class="fa-regular fa-eye"></i></a>
-                    <a href="{{ route('sektor.edit', $item->id) }}" wire:navigate class="text-gray-500"><i class="fa-solid fa-pen"></i></a>                    
+                    <a href="{{ route('sektor.edit', $item->id) }}" wire:navigate class="text-gray-500"><i class="fa-solid fa-pen"></i></a>
                 </td>
             </tr>
             @endforeach
@@ -50,6 +50,6 @@
         {{ $sektor->links() }}
     </div>
 
-   
-    
+
+
 </div>

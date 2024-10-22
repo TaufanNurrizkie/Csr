@@ -33,11 +33,7 @@
         <!-- Menu Navigasi di Tengah -->
         <ul class="flex-1 flex justify-center space-x-10 text-xl font-medium">
             <li>
-
-                <a href="/" wire:navigate class="{{ Request::is('beranda*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Beranda</a>
-
-
-
+                <a href="/" wire:navigate class="{{ Request::is('/*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Beranda</a>
             </li>
             <li>
                 <a href="/tentang" wire:navigate class="{{ Request::is('tentang*') ? 'text-[#98100A] border-b-2 border-[#98100A] font-bold' : 'text-gray-700 hover:text-[#98100A] ' }}">Tentang</a>
@@ -143,8 +139,8 @@
             <p>Pemkab Kabupaten Cirebon, Badan Pendapatan Daerah (Bapenda) Kabupaten Cirebon.</p>
         </div>
         <div>
-            <a href="/" class="border border-white text-white py-2 px-4 rounded hover:bg-white hover:text-gray-900 transition duration-300">
-                Kembali Ke Halaman Utama
+            <a href="/login" wire:navigate class="border border-white text-white py-2 px-4 rounded hover:bg-white hover:text-gray-900 transition duration-300">
+                Masuk Sebagai Mitra
             </a >
         </div>
     </div>

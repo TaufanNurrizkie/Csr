@@ -27,12 +27,12 @@
     </div>
     <!-- Menu Navigasi -->
     <ul class="flex space-x-10 text-xl font-medium">
-        <li><a href="/dashboard" wire:navigate class="{{ Request::is('dashboard*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Dashboard</a></li>
-        <li><a href="/activities" wire:navigate class="{{ Request::is('activities*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Kegiatan</a></li>
-        <li><a href="/projects" wire:navigate class="{{ Request::is('projects*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Proyek</a></li>
-        <li><a href="/sektors" wire:navigate class="{{ Request::is('sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a></li>
-        <li><a href="/reports" wire:navigate class="{{ Request::is('reports*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Laporan</a></li>
-        <li><a href="/mitra" wire:navigate class="{{ Request::is('mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a></li>
+        <li><a href="/admin/dashboard" wire:navigate class="{{ Request::is('admin/dashboard*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Dashboard</a></li>
+        <li><a href="/admin/activities" wire:navigate class="{{ Request::is('admin/activities*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Kegiatan</a></li>
+        <li><a href="/admin/projects" wire:navigate class="{{ Request::is('admin/projects*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Proyek</a></li>
+        <li><a href="/admin/sektors" wire:navigate class="{{ Request::is('admin/sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a></li>
+        <li><a href="/admin/reports" wire:navigate class="{{ Request::is('admin/reports*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Laporan</a></li>
+        <li><a href="/admin/mitra" wire:navigate class="{{ Request::is('admin/mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a></li>
     </ul>
 
 
@@ -81,7 +81,7 @@
             <p>Pemkab Kabupaten Cirebon, Badan Pendapatan Daerah (Bapenda) Kabupaten Cirebon.</p>
         </div>
         <div>
-            <a href="/dashboard" class="border border-white text-white py-2 px-4 rounded hover:bg-white hover:text-gray-900 transition duration-300">
+            <a href="/admin/dashboard" wire:navigate class="border border-white text-white py-2 px-4 rounded hover:bg-white hover:text-gray-900 transition duration-300">
                 Kembali Ke Halaman Utama
             </a >
         </div>

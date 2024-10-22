@@ -4,7 +4,7 @@
         <a href="/dashboard" class="text-white" wire:navigate>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M10 3.293l6 6V16a1 1 0 01-1 1h-4v-4H9v4H5a1 1 0 01-1-1v-6.707l6-6z" fill="black"/>
-            </svg>            
+            </svg>
         </a>
         <!-- Separator -->
         <span class="text-black">›</span>
@@ -18,9 +18,9 @@
             <button class="{{ $status === 'all' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'all')" data-status="all">Semua</button>
             <button class="{{ $status === 'Terbit' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'Terbit')" data-status="Terbit">Terbit</button>
             <button class="{{ $status === 'draft' ? 'bg-[#2C5586] text-white' : 'bg-white text-[#2C5586]' }} border px-4 py-1 rounded-[60px]" wire:click="$set('status', 'draft')" data-status="draft">Draf</button>
-            
+
         </div>
-        <a href="/activities/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Buat Kegiatan Baru</a>
+        <a href="/admin/activities/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Buat Kegiatan Baru</a>
     </div>
     <div class="mb-4">
         <input type="text" placeholder="Cari" class="border p-2 rounded w-full" wire:model.live="search" />
@@ -50,7 +50,7 @@
                     {{ $activity->published_date ? \Carbon\Carbon::parse($activity->published_date)->format('d M Y') : '-' }}
                 </td>
                 <td class="px-6 py-4 border-b">
-                    <span class="px-2 py-1 text-xs rounded 
+                    <span class="px-2 py-1 text-xs rounded
                         {{ $activity->status === 'Terbit' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                         {{ $activity->status }}
                     </span>
