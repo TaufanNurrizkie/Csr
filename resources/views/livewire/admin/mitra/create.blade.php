@@ -75,6 +75,6 @@
     </form>
 
     <div class="mt-6">
-        <a href="{{ url('/mitra') }}" wire:navigate class="bg-gray-300 text-gray-700 px-4 py-2 rounded">Kembali</a>
+        <a href="{{ url('/admin/mitra') }}" wire:navigate class="bg-gray-300 text-gray-700 px-4 py-2 rounded">Kembali</a>
     </div>
 </div>

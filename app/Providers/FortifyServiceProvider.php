@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -37,12 +38,24 @@ class FortifyServiceProvider extends ServiceProvider
                     ? response()->json(['two_factor' => false])
                     : redirect()->intended(config('fortify.homemitra'));
                 }
-                else {
+            }
+        });
+
+        $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
+            public function toResponse($request)
+            {
+                if(Auth::user()->hasRole('admin'))
+                {
                     return $request->wantsJson()
                     ? response()->json(['two_factor' => false])
-                    : redirect()->intended(config('fortify.home'));
+                    :  redirect(config('fortify.homeadmin'));;
                 }
-               
+                if(Auth::user()->hasRole('mitra'))
+                {
+                    return $request->wantsJson()
+                    ? response()->json(['two_factor' => false])
+                    :  redirect(config('fortify.homemitra'));;
+                }
             }
         });
     }

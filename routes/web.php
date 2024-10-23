@@ -18,7 +18,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
     'role:admin',
-])->group(function () {
+])->prefix('admin')->group(function () {
 
     Route::get('/pengajuan/{id}', App\Livewire\public\pengajuan\Show::class)->name('pengajuan.show');
 
@@ -52,9 +52,6 @@ Route::middleware([
     Route::get('/projects/download/pdf', [ProjectController::class, 'download_pdf'])->name('project.downloadpdf');
     Route::get('/projects/download/csv', [ProjectController::class, 'download_csv'])->name('project.downloadcsv');
 
-
-
-
     //Route Sektor
     Route::get('/sektors', App\Livewire\admin\Sektor\Index::class)->name('sektor.index');
     Route::get('/sektors/create', App\Livewire\admin\Sektor\Create::class)->name('sektor.create');
@@ -62,10 +59,10 @@ Route::middleware([
     Route::get('/sektors/edit/{id}',  App\Livewire\admin\Sektor\Edit::class)->name('sektor.edit');
 
     //Route Mitra
-    Route::get('/mitra', App\Livewire\admin\Mitra\Index::class)->name('mitra.index');
-    Route::get('/admin/mitra/create', App\Livewire\admin\Mitra\Create::class)->name('mitra.create');
+    Route::get('/mitra', App\Livewire\admin\Mitra\Index::class)->name('mitra.mitra');
+    Route::get('/mitra/create', App\Livewire\admin\Mitra\Create::class)->name('mitra.create');
     Route::get('/mitra/{id}/edit', App\Livewire\admin\Mitra\Edit::class)->name('mitra.edit');
-    Route::get('/mitra/{id}',  App\Livewire\admin\Mitra\Show::class)->name('mitra.show');
+    Route::get('/mitra/{id}',  App\Livewire\admin\Mitra\Show::class)->name('mitra.detail');
     Route::put('/mitra/{id}/nonaktifkan', [MitraController::class, 'nonaktifkan'])->name('mitra.nonaktifkan');
     Route::put('/mitra/{id}/aktifkan', [MitraController::class, 'aktifkan'])->name('mitra.aktifkan');
 
@@ -109,8 +106,24 @@ Route::middleware([
 
     // semuakegiatan
     Route::get('/semuakegiatan', App\Livewire\public\Semuakegiatan\Index::class)->name('semuakegiatan.index');
-    
+
     //semualaporan
     Route::get('/semualaporan', App\Livewire\public\Semualaporan\Index::class)->name('semualaporan.index');
-    
+
+});
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'role:mitra',
+])->group(function () {
+
+    Route::get('/profil-mitra', \App\Livewire\MitraProfile::class)->name('profil-mitra');
+    Route::get('/profil-mitra/ubah', \App\Livewire\MitraProfileEdit::class)->name('profil-mitra.ubah');
+
+    Route::get('/mitra/dashboard', App\Livewire\Mitra\Dashboard::class)->name('mitra.dashboard');
+    Route::get('/mitra/laporan', App\Livewire\Mitra\Laporan::class)->name('mitra.laporan');
+    Route::get('/mitra/laporan/create', App\Livewire\Mitra\CreateLaporan::class)->name('mitra.laporan.create');
 });

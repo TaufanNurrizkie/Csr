@@ -4,14 +4,7 @@
         <img src="{{ asset('cirebonLogo.png') }}" alt="Logo" class="h-10 mr-4">
     </div>
     <!-- Menu Navigasi -->
-    <ul class="flex space-x-10 text-xl font-medium">
-        <li><a href="/admin/dashboard" wire:navigate class="{{ Request::is('admin/dashboard*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Dashboard</a></li>
-        <li><a href="/admin/activities" wire:navigate class="{{ Request::is('admin/activities*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Kegiatan</a></li>
-        <li><a href="/admin/projects" wire:navigate class="{{ Request::is('admin/projects*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Proyek</a></li>
-        <li><a href="/admin/sektors" wire:navigate class="{{ Request::is('admin/sektor*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Sektor</a></li>
-        <li><a href="/admin/reports" wire:navigate class="{{ Request::is('admin/reports*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Laporan</a></li>
-        <li><a href="/admin/mitra" wire:navigate class="{{ Request::is('admin/mitra*') ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-600' }}">Mitra</a></li>
-    </ul>
+
 
     <!-- Info User dan Notifikasi -->
     <div class="flex items-center space-x-6">
@@ -21,7 +14,7 @@
         </div>
         <!-- Icon User -->
         <div class="shrink-0 me-3">
-                <a href="{{ route('profile.show') }}">
+                <a href="{{ route('profil-mitra') }}">
                     <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                 </a>
             </div>

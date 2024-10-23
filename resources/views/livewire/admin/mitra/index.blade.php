@@ -45,7 +45,7 @@
                     </td>
                     <td class="py-2 px-4">
                         {{ $mitra->tgl_terdaftar ? \Carbon\Carbon::parse($mitra->tgl_terdaftar)->format('d M Y') : '-' }}
-                    </td>                    
+                    </td>
                     <td class="py-3 px-6">
                         @if($mitra->status == 'Aktif')
                             <span class="bg-green-100 text-green-600 py-1 px-3 rounded-full text-xs">Aktif</span>
@@ -54,7 +54,7 @@
                         @endif
                     </td>
                     <td class="py-3 px-6">
-                        <a href="{{ route('mitra.show', $mitra->id) }}" wire:navigate >
+                        <a href="{{ route('mitra.detail', $mitra->id) }}" wire:navigate >
                             <i class="fa-regular fa-eye"></i>
                         </a>
                     </td>

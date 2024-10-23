@@ -73,9 +73,8 @@ return [
     |
     */
 
-    'homeadmin' => '/dashboard',
+    'homeadmin' => '/admin/dashboard',
     'homemitra' => '/mitra/dashboard',
-    'homepublic' => '/home',
 
     /*
     |--------------------------------------------------------------------------
