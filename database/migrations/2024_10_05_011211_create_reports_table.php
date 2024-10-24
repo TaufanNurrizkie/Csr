@@ -35,6 +35,10 @@ class CreateReportsTable extends Migration
             $table->text('suggestion')->nullable(); // Suggestions (nullable)
 
 
+              // Foreign key for user_id
+              $table->unsignedBigInteger('user_id')->nullable(); // Menambahkan kolom user_id
+              $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Relasi dengan users
+
             // Foreign key for mitra_id
             $table->unsignedBigInteger('mitra_id')->nullable(); // Foreign key to mitras table
             $table->foreign('mitra_id')->references('id')->on('mitras')->onDelete('set null');
@@ -48,7 +52,7 @@ class CreateReportsTable extends Migration
               $table->foreign('project_id')->references('id')->on('projects')->onDelete('set null');
 
 
-              
+
 
 
          // If you want to create a foreign key for reviewed_by

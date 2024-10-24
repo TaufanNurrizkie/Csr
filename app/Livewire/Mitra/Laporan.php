@@ -16,8 +16,13 @@ class Laporan extends Component
 
     public function render()
     {
-        $reports = Report::where('title', 'like', '%'.$this->search.'%')
-        ->paginate(10); // Adjust the pagination as needed
+      // Ambil ID pengguna yang sedang login
+    $userId = Auth::user()->id;
+
+    // Ambil laporan yang terkait dengan user_id
+    $reports = Report::where('user_id', $userId) // Gunakan user_id sebagai filter
+        ->where('title', 'like', '%'.$this->search.'%')
+        ->paginate(10); // Sesuaikan pagination jika diperlukan
 
         if(Auth::user() && Auth::user()->hasRole('mitra')) {
             return view('livewire.mitra.laporan', compact('reports'))->layout('components.layouts.mitra');

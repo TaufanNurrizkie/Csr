@@ -11,7 +11,6 @@ class Report extends Model
 
     protected $fillable = [
         'title',
-        'mitra_id',
         'lokasi',
         'realisasi',
         'deskripsi',
@@ -19,8 +18,10 @@ class Report extends Model
         'laporan_dikirim',
         'status',
         'suggestion',
+        'mitra_id',
         'sektor_id',
         'project_id',
+        'user_id',
     ];
 
 

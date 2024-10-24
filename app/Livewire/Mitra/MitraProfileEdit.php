@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Mitra;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -85,7 +85,7 @@ class MitraProfileEdit extends Component
     {
         // Cek apakah pengguna memiliki peran 'mitra'
         if (Auth::user() && Auth::user()->hasRole('mitra')) {
-            return view('livewire.mitra-profile-edit')->layout('components.layouts.mitra');
+            return view('livewire..mitra.mitra-profile-edit')->layout('components.layouts.mitra');
         }
         // Kembalikan null jika tidak memiliki peran yang benar
         return null;
