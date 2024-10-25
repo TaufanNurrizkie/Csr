@@ -49,11 +49,18 @@ class Dashboard extends Component
             })
             ->paginate(10);
 
+            $user = Auth::user();
+            
         // Hitung data yang diperlukan
         $jumlahMitra = Mitra::count();
         $jumlahCSR = Project::count();
-        $jumlahApproved = Report::where('status', 'approved')->count();
-        $totalDanaCsr = Report::sum('realisasi');
+     // Menghitung jumlah laporan yang statusnya 'approved' dan terkait dengan user yang sedang login
+$jumlahApproved = Report::where('user_id', $user->id)
+->where('status', 'approved')
+->count();
+
+// Menghitung total dana CSR dari laporan yang terkait dengan user yang sedang login
+$totalDanaCsr = Report::where('user_id', $user->id)->sum('realisasi');
 
         // Data untuk pie chart
         $sektorsForPieChart = Sektor::with(['reports' => function ($query) {
@@ -104,8 +111,13 @@ class Dashboard extends Component
             ->setXAxis($lokasi);
 
 
-            $reports = Report::where('title', 'like', '%'.$this->search.'%')
-        ->paginate(2);
+           // Ambil ID pengguna yang sedang login
+    $userId = Auth::user()->id;
+
+    // Ambil laporan yang terkait dengan user_id
+    $reports = Report::where('user_id', $userId) // Gunakan user_id sebagai filter
+        ->where('title', 'like', '%'.$this->search.'%')
+        ->paginate(10); // Sesuaikan pagination jika diperlukan
 
         // Kembalikan view dengan semua data
         if(Auth::user() && Auth::user()->hasRole('mitra')) {

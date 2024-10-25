@@ -28,7 +28,7 @@
     <div class="overflow-x-auto mt-4 rounded">
         <table class="min-w-full bg-white border border-gray-300">
             <thead class="bg-white">
-                <tr class="text-gray-600"> <!-- Teks header abu-abu -->
+                <tr class="text-gray-600">
                     <th class="text-left px-6 py-3 border-b border-gray-300">JUDUL</th>
                     <th class="text-left px-6 py-3 border-b border-gray-300">LOKASI</th>
                     <th class="text-left px-6 py-3 border-b border-gray-300">REALISASI</th>
@@ -49,8 +49,10 @@
                         <td class="px-6 py-4 border-b border-gray-300">
                             @if($report->status == 'Diterima')
                                 <span class="px-2 py-1 text-sm bg-green-100 text-green-600 rounded">Diterima</span>
-                            @else
+                            @elseif($report->status == 'Revisi')
                                 <span class="px-2 py-1 text-sm bg-yellow-100 text-yellow-600 rounded">Revisi</span>
+                            @else
+                                <span class="px-2 py-1 text-sm bg-gray-100 text-gray-600 rounded">Pending</span>
                             @endif
                         </td>
                         <td class="px-6 py-4 border-b border-gray-300 text-center">

@@ -120,8 +120,8 @@ Route::middleware([
     'role:mitra',
 ])->group(function () {
 
-    Route::get('/profil-mitra', \App\Livewire\MitraProfile::class)->name('profil-mitra');
-    Route::get('/profil-mitra/ubah', \App\Livewire\MitraProfileEdit::class)->name('profil-mitra.ubah');
+    Route::get('/profil-mitra', \App\Livewire\Mitra\MitraProfile::class)->name('profil-mitra');
+    Route::get('/profil-mitra/ubah', \App\Livewire\Mitra\MitraProfileEdit::class)->name('profil-mitra.ubah');
 
     Route::get('/mitra/dashboard', App\Livewire\Mitra\Dashboard::class)->name('mitra.dashboard');
     Route::get('/mitra/laporan', App\Livewire\Mitra\Laporan::class)->name('mitra.laporan');
