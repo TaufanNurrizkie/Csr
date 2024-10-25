@@ -22,20 +22,20 @@
     <!-- Filter Section -->
     <div class="flex justify-between mb-6">
         <div class="space-x-4 flex items-center ">
-            <button 
-                wire:click="setStatusFilter(null)" 
+            <button
+                wire:click="setStatusFilter(null)"
                 class="bg-gray-200 text-gray-700 px-4 py-2 rounded-[60px] focus:outline-none focus:text-white focus:bg-[#2C5586]">Semua</button>
-            <button 
-                wire:click="setStatusFilter('approved')" 
+            <button
+                wire:click="setStatusFilter('approved')"
                 class="bg-gray-200 text-gray-700 px-4 py-2 rounded-[60px] focus:outline-none focus:text-white focus:bg-[#2C5586]">Diterima</button>
-            <button 
-                wire:click="setStatusFilter('revision')" 
+            <button
+                wire:click="setStatusFilter('revision')"
                 class="bg-gray-200 text-gray-700 px-4 py-2 rounded-[60px] focus:outline-none focus:text-white focus:bg-[#2C5586]">Revisi</button>
-            <button 
-                wire:click="setStatusFilter('rejected')" 
+            <button
+                wire:click="setStatusFilter('rejected')"
                 class="bg-gray-200 text-gray-700 px-4 py-2 rounded-[60px] focus:outline-none focus:text-white focus:bg-[#2C5586]">Ditolak</button>
         </div>
-        
+
 
         <div class="flex space-x-4 items-center">
             <select wire:model="year" class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
@@ -82,33 +82,33 @@
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white">
             <thead>
-                <tr class="w-full bg-gray-200 text-gray-700">
-                    <th class="py-2 px-4">JUDUL LAPORAN</th>
-                    <th class="py-2 px-4">MITRA</th>
-                    <th class="py-2 px-4">LOKASI</th>
-                    <th class="py-2 px-4">REALISASI</th>
-                    <th class="py-2 px-4">TGL REALISASI</th>
-                    <th class="py-2 px-4">LAPORAN DIKIRIM</th>
-                    <th class="py-2 px-4">STATUS</th>
-                    <th class="py-2 px-4">AKSI</th>
+                <tr>
+                    <th class="py-2 px-4 border-b">JUDUL LAPORAN</th>
+                    <th class="py-2 px-4 border-b">MITRA</th>
+                    <th class="py-2 px-4 border-b">LOKASI</th>
+                    <th class="py-2 px-4 border-b">REALISASI</th>
+                    <th class="py-2 px-4 border-b">TGL REALISASI</th>
+                    <th class="py-2 px-4 border-b">LAPORAN DIKIRIM</th>
+                    <th class="py-2 px-4 border-b">STATUS</th>
+                    <th class="py-2 px-4 border-b">AKSI</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y divide-gray-400">
                 @foreach($reports as $report)
-                <tr class="text-start">
-                    <td class="py-2 px-4">{{ $report->title }}</td>
-                    <td class="py-2 px-4">{{ $report->mitra }}</td>
-                    <td class="py-2 px-4">{{ $report->lokasi }}</td>
-                    <td class="py-2 px-4">Rp. {{ number_format($report->realisasi, 2, ',', '.') }}</td>
-                    <td class="py-2 px-4">{{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d-m-Y') }}</td>
-                    <td class="py-2 px-4">{{ \Carbon\Carbon::parse($report->laporan_dikirim)->format('d-m-Y') }}</td>
-                    <td class="py-2 px-4">
+                <tr class="text-start bg-white">
+                    <td class="px-6 py-4 border-b">{{ $report->title }}</td>
+                    <td class="px-6 py-4 border-b">{{ $report->mitra }}</td>
+                    <td class="px-6 py-4 border-b">{{ $report->lokasi }}</td>
+                    <td class="px-6 py-4 border-b">Rp. {{ number_format($report->realisasi, 2, ',', '.') }}</td>
+                    <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d-m-Y') }}</td>
+                    <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($report->laporan_dikirim)->format('d-m-Y') }}</td>
+                    <td class="px-6 py-4 border-b">
                         <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full
                             {{ $report->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : ($report->status === 'approved' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800') }}">
                             {{ ucfirst($report->status) }}
                         </span>
                     </td>
-                    <td class="py-2 px-4">
+                    <td class="px-6 py-4 border-b">
                         <a href="{{ route('reports.show', $report->id) }}" wire:navigate >
                             <i class="fa-regular fa-eye"></i>
                         </a>

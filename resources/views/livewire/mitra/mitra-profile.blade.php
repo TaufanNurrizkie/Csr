@@ -24,12 +24,12 @@
             <!-- Konten utama -->
             <div class="flex space-x-8">
                 <!-- Gambar Placeholder -->
-                <div class="bg-blue-100 rounded-lg w-96 h-56"></div>
+                <img src="{{ asset('storage/' . $mitra->foto) }}" alt="Foto Mitra" class="rounded-lg w-96 h-56 object-cover"> <!-- Menampilkan gambar mitra -->
 
                 <!-- Detail mitra -->
                 <div class="flex-1">
-                    <h2 class="text-2xl font-semibold text-gray-900">Nama Mitra</h2>
-                    <p class="text-gray-600 mb-4">PT Mitra Sejahtera Bersama</p>
+                    <h2 class="text-2xl font-semibold text-gray-900">{{ $mitra->nama }}</h2>
+                    <p class="text-gray-600 mb-4">{{ $mitra->nama_pt }}</p>
 
                     <!-- Informasi Kontak -->
                     <div class="space-y-3 mb-6">
@@ -37,21 +37,21 @@
                             <div class="bg-red-100 p-2 rounded-full flex items-center justify-center w-10 h-10"> <!-- Ukuran yang konsisten -->
                                 <img src="{{ asset('pesan.png') }}" alt="" class="h-6 w-6"> <!-- Ukuran gambar -->
                             </div>
-                            <p class="text-gray-700">info@email.com</p>
+                            <p class="text-gray-700">{{ $mitra->email }}</p>
                         </div>
 
                         <div class="flex items-center space-x-3">
                             <div class="bg-red-100 p-2 rounded-full flex items-center justify-center w-10 h-10"> <!-- Ukuran yang konsisten -->
                                 <img src="{{ asset('telpon.png') }}" alt="" class="h-6 w-6"> <!-- Ukuran gambar -->
                             </div>
-                            <p class="text-gray-700">0821 #### ####</p>
+                            <p class="text-gray-700">{{ $mitra->no_telp }}</p>
                         </div>
 
                         <div class="flex items-center space-x-3">
                             <div class="bg-red-100 p-2 rounded-full flex items-center justify-center w-10 h-10"> <!-- Ukuran yang konsisten -->
                                 <img src="{{ asset('map.png') }}" alt="" class="h-6 w-6"> <!-- Ukuran gambar -->
                             </div>
-                            <p class="text-gray-700">Jl. Lorem ipsum dolor sit amet</p>
+                            <p class="text-gray-700">{{ $mitra->alamat }}</p>
                         </div>
                     </div>
 

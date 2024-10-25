@@ -24,8 +24,8 @@ return new class extends Migration
             $table->text('deskripsi')->nullable();
             $table->date('tgl_terdaftar')->nullable();
             $table->enum('status', ['Aktif', 'Non-Aktif']);
-                $table->unsignedBigInteger('user_id')->nullable(); // Menambahkan kolom user_id
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Relasi dengan users
+            $table->unsignedBigInteger('user_id')->nullable(); // Menambahkan kolom user_id
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Relasi dengan users
             $table->timestamps();
         });
     }

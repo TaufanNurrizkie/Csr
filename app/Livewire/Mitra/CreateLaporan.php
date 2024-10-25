@@ -32,7 +32,6 @@ class CreateLaporan extends Component
         // Aturan validasi
         $this->validate([
             'title' => 'required|string|max:255',
-            'lokasi' => 'nullable|string|max:255',
             'realisasi' => 'nullable|numeric',
             'deskripsi' => 'nullable|string',
             'tanggal' => 'required|integer|min:1|max:31',
@@ -48,14 +47,22 @@ class CreateLaporan extends Component
         // Gabungkan tanggal, bulan, dan tahun menjadi format Y-m-d
         $tgl_realisasi = sprintf('%04d-%02d-%02d', $this->tahun, $this->bulan, $this->tanggal);
 
-        // Ambil mitra_id dari pengguna yang login (gunakan optional untuk menghindari error)
-        $mitra_id = optional(Auth::user()->mitra)->id;
+        $user = Auth::user(); // Dapatkan pengguna yang sedang login
+        $mitra = $user->mitra; // Ambil mitra yang terkait dengan pengguna
+
+        if (!$mitra) {
+            session()->flash('error', 'Mitra tidak ditemukan. Pastikan Anda memiliki data mitra.');
+            return; // Keluar jika mitra tidak ditemukan
+        }
+
+        $user_id = $user->id; // Ambil user_id
 
         // Simpan laporan ke database
         Report::create([
             'title' => $this->title,
-            'mitra_id' => $mitra_id, // Masukkan mitra_id
-            'lokasi' => $this->lokasi,
+            'mitra_id' => $mitra->id, // Menggunakan ID mitra
+            'user_id' => $user_id,
+            'lokasi' => $mitra->lokasi, // Ambil lokasi dari mitra
             'realisasi' => $this->realisasi,
             'deskripsi' => $this->deskripsi,
             'tgl_realisasi' => $tgl_realisasi,
@@ -69,6 +76,10 @@ class CreateLaporan extends Component
         session()->flash('message', 'Laporan berhasil disimpan.');
         $this->resetForm(); // Reset form setelah submit
     }
+
+
+
+
 
 
     // Fungsi reset form
