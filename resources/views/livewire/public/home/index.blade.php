@@ -107,7 +107,7 @@
           <!-- Kolom 4 -->
           <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
               <div>
-                  <h3 class="text-5xl font-bold text-[#510300] mb-2"> {{ 'Rp' . number_format($totalDanaCsr, 0, ',', '.') }}</h3> <!-- Menambahkan margin bawah -->
+                  <h3 class="text-4xl font-bold text-[#510300] mb-2 "> {{ 'Rp' . number_format($totalDanaCsr, 0, ',', '.') }}</h3> <!-- Menambahkan margin bawah -->
                   <p class="text-lg font-medium text-gray-800">Dana realisasi CSR</p>
               </div>
           </div>
@@ -146,7 +146,7 @@
         </div>
     </section>
 
-    <div class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-8">
+    <div class="bg-gray-900 text-white  flex  justify-center p-8">
       <div class="max-w-6xl w-full mx-auto flex space-x-8">
         <!-- Sidebar -->
         <div class="w-1/3">
@@ -155,28 +155,37 @@
           <p class="text-sm mb-6">Bidang sektor CSR Kabupaten Cirebon yang tersedia</p>
           <ul class="space-y-2">
             @foreach ($sektors as $sektor)
-            <li>
-              <div class="border-l-4 border-red-600 shadow-lg p-4 hover:bg-gray-700 cursor-pointer"
-                   onclick="showContent('{{ 'storage/' . $sektor->thumbnail }}', '{{ $sektor->deskripsi }}')">
-                <a class="text-lg font-semibold flex justify-between items-center">
-                  <span>{{ $sektor->nama }}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                  </svg>
+              <li>
+                <a href="#" 
+                   class="block shadow-lg p-4 hover:bg-gray-700 focus:border-l-4 focus:border-red-600"
+                   onclick="showContent('{{ 'storage/' . $sektor->thumbnail }}', '{{ $sektor->deskripsi }}'); return false;">
+                  <div class="flex justify-between">
+                    <span class="text-lg font-semibold">{{ $sektor->nama }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
                 </a>
-              </div>
-            </li>
+              </li>
             @endforeach
           </ul>
+          
         </div>
-
+    
         <!-- Content Section -->
         <div class="w-2/3 flex">
           <div class="w-full">
-            <div class="w-full mb-4">
-              <img id="gambarSektor" src="" alt="Image" class="rounded w-full">
+            <div class="hero-section relative w-full h-[50%] overflow-hidden ">
+              <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0">
+                <rect width="150" height="150" fill="#510300"/>
+              </svg>
+              <div class="absolute inset-0" style="top: 0; left: 5%; width: 200px; height: 120px;">
+                <img id="gambarSektor" src="" alt="Overlay Image" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black opacity-0"></div>
+              </div>
             </div>
-            <p id="deskripsiSektor" class="text-sm mb-4">
+            
+            <p id="deskripsiSektor" class=" absoulute text-sm mb-4 mt-4 break-words ">
               <!-- Deskripsi akan diisi oleh fungsi showContent -->
             </p>
             <div class="space-x-4">
@@ -379,21 +388,28 @@
     }
   }
 
-  function showContent(thumbnail, deskripsi) {
-    // Update gambar sektor
-    document.getElementById('gambarSektor').src = thumbnail;
+// Fungsi showContent untuk memperbarui konten berdasarkan sektor yang dipilih
+function showContent(thumbnail, deskripsi) {
+  // Update gambar sektor
+  document.getElementById('gambarSektor').src = thumbnail;
 
-    // Update deskripsi sektor
-    document.getElementById('deskripsiSektor').textContent = deskripsi;
+  // Update deskripsi sektor
+  document.getElementById('deskripsiSektor').textContent = deskripsi;
 
-    // Jika diperlukan, kamu bisa memperbarui fungsi tombol di sini
-    document.getElementById('btnProgram').onclick = function() {
-      alert("Program tersedia untuk sektor ini.");
-    };
-    document.getElementById('btnRealisasi').onclick = function() {
-      alert("Realisasi program untuk sektor ini.");
-    };
-  }
+  // Jika diperlukan, kamu bisa memperbarui fungsi tombol di sini
+  document.getElementById('btnProgram').onclick = function() {
+    alert("Program tersedia untuk sektor ini.");
+  };
+  document.getElementById('btnRealisasi').onclick = function() {
+    alert("Realisasi program untuk sektor ini.");
+  };
+}
+
+// Panggil showContent dengan nilai default saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+  showContent('storage/photos/iuKRrunSBIqYWzcYrZHmEPfg7KzohGQC8JaEUNMA.jpg', 'Deskripsi default untuk sektor ini.');
+});
+
 </script>
 
 
