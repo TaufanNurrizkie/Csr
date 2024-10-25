@@ -49,7 +49,7 @@ class Create extends Component
         // Redirect setelah berhasil simpan
         $this->dispatch('sweet-alert', icon: 'success', title: 'Data berhasil disimpan');
 
-        return redirect()->route('mitra.index');
+        return redirect()->route('mitra.mitra');
     }
 
 
