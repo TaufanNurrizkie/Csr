@@ -180,9 +180,9 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 border-b border-gray-300 text-center">
-                            <button>
+                            <a href="{{ route('mitra.laporan.show', ['id' => $report->id]) }}" wire:navigate>
                                 <i class="fa-regular fa-eye"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

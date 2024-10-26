@@ -56,7 +56,7 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 border-b border-gray-300 text-center">
-                            <a href="" class="">
+                            <a href="{{ route('mitra.laporan.show', ['id' => $report->id]) }}" wire:navigate>
                                 <i class="fa-regular fa-eye"></i>
                             </a>
                         </td>

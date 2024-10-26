@@ -67,11 +67,15 @@
         @foreach ($laporans as $laporan)
             <a href="{{ route('laporan.detail', $laporan->id) }}" wire:navigate class="block">
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
-                    <img src="{{'storage/' . $laporan->foto ?? 'https://via.placeholder.com/600x400' }}" alt="Laporan Image"
-                        class="w-full h-48 object-cover">
+                    @php
+                    $photoArray = json_decode($laporan->foto, true);
+                    $firstPhoto = is_array($photoArray) ? $photoArray[0] : $laporan->foto;
+                @endphp
+
+                <img src="{{ asset('storage/' . $firstPhoto) }}" alt="{{ $laporan->judul }}" class="w-full h-48 object-cover"
+                    class="w-full h-48 object-cover">
                     <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
                         {{ $laporan->created_at ? $laporan->created_at->format('d M, Y') : 'Tanggal tidak tersedia' }}
-
                     </div>
                     <div class="p-4">
                         <div class="flex items-center mb-2">
