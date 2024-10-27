@@ -13,9 +13,20 @@ class Create extends Component
 
     public $photo;
     public $title;
-    public $tags;
     public $description;
     public $status;
+    public $tags = '';
+    
+
+    public function mount($activity = null)
+    {
+        // Jika activity tidak ada, maka tidak perlu melakukan apa-apa.
+        if ($activity) {
+            $this->tags = $activity->tags;
+        }
+    }
+    
+
 
     protected $rules = [
         'photo' => 'required|image',

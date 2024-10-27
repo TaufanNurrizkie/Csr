@@ -22,8 +22,23 @@
         </div>
         <a href="/admin/activities/create" wire:navigate class="bg-red-600 text-white px-4 py-2 rounded">+ Buat Kegiatan Baru</a>
     </div>
-    <div class="mb-4">
-        <input type="text" placeholder="Cari" class="border p-2 rounded w-full" wire:model.live="search" />
+    <div class="mb-4 flex items-center justify-between">
+        <input type="text" placeholder="Cari" class="border p-2 rounded w-[80%]" wire:model.live="search" />
+        <div class="relative  p-2 rounded w-[19%]">
+            <button id="dropdownButton" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                {{ $sortOrder === 'desc' ? 'TERBARU' : 'TERLAMA' }}
+                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.44l3.71-4.21a.75.75 0 011.14 1.02l-4.25 4.82a.75.75 0 01-1.14 0l-4.25-4.82a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        
+            <div id="dropdownMenu" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="dropdownButton">
+                    <a href="#" wire:click.prevent="setSortOrder('desc')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">TERBARU</a>
+                    <a href="#" wire:click.prevent="setSortOrder('asc')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">TERLAMA</a>
+                </div>
+            </div>
+        </div>        
     </div>
     <table class="min-w-full bg-white">
         <thead>
@@ -67,3 +82,18 @@
         {{ $activities->links() }}
     </div>
 </div>
+
+<script>
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+  
+    dropdownButton.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('hidden');
+    });
+  
+    document.addEventListener('click', (event) => {
+      if (!dropdownButton.contains(event.target)) {
+        dropdownMenu.classList.add('hidden');
+      }
+    });
+  </script>

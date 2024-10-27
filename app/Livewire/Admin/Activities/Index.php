@@ -13,6 +13,17 @@ class Index extends Component
 
     public $search = '';
     public $status = 'all'; // Status default
+    public $sortOrder = 'desc'; 
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function setSortOrder($order)
+    {
+        $this->sortOrder = $order;
+    }
 
     public function render()
     {
@@ -25,6 +36,7 @@ class Index extends Component
             ->when($this->status !== 'all', function ($query) {
                 $query->where('status', $this->status);
             })
+            ->orderBy('published_date', $this->sortOrder)
             ->paginate(5);
             
             if(Auth::user() && Auth::user()->hasRole('admin')) {

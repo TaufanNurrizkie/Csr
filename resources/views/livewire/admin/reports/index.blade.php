@@ -82,14 +82,14 @@
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white">
             <thead>
-                <tr>
-                    <th class="py-2 px-4 border-b">JUDUL LAPORAN</th>
-                    <th class="py-2 px-4 border-b">MITRA</th>
-                    <th class="py-2 px-4 border-b">LOKASI</th>
-                    <th class="py-2 px-4 border-b">REALISASI</th>
-                    <th class="py-2 px-4 border-b">TGL REALISASI</th>
-                    <th class="py-2 px-4 border-b">LAPORAN DIKIRIM</th>
-                    <th class="py-2 px-4 border-b">STATUS</th>
+                <tr class="text-left">
+                    <th class="py-2 px-4 border-b ">JUDUL LAPORAN <span class="icon-[fluent-mdl2--down]" style="color: black;"></span>  </th>
+                    <th class="py-2 px-4 border-b">MITRA <span class="icon-[fluent-mdl2--down]" style="color: black;"></span></th>
+                    <th class="py-2 px-4 border-b">LOKASI <span class="icon-[fluent-mdl2--down]" style="color: black;"></span></th>
+                    <th class="py-2 px-4 border-b">REALISASI <span class="icon-[fluent-mdl2--down]" style="color: black;"></span></th>
+                    <th class="py-2 px-4 border-b">TGL REALISASI </span></th>
+                    <th class="py-2 px-4 border-b">LAPORAN DIKIRIM </th>
+                    <th class="py-2 px-4 border-b">STATUS <span class="icon-[fluent-mdl2--down]" style="color: black;"></span></th>
                     <th class="py-2 px-4 border-b">AKSI</th>
                 </tr>
             </thead>
@@ -99,7 +99,7 @@
                     <td class="px-6 py-4 border-b">{{ $report->title }}</td>
                     <td class="px-6 py-4 border-b">{{ $report->mitra }}</td>
                     <td class="px-6 py-4 border-b">{{ $report->lokasi }}</td>
-                    <td class="px-6 py-4 border-b">Rp. {{ number_format($report->realisasi, 2, ',', '.') }}</td>
+                    <td class="px-6 py-4 border-b">Rp.{{ number_format($report->realisasi, 2, ',', '.') }}</td>
                     <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d-m-Y') }}</td>
                     <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($report->laporan_dikirim)->format('d-m-Y') }}</td>
                     <td class="px-6 py-4 border-b">
