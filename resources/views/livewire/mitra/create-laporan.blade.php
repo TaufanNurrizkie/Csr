@@ -77,33 +77,30 @@
                 @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
-            <div class="mb-6">
-                <label class="block text-gray-700 font-bold mb-2">Foto Laporan Kegiatan <span class="text-red-500">*</span></label>
+            <div class="flex space-x-4 overflow-x-auto p-4">
+                <!-- Tampilkan gambar yang diupload -->
+                @foreach ($foto as $index => $image)
+                    <div class="relative w-24 h-24 rounded-lg overflow-hidden border border-gray-300">
+                        <img src="{{ $image->temporaryUrl() }}" alt="Uploaded image" class="w-full h-full object-cover">
+                        <button type="button" wire:click="removeImage({{ $index }})" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                @endforeach
 
-                <div class="flex space-x-4 overflow-x-auto">
-                    <!-- Tampilkan gambar yang diupload -->
-                    @foreach ($image_url as $index => $image)
-                        <div class="relative w-24 h-24 rounded-lg overflow-hidden">
-                            <img src="{{ $image->temporaryUrl() }}" alt="uploaded image" class="w-full h-full object-cover">
-                            <button type="button" wire:click="removeImage({{ $index }})" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                    @endforeach
-
-                    <!-- Input untuk upload gambar baru -->
-                    <label class="flex flex-col justify-center items-center w-24 h-24 bg-gray-50 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M10 5a1 1 0 00-1 1v3H6a1 1 0 100 2h3v3a1 1 0 102 0v-3h3a1 1 0 100-2h-3V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-xs text-gray-500 ml-5">Klik untuk unggah</span>
-                        <input type="file" class="hidden" wire:model="image_url" multiple>
-                    </label>
-                </div>
-                @error('image_url.*') <span class="text-red-500">{{ $message }}</span> @enderror
+                <!-- Input untuk upload gambar baru -->
+                <label class="flex flex-col justify-center items-center w-24 h-24 bg-gray-50 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 00-1 1v3H6a1 1 0 100 2h3v3a1 1 0 102 0v-3h3a1 1 0 100-2h-3V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-xs text-gray-500 ml-5">Klik untuk unggah</span>
+                    <input type="file" class="hidden" wire:model="foto" multiple accept="image/*">
+                </label>
             </div>
+            @error('foto.*') <span class="text-red-500">{{ $message }}</span> @enderror
+
 
             <div class="flex justify-end space-x-4">
                 <button type="button" class="flex items-center space-x-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg focus:outline-none">

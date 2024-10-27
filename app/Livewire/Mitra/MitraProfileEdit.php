@@ -87,7 +87,5 @@ class MitraProfileEdit extends Component
         if (Auth::user() && Auth::user()->hasRole('mitra')) {
             return view('livewire..mitra.mitra-profile-edit')->layout('components.layouts.mitra');
         }
-        // Kembalikan null jika tidak memiliki peran yang benar
-        return null;
     }
 }

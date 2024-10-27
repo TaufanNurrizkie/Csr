@@ -22,6 +22,8 @@ class Report extends Model
         'sektor_id',
         'project_id',
         'user_id',
+        'foto',
+        'mitra',
     ];
 
 
@@ -39,7 +41,7 @@ class Report extends Model
 
       public function sektor()
       {
-          return $this->belongsTo(Sektor::class, 'sektor_id'); // Pastikan 'sektor_id' adalah kolom yang digunakan di tabel 'reports'
+          return $this->belongsTo(Sektor::class, 'sektor_id');
       }
 }
 

@@ -8,22 +8,33 @@ use App\Models\Report;
 use App\Models\Sektor;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Livewire\WithFileUploads; // Import trait
+use Livewire\WithFileUploads;
 
 class CreateLaporan extends Component
 {
-    use WithFileUploads; // Terapkan trait untuk menangani file upload
+    use WithFileUploads;
 
-    public $title, $lokasi, $realisasi, $deskripsi;
+    public $title, $realisasi, $deskripsi;
     public $status = 'pending', $suggestion, $sektor_id, $project_id;
-    public $image_url = [];
-    public $uploadImages = []; // Properti untuk menampung file yang di-upload
+    public $foto = [];
     public $maxYear;
     public $tanggal, $bulan, $tahun;
+    public $lokasi;
+    public $mitra;
 
     public function mount()
     {
         $this->maxYear = date('Y'); // Dapatkan tahun saat ini
+
+        $user = Auth::user();
+        $mitra = $user->mitra; // Ambil profil mitra yang terkait dengan pengguna
+
+        if ($mitra) {
+            $this->lokasi = $mitra->alamat; // Set lokasi berdasarkan kolom alamat di mitra
+            $this->mitra = $mitra->nama; // Set nama mitra dari kolom `nama`
+        } else {
+            session()->flash('error', 'Mitra tidak ditemukan. Pastikan Anda memiliki data mitra.');
+        }
     }
 
     // Fungsi submit untuk menyimpan laporan
@@ -41,28 +52,38 @@ class CreateLaporan extends Component
             'suggestion' => 'nullable|string',
             'sektor_id' => 'nullable|exists:sektors,id',
             'project_id' => 'nullable|exists:projects,id',
-            'uploadImages.*' => 'nullable|image|max:1024',
+            'foto.*' => 'nullable|image|max:1024', // Pastikan ini sesuai
         ]);
 
         // Gabungkan tanggal, bulan, dan tahun menjadi format Y-m-d
         $tgl_realisasi = sprintf('%04d-%02d-%02d', $this->tahun, $this->bulan, $this->tanggal);
 
-        $user = Auth::user(); // Dapatkan pengguna yang sedang login
-        $mitra = $user->mitra; // Ambil mitra yang terkait dengan pengguna
+        $user = Auth::user();
+        $mitra = $user->mitra;
 
         if (!$mitra) {
             session()->flash('error', 'Mitra tidak ditemukan. Pastikan Anda memiliki data mitra.');
-            return; // Keluar jika mitra tidak ditemukan
+            return;
         }
 
-        $user_id = $user->id; // Ambil user_id
+        $user_id = $user->id;
+
+        // Menyimpan gambar dan mengumpulkan URL
+        $uploadedPhotos = [];
+        if (!empty($this->foto)) {
+            foreach ($this->foto as $photo) {
+                // Pastikan setiap foto disimpan dengan unik
+                $uploadedPhotos[] = $photo->store('reports', 'public');
+            }
+        }
 
         // Simpan laporan ke database
         Report::create([
             'title' => $this->title,
-            'mitra_id' => $mitra->id, // Menggunakan ID mitra
+            'mitra_id' => $mitra->id,
             'user_id' => $user_id,
-            'lokasi' => $mitra->lokasi, // Ambil lokasi dari mitra
+            'mitra' => $this->mitra,
+            'lokasi' => $this->lokasi,
             'realisasi' => $this->realisasi,
             'deskripsi' => $this->deskripsi,
             'tgl_realisasi' => $tgl_realisasi,
@@ -71,22 +92,17 @@ class CreateLaporan extends Component
             'suggestion' => $this->suggestion,
             'sektor_id' => $this->sektor_id,
             'project_id' => $this->project_id,
+            'foto' => json_encode($uploadedPhotos), // Menyimpan URL gambar dalam format JSON
         ]);
 
         session()->flash('message', 'Laporan berhasil disimpan.');
-        $this->resetForm(); // Reset form setelah submit
+        $this->resetForm();
     }
-
-
-
-
-
 
     // Fungsi reset form
     public function resetForm()
     {
         $this->title = '';
-        $this->lokasi = '';
         $this->realisasi = '';
         $this->deskripsi = '';
         $this->tanggal = '';
@@ -96,13 +112,19 @@ class CreateLaporan extends Component
         $this->suggestion = '';
         $this->sektor_id = '';
         $this->project_id = '';
-        $this->uploadImages = []; // Reset gambar upload
+        $this->foto = []; // Reset foto yang diupload
     }
+
+    public function removeImage($index)
+    {
+        unset($this->foto[$index]);
+        $this->foto = array_values($this->foto); // Mengatur ulang indeks array
+    }
+
 
     public function render()
     {
-           // Mendapatkan mitra berdasarkan user yang sedang login
-            $mitra = Mitra::where('user_id', Auth::id())->first();
+        $mitra = Mitra::where('user_id', Auth::id())->first();
 
         if (Auth::user() && Auth::user()->hasRole('mitra')) {
             return view('livewire.mitra.create-laporan', [
@@ -112,6 +134,6 @@ class CreateLaporan extends Component
             ])->layout('components.layouts.mitra');
         }
 
-        return abort(403); // Akses ditolak jika bukan mitra
+        return abort(403);
     }
 }
