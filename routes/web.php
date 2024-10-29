@@ -11,7 +11,7 @@ use App\Http\Controllers\NotificationController;
 
 
 
-
+Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
 
 Route::middleware([
     'auth:sanctum',
@@ -66,7 +66,7 @@ Route::middleware([
     Route::put('/mitra/{id}/nonaktifkan', [MitraController::class, 'nonaktifkan'])->name('mitra.nonaktifkan');
     Route::put('/mitra/{id}/aktifkan', [MitraController::class, 'aktifkan'])->name('mitra.aktifkan');
 
-    Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
+
 });
 
 
