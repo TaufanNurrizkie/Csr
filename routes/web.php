@@ -12,7 +12,7 @@ use App\Http\Controllers\NotificationController;
 
 
 
-
+Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
 
 Route::middleware([
     'auth:sanctum',
@@ -67,7 +67,7 @@ Route::middleware([
     Route::put('/mitra/{id}/nonaktifkan', [MitraController::class, 'nonaktifkan'])->name('mitra.nonaktifkan');
     Route::put('/mitra/{id}/aktifkan', [MitraController::class, 'aktifkan'])->name('mitra.aktifkan');
 
-    Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
+
 });
 
 
@@ -128,4 +128,5 @@ Route::middleware([
     Route::get('/mitra/dashboard', App\Livewire\Mitra\Dashboard::class)->name('mitra.dashboard');
     Route::get('/mitra/laporan', App\Livewire\Mitra\Laporan::class)->name('mitra.laporan');
     Route::get('/mitra/laporan/create', App\Livewire\Mitra\CreateLaporan::class)->name('mitra.laporan.create');
+    Route::get('/mitra/laporan/{id}', App\Livewire\Mitra\ShowLaporan::class)->name('mitra.laporan.show');
 });

@@ -62,16 +62,23 @@
         </div>
     </div>
 
-    <div class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ml-20">
+    <div class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ml-10 ">
         @foreach ($laporans as $laporan)
             <a href="{{ route('laporan.detail', $laporan->id) }}" wire:navigate class="block">
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
-                    <img src="{{'storage/' . $laporan->foto ?? 'https://via.placeholder.com/600x400' }}" alt="Laporan Image"
-                        class="w-full h-48 object-cover">
+                    @php
+                        $photoArray = json_decode($laporan->foto, true);
+                        $firstPhoto = is_array($photoArray) ? $photoArray[0] : $laporan->foto;
+                    @endphp
+
+                    <!-- Atur ukuran gambar menjadi 286x286 px -->
+                    <img src="{{ asset('storage/' . $firstPhoto) }}" alt="{{ $laporan->judul }}"
+                         class="w-[286px] h-[286px] object-cover object-center mx-auto">
+
                     <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
                         {{ $laporan->created_at ? $laporan->created_at->format('d M, Y') : 'Tanggal tidak tersedia' }}
-
                     </div>
+
                     <div class="p-4">
                         <div class="flex items-center mb-2">
                             <img class="w-8 h-8 rounded-full mr-2" src="https://via.placeholder.com/40" alt="Avatar">
@@ -84,6 +91,7 @@
             </a>
         @endforeach
     </div>
+
     <!-- Card End -->
     @if ($laporans->count() >= 8)
         <div class="flex justify-center mt-8">
