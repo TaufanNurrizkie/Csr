@@ -15,8 +15,8 @@
             style="top: 50%; transform: translateY(-50%);">
             <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
                 <p class="text-lg">
-                    <span class="text-[#E66445]">Beranda</span> /
-                    <span class="text-[#E66445]">Laporan</span> /   <span class="text-white">Rincian</span>
+                    <a href="/" class="text-[#E66445]">Beranda</a> /
+                    <a href="/laporan" class="text-[#E66445]">Laporan</a> /   <span class="text-white">Rincian</span>
                 </p>
                 <h1 class="text-7xl font-bold">{{ $laporan->title }}</h1>
                 <p class="mt-2 text-sm">{{ $laporan->mitra }} · {{ $laporan->created_at->format('F d, Y') }}</p>
@@ -29,8 +29,8 @@
     <div class="w-10 h-1 bg-[#FF5D56] mb-20 mt-10 ml-20"></div>
     <div class=" text-white">
         <!-- Header Section -->
-        <div class="flex justify-center items-center py-16 mb-20">
-            <img src="{{ asset('loreal.png') }}" alt="L'Oréal Logo" class="w-1/4">
+        <div class="flex justify-center items-center mb-20">
+            <img src="{{'../storage/' . $laporan->foto }}" alt="L'Oréal Logo" class="w-1/4">
         </div>
     
         <!-- Galeri Section -->
@@ -104,7 +104,7 @@
          Laporan Lainnya
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white shadow-md rounded-lg overflow-hidden relative">
+            <a href="{{ route('laporan.detail', $laporan->id) }}" class="bg-white shadow-md rounded-lg overflow-hidden relative">
                 <img alt="Laporan Image" class="w-full h-48 object-cover" height="400" src="{{'../storage/' . $laporan->foto ?? 'https://via.placeholder.com/600x400' }}" width="600"/>
                 <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
                     {{ \Carbon\Carbon::parse($laporan->tgl_realisasi)->format('d F, Y') }}
@@ -117,13 +117,13 @@
                         {{ Str::limit($laporan->deskripsi, 100, '...') }} <!-- Assuming 'description' is a column in your laporan table -->
                     </p>
                 </div>
-            </div>            
+            </a>            
         </div>
         
         <div class="mt-8 text-center">
-         <button class="bg-white text-gray-900 border border-gray-300 rounded-full px-6 py-2 text-sm font-medium hover:bg-gray-100">
-          Lihat semua kegiatan
-         </button>
+         <a href="/laporan" class="bg-white text-gray-900 border border-gray-300 rounded-full px-6 py-2 text-sm font-medium hover:bg-gray-100">
+          Lihat semua laporan
+         </a >
         </div>
        </div>
 </div>

@@ -16,8 +16,8 @@
             style="top: 50%; transform: translateY(-50%);">
             <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
                 <p class="text-lg">
-                    <span class="text-[#E66445]">Beranda</span> /
-                    <span class="text-white">Laporan</span>
+                    <a href="/" class="text-[#E66445]">Beranda</a> /
+                    <a class="text-white">Laporan</a>
                 </p>
                 <h1 class="text-7xl font-bold">Laporan</h1>
                 <p class="mt-2 text-sm">Kegiatan Terkini Dari CSR Kabupaten Cirebon</p>
@@ -47,10 +47,9 @@
                 <select
                     class="border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out">
                     <option value="" disabled selected>Semua Mitra</option>
-                    <option value="Q1">Kuartal 1 (Jan, Feb, Mar)</option>
-                    <option value="Q2">Kuartal 2 (Apr, Mei, Jun)</option>
-                    <option value="Q3">Kuartal 3 (Jul, Agu, Sep)</option>
-                    <option value="Q4">Kuartal 4 (Okt, Nov, Des)</option>
+                    @foreach ($mitras as $mitra)
+                    <option>{{ $mitra->nama }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

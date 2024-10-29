@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\MitraController;
+use App\Livewire\Public\Home\ProjectList;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\ProjectController;
@@ -80,6 +81,7 @@ Route::middleware([
 
     // home
     Route::get('/', App\Livewire\Public\Home\Index::class)->name('home');
+
 
     //About
     Route::get('/tentang', App\Livewire\Public\tentang\Index::class)->name('tentang');

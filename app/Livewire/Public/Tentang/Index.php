@@ -10,7 +10,7 @@ class Index extends Component
 {
     public function render()
     {
-        $reports = Report::all();
+        $reports = Report::take(3)->get();
         return view('livewire.public.tentang.index', [
             'reports' => $reports
         ])->layout('components.layouts.public');

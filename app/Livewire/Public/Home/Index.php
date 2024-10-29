@@ -13,6 +13,7 @@ use Livewire\Component;
 
 class Index extends Component
 {
+
     public function render()
     {
 
@@ -21,7 +22,7 @@ class Index extends Component
         $aktivitas = Activity::where('status', 'Terbit')->latest()->take(4)->get();
         $reports = Report::where('status', 'Approved')->latest()->take(4)->get();
         $jumlahProyekTerealisasi = Project::where('status', 'terbit')->count();
-        $jumlahMitra = Mitra::count();
+        $jumlahMitra = Mitra::where('status', 'aktif')->count();
         $jumlahCSR = Project::count();
         $jumlahApproved = Report::where('status', 'approved')->count();
         $totalDanaCsr = Report::sum('realisasi');
