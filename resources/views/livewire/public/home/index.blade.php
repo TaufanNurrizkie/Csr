@@ -1,48 +1,17 @@
 <div>
-  {{-- <div class="container mx-auto  relative" style="width: 1344px; height: 810px; overflow: hidden;">
-    <!-- Hero Section -->
-    <div class="hero-section relative" style="width: 100%; height: 100%; overflow: hidden;">
-        <svg width="550" height="750" viewBox="0 0 602 750" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0">
-            <rect width="602" height="750" fill="#510300"/>
-        </svg>
 
-        <!-- Background and overlay -->
-        <div class="absolute inset-0" style="top: 44%; left: 53%; width: 100%; height: 70%; transform: translate(-50%, -50%);">
-            <img src="{{ asset('backgroundPublic.png') }}" alt="Overlay Image" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-        </div>
-
-        <!-- Text content -->
-        <div class="relative z-10 text-white text-start flex flex-col justify-center ml-16 items-start h-full">
-            <h1 class="text-4xl font-bold md:text-5xl">Selamat datang <br> di portal CSR <br> Kab. Cirebon</h1>
-            <p class="mt-2 text-lg">Ketahui dan kenali customer social responsibility <br> terhadap Kabupaten Cirebon dari para Mitra.</p>
-            <div class="w-40 h-1 bg-white mb-2"></div>
-        </div>
-
-        <!-- News Card -->
-        <div class="absolute bottom-16 right-16 bg-gray-900 text-white p-6 rounded-lg shadow-lg w-[500px]">
-            <h2 class="text-2xl font-semibold mb-2">Pemkab Cirebon Terima Bantuan PJU Tematik Dari Bank BJB</h2>
-            <p class="text-sm text-gray-400 mb-4">11 Oktober 2024</p>
-            <p class="text-base">
-                Penerangan Jalan Umum (PJU) di Kecamatan Lemahabang Desa Cipeujeuh Barat Kab. Cirebon, Jawa Barat, kini telah mendapat bantuan. CSR ini disalurkan langsung oleh CSR Bank BJB bersama dengan Pemkab Cirebon dalam upaya meningkatkan kenyamanan masyarakat setempat...
-            </p>
-            <a href="#" class="text-red-500 mt-4 inline-block hover:underline">Baca selengkapnya</a>
-        </div>
-    </div>
-</div> --}}
-
-<div class="hero-section relative w-full h-[750px] overflow-hidden -mt-5"> <!-- -mt-10 untuk menggeser ke atas -->
+<div class="hero-section relative w-full h-[750px] overflow-hidden -mt-5"> 
   <svg width="550" height="750" viewBox="0 0 602 750" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0">
       <rect width="602" height="750" fill="#510300"/>
   </svg>
-  <!-- Adjust the size and position of the gray overlay -->
+ 
 
   <div class="absolute inset-0" style="top: 45%; left: 50%;  width: 93%; height: 70%; transform: translate(-50%, -50%);">
       <img src="{{ asset('backgroundPublic.png') }}" alt="Overlay Image" class="w-full h-full object-cover">
       <div class="absolute inset-0 bg-black opacity-70"></div>
   </div>
   <div class="absolute inset-0 flex items-center justify-start pl-20" style="top: 50%; transform: translateY(-50%);">
-      <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
+      <div class="relative z-10 text-white text-left flex flex-col ml-20">
 
           <div class="relative z-10 text-white text-start flex flex-col justify-center ml-16 items-start h-full">
             <h1 class="text-4xl font-bold md:text-5xl">Selamat datang <br> di portal CSR <br> Kab. Cirebon</h1>
@@ -236,7 +205,7 @@
             @foreach ($aktivitas as $aktif)
             <!-- Card -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
-              <a href="/" wire:navigate>
+              <a href="{{ route('kegiatan.show', $item->id) }}" wire:navigate>
               <img src="{{'storage/' . $aktif->photo ?? 'https://via.placeholder.com/600x400' }}" alt="aktif Image"
                   class="w-full h-48 object-cover">
                 </a>
@@ -252,7 +221,7 @@
         </div>
 
         <div class="flex justify-center mt-8">
-            <a href="/kegiatan" wire:navigate class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
+            <a href="{{ route('kegiatan.index') }}" wire:navigate class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
                 Lihat semua kegiatan
             </a>
         </div>
@@ -268,7 +237,7 @@
             @foreach ($reports as $report)
             <!-- Card -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
-              <a href="/">
+              <a href="{{ route('laporan.detail', $report->id) }}" wire:navigate>
               <img src="{{'storage/' . $report->foto ?? 'https://via.placeholder.com/600x400' }}" alt="report Image"
                   class="w-full h-48 object-cover">
                 </a>
@@ -407,7 +376,7 @@ function showContent(thumbnail, deskripsi) {
 
 // Panggil showContent dengan nilai default saat halaman dimuat
 document.addEventListener('DOMContentLoaded', function() {
-  showContent('storage/photos/iuKRrunSBIqYWzcYrZHmEPfg7KzohGQC8JaEUNMA.jpg', 'Deskripsi default untuk sektor ini.');
+  showContent('storage/photos/sektor.jpeg', 'CSR atau Corporate Social Responsibility adalah komitmen perusahaan untuk berkontribusi pada pembangunan ekonomi yang berkelanjutan.');
 });
 
 </script>

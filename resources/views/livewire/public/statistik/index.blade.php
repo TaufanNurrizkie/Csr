@@ -13,8 +13,8 @@
         <div class="absolute inset-0 flex items-center justify-start pl-20" style="top: 50%; transform: translateY(-50%);">
             <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
                 <p class="text-lg">
-                    <span class="text-[#E66445]">Beranda</span> /
-                    <span class="text-white">Statistik</span>
+                    <a href="/" class="text-[#E66445]">Beranda</a> /
+                    <a class="text-white">Statistik</a>
                 </p>
                 <h1 class="text-7xl font-bold">Statistik</h1>
                 <p class="mt-2 text-sm">Program CSR Yang Sudah Berjalan Di Kabupaten Cirebon</p>
@@ -83,7 +83,7 @@
                 <!-- Kolom 2 -->
                 <div class="flex items-center border-l-2 border-[#FFC3C0] pl-4">
                     <div>
-                        <h3 class="text-5xl font-bold text-[#510300] mb-2">{{ $jumlahApproved }}</h3> <!-- Menambahkan margin bawah -->
+                        <h3 class="text-5xl font-bold text-[#510300] mb-2">{{ $jumlahProyekTerealisasi }}</h3> <!-- Menambahkan margin bawah -->
                         <p class="text-lg font-medium text-gray-800">Proyek terealisasi</p>
                     </div>
                 </div>

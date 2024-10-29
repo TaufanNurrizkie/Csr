@@ -14,9 +14,9 @@
         <div class="absolute inset-0 flex items-center justify-start pl-20" style="top: 50%; transform: translateY(-50%);">
             <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
                 <p class="text-lg">
-                    <span class="text-[#E66445]">Beranda</span> /
-                    <span class="text-white">Mitra</span> /
-                    <span class="text-white">Detail</span>
+                    <a href="/" class="text-[#E66445]">Beranda</a> /
+                    <a href="/mitras" class="text-[#E66445]">Mitra</a> /
+                    <a class="text-white">Detail</a>
                 </p>
                 <h1 class="text-7xl font-bold">{{ $mitra->nama }}</h1>
                 <p class="mt-2 text-sm">{{ $mitra->nama_pt }} . {{ $mitra->email }} . {{ $mitra->no_telp }}</p>
