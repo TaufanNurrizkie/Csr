@@ -9,41 +9,74 @@
 
     <!-- Filter Section -->
     <div class="container mx-auto mt-8 flex justify-center">
-      <div class="flex items-center space-x-7">
-        @foreach (['Tahun' => ['2024', '2023', '2022'], 'Kuartal' => ['Kuartal 2 (April, Mei, Juni)', 'Kuartal 1 (Januari, Februari, Maret)', 'Kuartal 3 (Juli, Agustus, September)', 'Kuartal 4 (Oktober, November, Desember)'], 'Sektor' => ['Semua Sektor', 'Sektor 1', 'Sektor 2'], 'Mitra' => ['Semua Mitra', 'Mitra 1', 'Mitra 2']] as $label => $options)
-        <div>
-          <select class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
-            @foreach ($options as $option)
-            <option {{ $loop->first ? 'selected' : '' }}>{{ $option }}</option>
-            @endforeach
-          </select>
-        </div>
-        @endforeach
+        <div class="flex items-center space-x-7">
+          <!-- Dropdown Tahun -->
+          <div>
+            <select class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
+              @foreach (['2024', '2023', '2022'] as $tahun)
+              <option>{{ $tahun }}</option>
+              @endforeach
+            </select>
+          </div>
 
-        <!-- Filter and Download Buttons -->
-        <div>
-          <button class="bg-red-600 text-white py-1.5 px-3 rounded hover:bg-red-700 transition-colors">Terapkan filter</button>
-        </div>
+          <!-- Dropdown Kuartal -->
+          <div>
+            <select class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
+              @foreach (['Kuartal 2 (April, Mei, Juni)', 'Kuartal 1 (Januari, Februari, Maret)', 'Kuartal 3 (Juli, Agustus, September)', 'Kuartal 4 (Oktober, November, Desember)'] as $kuartal)
+              <option>{{ $kuartal }}</option>
+              @endforeach
+            </select>
+          </div>
 
-        <div>
-          <a href="{{ route('dashboard.downloadcsv') }}" class="border border-green-600 text-green-600 py-1.5 px-3 rounded hover:bg-green-600 hover:text-white transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Unduh .csv
-          </a>
-        </div>
-        <div>
-          <a href="{{ route('dashboard.downloadpdf') }}" class="border border-red-600 text-red-600 py-1.5 px-3 rounded hover:bg-red-600 hover:text-white transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Unduh .pdf
-          </a>
-        </div>
+          <!-- Dropdown Sektor -->
+          <div>
+            <select class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
+              <option selected>Semua Sektor</option>
+              @foreach ($sektors as $s)
+              <option value="{{ $s->id }}">{{ $s->nama }}</option>
+              @endforeach
+            </select>
+          </div>
 
-      </div>
+          <!-- Dropdown Mitra -->
+          <div>
+            <select class="border border-gray-300 text-gray-700 py-1.5 px-3 rounded focus:outline-none focus:ring-2 focus:ring-red-500">
+              <option selected>Semua Mitra</option>
+              @foreach ($mitras as $m)
+              <option value="{{ $m->id }}">{{ $m->nama }}</option>
+              @endforeach
+            </select>
+          </div>
+
+          <!-- Filter Button -->
+          <div>
+            <button class="bg-red-600 text-white py-1.5 px-3 rounded hover:bg-red-700 transition-colors">Terapkan filter</button>
+          </div>
+
+
+
+            <!-- Download CSV Button -->
+            <div>
+                <a href="{{ route('dashboard.downloadcsv') }}" class="border border-green-600 text-green-600 py-1.5 px-3 rounded hover:bg-green-600 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Unduh .csv
+                </a>
+            </div>
+
+            <!-- Download PDF Button -->
+            <div>
+                <a href="{{ route('dashboard.downloadpdf') }}" class="border border-red-600 text-red-600 py-1.5 px-3 rounded hover:bg-red-600 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Unduh .pdf
+                </a>
+            </div>
+        </div>
     </div>
+
 
     <!-- Main Section -->
     <div class="container mx-auto mt-1">
