@@ -24,7 +24,7 @@ class Index extends Component
         $laporans = Report::where('title', 'like', '%' . $this->search . '%')
                             ->orderBy('laporan_dikirim', 'desc')
                             ->paginate($this->perPage);
-                    
+
 
         return view('livewire.public.laporan.index', ['laporans' => $laporans])
                ->layout('components.layouts.public');

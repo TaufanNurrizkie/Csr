@@ -14,14 +14,16 @@ class Sektor extends Model
     protected $table = 'sektors'; // Nama tabel
 
 
-    public function reports()
-    {
-        return $this->hasMany(Report::class, 'sektor_id'); // Pastikan 'sektor_id' adalah kolom yang digunakan di tabel 'reports'
-    }
+   // Relasi dengan model Report
+   public function reports()
+   {
+       return $this->hasMany(Report::class, 'sektor_id'); // 'sektor_id' adalah foreign key di tabel reports
+   }
 
     public function projects()
     {
         return $this->hasMany(Project::class);
     }
+
 
 }

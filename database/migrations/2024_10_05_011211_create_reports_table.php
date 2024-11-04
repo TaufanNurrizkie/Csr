@@ -35,20 +35,20 @@ class CreateReportsTable extends Migration
             $table->text('suggestion')->nullable(); // Suggestions (nullable)
 
 
-              // Foreign key for user_id
-              $table->unsignedBigInteger('user_id')->nullable(); // Menambahkan kolom user_id
-              $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Relasi dengan users
+              // Foreign key untuk user_id
+              $table->unsignedBigInteger('user_id')->nullable();
+              $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            // Foreign key for mitra_id
-            $table->unsignedBigInteger('mitra_id')->nullable(); // Foreign key to mitras table
+            // Foreign key untuk mitra_id
+            $table->unsignedBigInteger('mitra_id')->nullable();
             $table->foreign('mitra_id')->references('id')->on('mitras')->onDelete('set null');
 
-            // Foreign key for sektor_id
-            $table->unsignedBigInteger('sektor_id')->nullable(); // Foreign key to sektors table
+            // Foreign key untuk sektor_id
+            $table->unsignedBigInteger('sektor_id')->nullable();
             $table->foreign('sektor_id')->references('id')->on('sektors')->onDelete('set null');
 
-              // Foreign key for project_id
-              $table->unsignedBigInteger('project_id')->nullable(); // Foreign key to sektors table
+              // Foreign key untuk project_id
+              $table->unsignedBigInteger('project_id')->nullable(); 
               $table->foreign('project_id')->references('id')->on('projects')->onDelete('set null');
 
 
