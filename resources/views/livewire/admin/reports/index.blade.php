@@ -97,16 +97,19 @@
                 @foreach($reports as $report)
                 <tr class="text-start bg-white">
                     <td class="px-6 py-4 border-b">{{ $report->title }}</td>
-                    <td class="px-6 py-4 border-b">{{ $report->mitra }}</td>
+                    <td class="px-6 py-4 border-b">{{ $report->nama_mitra }}</td>
                     <td class="px-6 py-4 border-b">{{ $report->lokasi }}</td>
                     <td class="px-6 py-4 border-b">Rp.{{ number_format($report->realisasi, 2, ',', '.') }}</td>
                     <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d-m-Y') }}</td>
                     <td class="px-6 py-4 border-b">{{ \Carbon\Carbon::parse($report->laporan_dikirim)->format('d-m-Y') }}</td>
                     <td class="px-6 py-4 border-b">
                         <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full
-                            {{ $report->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : ($report->status === 'approved' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800') }}">
-                            {{ ucfirst($report->status) }}
-                        </span>
+                        {{ $report->status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                           ($report->status === 'approved' ? 'bg-green-100 text-green-800' :
+                           ($report->status === 'revisi' ? 'bg-yellow-100 text-yellow-600' :
+                           'bg-red-100 text-red-800')) }}">
+                        {{ ucfirst($report->status) }}
+                    </span>
                     </td>
                     <td class="px-6 py-4 border-b">
                         <a href="{{ route('reports.show', $report->id) }}" wire:navigate >

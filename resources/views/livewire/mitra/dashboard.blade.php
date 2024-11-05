@@ -171,13 +171,13 @@
                         <td class="px-6 py-4 border-b border-gray-300">{{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d M Y') }}</td>
                         <td class="px-6 py-4 border-b border-gray-300">{{ \Carbon\Carbon::parse($report->tgl_dikirim)->format('d M Y') }}</td>
                         <td class="px-6 py-4 border-b border-gray-300">
-                            @if($report->status == 'Diterima')
-                                <span class="px-2 py-1 text-sm bg-green-100 text-green-600 rounded">Diterima</span>
-                            @elseif($report->status == 'Revisi')
-                                <span class="px-2 py-1 text-sm bg-yellow-100 text-yellow-600 rounded">Revisi</span>
-                            @else
-                                <span class="px-2 py-1 text-sm bg-gray-100 text-gray-600 rounded">Pending</span>
-                            @endif
+                            <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full
+                            {{ $report->status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                               ($report->status === 'approved' ? 'bg-green-100 text-green-800' :
+                               ($report->status === 'revisi' ? 'bg-yellow-100 text-yellow-600' :
+                               'bg-red-100 text-red-800')) }}">
+                            {{ ucfirst($report->status) }}
+                        </span>
                         </td>
                         <td class="px-6 py-4 border-b border-gray-300 text-center">
                             <a href="{{ route('mitra.laporan.show', ['id' => $report->id]) }}" wire:navigate>

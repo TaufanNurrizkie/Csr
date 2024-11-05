@@ -82,7 +82,7 @@ class CreateLaporan extends Component
             'title' => $this->title,
             'mitra_id' => $mitra->id,
             'user_id' => $user_id,
-            'mitra' => $this->mitra,
+            'nama_mitra' => $this->mitra,
             'lokasi' => $this->lokasi,
             'realisasi' => $this->realisasi,
             'deskripsi' => $this->deskripsi,
