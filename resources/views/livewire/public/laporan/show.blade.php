@@ -30,61 +30,66 @@
     <div class=" text-white">
 
         <!-- Header Section -->
-        <div class="flex justify-center items-center mb-20">
-            <img src="{{'../storage/' . $laporan->foto }}" alt="L'Oréal Logo" class="w-1/4">
+        <div class="flex justify-center items-center py-16 mb-20">
+            @if($laporan->mitra && is_object($laporan->mitra) && $laporan->mitra->foto && file_exists(public_path($laporan->mitra->foto)))
+                <img src="{{ asset($laporan->mitra->foto) }}" alt="Logo Mitra" class="w-1/4">
+            @else
+                <img src="{{ asset('loreal.png') }}" alt="Default Logo" class="w-1/4"> <!-- Gambar default jika tidak ada -->
+            @endif
         </div>
     
-        <!-- Galeri Section -->
-        <div class="px-8">
-            <h2 class="text-lg font-semibold mb-4 text-black">Galeri</h2>
-            <div class="overflow-x-auto mb-6 px-0 w-full">
-                <div class="grid grid-flow-col auto-cols-[minmax(0,1fr)] gap-4">
-                    @if (!empty($foto))
-                        @foreach (json_decode($foto) as $index => $photo)
-                            <div class="relative">
-                                <img src="{{ Storage::url($photo) }}" alt="Foto yang Diupload" class="w-60 h-50 object-cover rounded-lg shadow">
-                            </div>
-                        @endforeach
-                    @else
-                        <p class="text-gray-500">Tidak ada foto yang diunggah.</p>
-                    @endif
+    
+            <!-- Galeri Section -->
+            <div class="px-8">
+                <h2 class="text-lg font-semibold mb-4 text-black">Galeri</h2>
+                <div class="overflow-x-auto mb-6 px-0 w-full">
+                    <div class="grid grid-flow-col auto-cols-[minmax(0,1fr)] gap-4">
+                        @if (!empty($foto))
+                            @foreach (json_decode($foto) as $index => $photo)
+                                <div class="relative">
+                                    <img src="{{ Storage::url($photo) }}" alt="Foto yang Diupload" class="w-60 h-50 object-cover rounded-lg shadow">
+                                </div>
+                            @endforeach
+                        @else
+                            <p class="text-gray-500">Tidak ada foto yang diunggah.</p>
+                        @endif
+                    </div>
                 </div>
+    
+                <!-- Kartu Laporan Section -->
+                <div class="grid grid-cols-3 gap-4 mb-6">
+                    <!-- Kartu 1: Realisasi -->
+                    <div class="bg-pink-100 p-4 rounded-lg shadow-md relative max-w-md">
+                        <!-- Lekukan Kiri -->
+                        <div class="absolute top-0 bottom-0 left-0 w-1 bg-[#98100A] rounded-l-lg"></div>
+    
+                        <!-- Isi Kartu -->
+                        <h3 class="text-gray-500 text-sm">Realisasi</h3>
+                        <p class="text-lg font-semibold text-gray-800">Rp {{ number_format($laporan->realisasi, 0, ',', '.') }}</p>
+                    </div>
+    
+                    <!-- Kartu 2: Nama Proyek -->
+                    <div class="bg-pink-100 p-4 rounded-lg shadow-md relative max-w-md">
+                        <!-- Lekukan Kiri -->
+                        <div class="absolute top-0 bottom-0 left-0 w-1 bg-[#98100A] rounded-l-lg"></div>
+    
+                        <!-- Isi Kartu -->
+                        <h3 class="text-gray-500 text-sm">Nama Proyek</h3>
+                        <p class="text-lg font-semibold text-gray-800">{{ $laporan->project->judul ?? 'Proyek Tidak Diketahui' }}</p>
+                    </div>
+    
+                    <!-- Kartu 3: Kecamatan -->
+                    <div class="bg-pink-100 p-4 rounded-lg shadow-md relative max-w-md">
+                        <!-- Lekukan Kiri -->
+                        <div class="absolute top-0 bottom-0 left-0 w-1 bg-[#98100A] rounded-l-lg"></div>
+    
+                        <!-- Isi Kartu -->
+                        <h3 class="text-gray-500 text-sm">Kecamatan</h3>
+                        <p class="text-lg font-semibold text-gray-800">{{ $laporan->lokasi }}</p>
+                    </div>
+                </div>
+    
             </div>
-
-            <!-- Kartu Laporan Section -->
-            <div class="grid grid-cols-3 gap-4 mb-6">
-                <!-- Kartu 1: Realisasi -->
-                <div class="bg-pink-100 p-4 rounded-lg shadow-md relative max-w-md">
-                    <!-- Lekukan Kiri -->
-                    <div class="absolute top-0 bottom-0 left-0 w-1 bg-[#98100A] rounded-l-lg"></div>
-
-                    <!-- Isi Kartu -->
-                    <h3 class="text-gray-500 text-sm">Realisasi</h3>
-                    <p class="text-lg font-semibold text-gray-800">Rp {{ number_format($laporan->realisasi, 0, ',', '.') }}</p>
-                </div>
-
-                <!-- Kartu 2: Nama Proyek -->
-                <div class="bg-pink-100 p-4 rounded-lg shadow-md relative max-w-md">
-                    <!-- Lekukan Kiri -->
-                    <div class="absolute top-0 bottom-0 left-0 w-1 bg-[#98100A] rounded-l-lg"></div>
-
-                    <!-- Isi Kartu -->
-                    <h3 class="text-gray-500 text-sm">Nama Proyek</h3>
-                    <p class="text-lg font-semibold text-gray-800">{{ $laporan->project->judul ?? 'Proyek Tidak Diketahui' }}</p>
-                </div>
-
-                <!-- Kartu 3: Kecamatan -->
-                <div class="bg-pink-100 p-4 rounded-lg shadow-md relative max-w-md">
-                    <!-- Lekukan Kiri -->
-                    <div class="absolute top-0 bottom-0 left-0 w-1 bg-[#98100A] rounded-l-lg"></div>
-
-                    <!-- Isi Kartu -->
-                    <h3 class="text-gray-500 text-sm">Kecamatan</h3>
-                    <p class="text-lg font-semibold text-gray-800">{{ $laporan->lokasi }}</p>
-                </div>
-            </div>
-
-        </div>
 
 
     </div>

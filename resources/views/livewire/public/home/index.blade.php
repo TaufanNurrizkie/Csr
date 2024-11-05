@@ -124,19 +124,20 @@
           <p class="text-sm mb-6">Bidang sektor CSR Kabupaten Cirebon yang tersedia</p>
           <ul class="space-y-2">
             @foreach ($sektors as $sektor)
-              <li>
-                <a href="#" 
-                   class="block shadow-lg p-4 hover:bg-gray-700 focus:border-l-4 focus:border-red-600"
-                   onclick="showContent('{{ 'storage/' . $sektor->thumbnail }}', '{{ $sektor->deskripsi }}'); return false;">
-                  <div class="flex justify-between">
-                    <span class="text-lg font-semibold">{{ $sektor->nama }}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                  </div>
-                </a>
-              </li>
-            @endforeach
+            <li>
+              <a href="#"
+                 class="block shadow-lg p-4 hover:bg-gray-700 focus:border-l-4 focus:border-red-600"
+                 onclick="showContent('{{ 'storage/' . $sektor->thumbnail }}', '{{ $sektor->deskripsi }}', '{{ $sektor->id }}'); return false;">
+                <div class="flex justify-between">
+                  <span class="text-lg font-semibold">{{ $sektor->nama }}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </a>
+            </li>
+          @endforeach
+          
           </ul>
           
         </div>
@@ -144,29 +145,36 @@
         <!-- Content Section -->
         <div class="w-2/3 flex">
           <div class="w-full">
-            <div class="hero-section relative w-full h-[50%] overflow-hidden ">
-              <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0">
-                <rect width="150" height="150" fill="#510300"/>
+            <div class="hero-section relative w-full flex items-start overflow-hidden">
+              <!-- SVG sebagai frame latar belakang -->
+              <svg width="239px" height="231px" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute left-0 top-0">
+                  <rect width="239" height="231" fill="#510300"/>
               </svg>
-              <div class="absolute inset-0" style="top: 0; left: 5%; width: 200px; height: 120px;">
-                <img id="gambarSektor" src="" alt="Overlay Image" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black opacity-0"></div>
+          
+              <!-- Gambar di dalam SVG -->
+              <div class="relative w-[320px] h-[200px] flex-shrink-0">
+                  <img id="gambarSektor" src="sektor.jpeg" alt="Overlay Image" class="w-full h-full object-cover" style="padding-bottom: 20px; padding-left:20px">
               </div>
-            </div>
-            
-            <p id="deskripsiSektor" class=" absoulute text-sm mb-4 mt-4 break-words ">
-              <!-- Deskripsi akan diisi oleh fungsi showContent -->
-            </p>
-            <div class="space-x-4">
-              <button id="btnProgram" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
-                Lihat program tersedia
-              </button>
-              <button id="btnRealisasi" class="border border-gray-500 text-gray-300 py-2 px-4 rounded hover:bg-gray-700">
-                Lihat realisasi program
-              </button>
-            </div>
           </div>
-        </div>
+          
+      
+              <p id="deskripsiSektor" class="text-sm mb-4 mt-4 break-words">
+                  CSR dalam lingkup sosial merupakan komitmen perusahaan untuk memberikan kontribusi positif bagi masyarakat di sekitarnya...dsakdhasidsaudhasukdhasudhksauhduashduksahdukashdukshdkushkaudhsaukdhaskudhkasuhdusahdkuashdkuashdkuahsdukashdkuhasudhaukdhuakshdukashduksahduhasdkhsdkuhakudhasudhaskudhksauhdkushdkuashdkusahduhaskudhsaudhaskuhdaskhdkasuhdkuashdkusahdukashdukashdashduhsakdhasukdhaskudhashdashdashdkashdkashdkuashdkashdaskhhsdkuahsdukashdkashdkuashdkusahdkuashdkusahdkusahdkuashdkusahudkshadusahdkaskdhk
+                  <!-- Deskripsi akan diisi oleh fungsi showContent -->
+              </p>
+      
+              <div class="space-x-4">
+                  <button id="btnProgram" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
+                      Lihat program tersedia
+                  </button>
+                  <button id="btnRealisasi" class="border border-gray-500 text-gray-300 py-2 px-4 rounded hover:bg-gray-700">
+                      Lihat realisasi program
+                  </button>
+              </div>
+          </div>
+      </div>
+      
+        
       </div>
     </div>
 
@@ -274,7 +282,7 @@
       <!-- Sidebar -->
       <div class="w-1/3 pr-8">
         <div class="">
-          <div class=" border-l-4 border-red-600 shadow-lg p-4 hover:bg-gray-700 cursor-pointer" onclick="showAnswer(1)">
+          <div class=" border-l-4 border-gray-700 shadow-lg p-4 hover:bg-gray-700 focus:border-red-500 cursor-pointer" onclick="showAnswer(1)">
             <a id="q1" class="text-lg font-semibold flex justify-between items-center">
               <span>Apa itu CSR?</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -335,51 +343,73 @@
 </div>
 
 <script>
+  // Fungsi untuk menampilkan jawaban berdasarkan pertanyaan yang dipilih
   function showAnswer(questionNumber) {
     let faqTitle = document.getElementById("faq-title");
     let faqContent = document.getElementById("faq-content");
 
-    if (questionNumber === 1) {
-      faqTitle.textContent = "Apa itu CSR?";
-      faqContent.textContent = "CSR atau Corporate Social Responsibility adalah komitmen perusahaan untuk berkontribusi pada pembangunan ekonomi yang berkelanjutan.";
-    } else if (questionNumber === 2) {
-      faqTitle.textContent = "Mengapa CSR penting di Kabupaten Cirebon?";
-      faqContent.textContent = "CSR membantu perkembangan sosial dan ekonomi di Kabupaten Cirebon.";
-    } else if (questionNumber === 3) {
-      faqTitle.textContent = "Bagaimana cara perusahaan di Kabupaten Cirebon menjalankan program CSR?";
-      faqContent.textContent = "Perusahaan dapat menjalankan program CSR dengan melibatkan masyarakat.";
-    } else if (questionNumber === 4) {
-      faqTitle.textContent = "Apa saja contoh program CSR di Kabupaten Cirebon?";
-      faqContent.textContent = "Contoh program CSR dapat berupa pendidikan, kesehatan, dan lingkungan hidup.";
-    } else if (questionNumber === 5) {
-      faqTitle.textContent = "Bagaimana pemerintah Kabupaten Cirebon mendukung program CSR?";
-      faqContent.textContent = "Pemerintah Kabupaten Cirebon mendukung program CSR dengan menyediakan fasilitas dan regulasi.";
+    // Perbarui konten FAQ berdasarkan pertanyaan yang dipilih
+    switch (questionNumber) {
+      case 1:
+        faqTitle.textContent = "Apa itu CSR?";
+        faqContent.textContent = "CSR atau Corporate Social Responsibility adalah komitmen perusahaan untuk berkontribusi pada pembangunan ekonomi yang berkelanjutan.";
+        break;
+      case 2:
+        faqTitle.textContent = "Mengapa CSR penting di Kabupaten Cirebon?";
+        faqContent.textContent = "CSR membantu perkembangan sosial dan ekonomi di Kabupaten Cirebon.";
+        break;
+      case 3:
+        faqTitle.textContent = "Bagaimana cara perusahaan di Kabupaten Cirebon menjalankan program CSR?";
+        faqContent.textContent = "Perusahaan dapat menjalankan program CSR dengan melibatkan masyarakat.";
+        break;
+      case 4:
+        faqTitle.textContent = "Apa saja contoh program CSR di Kabupaten Cirebon?";
+        faqContent.textContent = "Contoh program CSR dapat berupa pendidikan, kesehatan, dan lingkungan hidup.";
+        break;
+      case 5:
+        faqTitle.textContent = "Bagaimana pemerintah Kabupaten Cirebon mendukung program CSR?";
+        faqContent.textContent = "Pemerintah Kabupaten Cirebon mendukung program CSR dengan menyediakan fasilitas dan regulasi.";
+        break;
+      default:
+        faqTitle.textContent = "Pertanyaan tidak ditemukan";
+        faqContent.textContent = "";
     }
+
+    // Perbarui tampilan border merah pada pertanyaan yang aktif
+    const items = document.querySelectorAll('.border-l-4');
+    items.forEach(item => item.classList.remove('border-red-500'));
+    document.getElementById(`q${questionNumber}`).parentElement.classList.add('border-red-500');
   }
 
-// Fungsi showContent untuk memperbarui konten berdasarkan sektor yang dipilih
-function showContent(thumbnail, deskripsi) {
+  // Fungsi untuk memperbarui konten berdasarkan sektor yang dipilih
+  function showContent(thumbnail, deskripsi, projectId) {
   // Update gambar sektor
   document.getElementById('gambarSektor').src = thumbnail;
 
   // Update deskripsi sektor
   document.getElementById('deskripsiSektor').textContent = deskripsi;
 
-  // Jika diperlukan, kamu bisa memperbarui fungsi tombol di sini
+  // Update onclick untuk tombol "Lihat program tersedia"
   document.getElementById('btnProgram').onclick = function() {
-    alert("Program tersedia untuk sektor ini.");
+    // Arahkan ke route project.details dengan ID project
+    window.location.href = `sektor/${projectId}`;
   };
+
+  // Update onclick untuk tombol "Lihat realisasi program"
   document.getElementById('btnRealisasi').onclick = function() {
     alert("Realisasi program untuk sektor ini.");
   };
-}
 
-// Panggil showContent dengan nilai default saat halaman dimuat
 document.addEventListener('DOMContentLoaded', function() {
   showContent('storage/photos/sektor.jpeg', 'CSR atau Corporate Social Responsibility adalah komitmen perusahaan untuk berkontribusi pada pembangunan ekonomi yang berkelanjutan.');
 });
+}
+
+  
+
 
 </script>
+
 
 
 

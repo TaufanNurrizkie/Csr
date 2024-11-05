@@ -25,20 +25,22 @@
     
 
     <!-- Filter and Search -->
-<div class="filter-section my-8 container mx-auto">
-    <div class="flex justify-between items-center space-x-4">
-        <div class="w-[240px]">
-            <select wire:model="sortBy" class="form-select w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500">
-                <option value="desc">Terbaru</option>
-                <option value="asc">Terlama</option>
-            </select>
-        </div>
-        <div class="w-full ml-8">
-            <input type="text" placeholder="Cari Proyek" class="border-gray-300 p-2 rounded-lg w-full" wire:model="search" />
+    <div class="filter-section my-8 container mx-auto">
+        <div class="flex justify-between items-center space-x-4">
+            <!-- Dropdown Sorting -->
+            <div class="w-[240px]">
+                <select wire:model="sortBy" class="form-select w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500">
+                    <option value="desc">Terbaru</option>
+                    <option value="asc">Terlama</option>
+                </select>
+            </div>
+            <!-- Input Pencarian -->
+            <div class="w-full ml-8">
+                <input type="text" placeholder="Cari Proyek" class="border-gray-300 p-2 rounded-lg w-full" wire:model.live="search" />
+            </div>
         </div>
     </div>
-</div>
-
+    
     <!-- Kegiatan Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 container mx-auto mt-4">
         @foreach($kegiatan as $item)
@@ -62,6 +64,6 @@
 
 
     
-    <!-- Hubungi Kami Section -->
+
 
 </div>

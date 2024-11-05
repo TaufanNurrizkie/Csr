@@ -26,27 +26,23 @@
     </div>
 
     <div class="grid grid-cols-4 gap-6 mb-10 ml-28 mt-10">
-        <!-- Input Tahun -->
         <div class="col-span-1">
             <div class="relative">
-                <!-- Input Tahun dengan jQuery UI Datepicker -->
                 <select
                     class="border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out">
-                    <option value="" disabled selected>Terbaru</option>
-                    <option value="Q1">Kuartal 1 (Jan, Feb, Mar)</option>
-                    <option value="Q2">Kuartal 2 (Apr, Mei, Jun)</option>
-                    <option value="Q3">Kuartal 3 (Jul, Agu, Sep)</option>
-                    <option value="Q4">Kuartal 4 (Okt, Nov, Des)</option>
+                    <option value="" >Terbaru</option>
+                    <option value="">Terlama</option>
+
                 </select>
             </div>
         </div>
 
-        <!-- Input Kuartal dengan select -->
+    
         <div class="col-span-1">
             <div class="relative">
                 <select
                     class="border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out">
-                    <option value="" disabled selected>Semua Mitra</option>
+                    <option value="">Semua Mitra</option>
                     @foreach ($mitras as $mitra)
                     <option>{{ $mitra->nama }}</option>
                     @endforeach
