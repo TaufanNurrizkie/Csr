@@ -8,42 +8,45 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $sector = 'Semua Sektor'; // Default value
-    public $sektors;
-    public $search = ''; // Properti untuk menyimpan input pencarian
-    public $projects; // Properti untuk menyimpan proyek yang sesuai pencarian
-    public $perPage = 8;
+    public $sector = 'Semua Sektor'; // Nilai default untuk sektor yang dipilih
+    public $search = ''; // Properti untuk input pencarian
+    public $perPage = 8; // Jumlah proyek yang ditampilkan per halaman
 
     public function loadMore()
     {
-        // Menambah jumlah laporan yang ditampilkan
+        // Menambah jumlah proyek yang ditampilkan
         $this->perPage += 8;
-    }
-
-    public function getPhotoAttribute($value)
-    {
-        return 'projects/photos/' . $value;
     }
 
     public function mount()
     {
-        // Ambil semua sektor dari database saat komponen pertama kali dimuat
+        // Ambil semua sektor saat komponen pertama kali dimuat
         $this->sektors = Sektor::all();
-        $this->projects = Project::with('sektor')->get(); // Ambil semua proyek awalnya
-    }
-
-    public function updatedSearch($value)
-    {
-        // Filter proyek berdasarkan input pencarian
-        $this->projects = Project::with('sektor')
-            ->where('judul', 'like', "%{$value}%") // Ganti 'name' dengan kolom yang sesuai di tabel proyek
-            ->get();
     }
 
     public function render()
     {
-        $sektor = Sektor::withCount('projects')->paginate($this->perPage); // Ambil sektor dengan jumlah proyek
-
-        return view('livewire.public.sektor.index', compact('sektor'))->layout('components.layouts.public');
+        // Ambil semua sektor untuk dropdown
+        $sektors = Sektor::all();
+    
+        // Filter proyek berdasarkan sektor dan pencarian
+        $projects = Project::with('sektor')
+            ->when($this->sector !== 'Semua Sektor', function ($query) {
+                $query->where('sektor_id', $this->sector);
+            })
+            ->when($this->search, function ($query) {
+                $query->where('judul', 'like', "%{$this->search}%");
+            })
+            ->take($this->perPage)
+            ->get();
+    
+        $sektor = Sektor::withCount('projects')->get(); // Ambil sektor dengan jumlah proyek
+    
+        return view('livewire.public.sektor.index', [
+            'sektor' => $sektor,
+            'sektors' => $sektors,
+            'projects' => $projects,
+        ])->layout('components.layouts.public');
     }
+    
 }

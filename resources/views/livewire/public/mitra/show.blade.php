@@ -52,7 +52,7 @@
     <div class="container mx-auto my-4 text-center">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-1 gap-y-4 justify-center"> <!-- Menggunakan gap-x-1 untuk jarak horizontal yang lebih kecil dan gap-y-4 untuk jarak vertikal -->
             @foreach ($reports as $report)
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+            <a href="{{ route('laporan.detail', $report->id) }}" class="bg-white rounded-lg shadow-lg overflow-hidden relative">
                 <img src="{{'../storage/' . $report->foto ?? 'https://via.placeholder.com/600x400' }}" alt="report Image"                    class="w-full h-48 object-cover">
                 <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
                   {{ \Carbon\Carbon::parse($report->tgl_realisasi)->format('d F, Y') }}
@@ -63,10 +63,10 @@
                     <p class="text-gray-600 text-sm mt-2 text-justify">{{ $report->deskripsi }}</p>
                 </div>
                 
-            </div>
+            </a>
                 @endforeach
             </div>
-            <a href="" class="inline-block mt-[30px] text-[#344054] font-semibold hover:underline">Lihat Semua Laporan</a>
+            <a href="/laporan" class="inline-block mt-[30px] text-[#344054] font-semibold hover:underline">Lihat Semua Laporan</a>
     </div>
     
     

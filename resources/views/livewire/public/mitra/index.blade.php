@@ -27,11 +27,13 @@
     <div class="container mx-auto my-8">
         <div class="flex justify-between items-center mb-4">
             <div class="flex space-x-4">
-                <select class="form-select bg-white border-gray-300 rounded-md">
-                    <option>Laporan Terbanyak</option>
-                </select>
+                <select wire:model.live="sortOption" class="form-select bg-white border-gray-300 rounded-md">
+                    <option value="terbanyak">Laporan Terbanyak</option>
+                    <option value="tersedikit">Laporan Tersedikit</option>
+                </select>                               
             </div>
-            <input type="text" placeholder="Cari Proyek" class="border-gray-300 p-2 rounded-lg w-full" wire:model.live="search" />
+            
+            <input type="text" placeholder="Cari Proyek" class="border-gray-300 p-2 rounded-lg w-full ml-2" wire:model.live="search" />
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-6">

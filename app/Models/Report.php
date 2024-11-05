@@ -43,5 +43,6 @@ class Report extends Model
       {
           return $this->belongsTo(Sektor::class, 'sektor_id');
       }
+      
 }
 

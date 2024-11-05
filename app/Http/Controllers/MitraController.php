@@ -53,7 +53,7 @@ class MitraController extends Controller
         $mitra->status = $request->status;
         $mitra->save();
 
-        return redirect()->route('mitra.index')->with('success', 'Mitra berhasil ditambahkan!');
+        return redirect()->route('mitra.mitra')->with('success', 'Mitra berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -90,7 +90,7 @@ public function update(Request $request, $id)
 
     $mitra->save();
 
-    return redirect()->route('mitra.index')->with('success', 'Mitra berhasil diperbarui!');
+    return redirect()->route('mitra.mitra')->with('success', 'Mitra berhasil diperbarui!');
 }
 
 public function nonaktifkan($id)
@@ -99,7 +99,7 @@ public function nonaktifkan($id)
     $mitra->status = 'Non-Aktif';
     $mitra->save();
 
-    return redirect()->route('mitra.index')->with('success', 'Mitra berhasil dinonaktifkan');
+    return redirect()->route('mitra.mitra')->with('success', 'Mitra berhasil dinonaktifkan');
 }
 
 public function aktifkan($id)
@@ -108,7 +108,7 @@ public function aktifkan($id)
     $mitra->status = 'Aktif'; // Ubah status menjadi Aktif
     $mitra->save();
 
-    return redirect()->route('mitra.index')->with('success', 'Mitra berhasil diaktifkan.');
+    return redirect()->route('mitra.mitra')->with('success', 'Mitra berhasil diaktifkan.');
 }
 
 

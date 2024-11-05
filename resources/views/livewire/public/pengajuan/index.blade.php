@@ -25,13 +25,13 @@
 
 
     <div class="max-w-xl mx-auto my-10">
-        <form wire:submit.prevent="submit" method="POST" class="bg-white p-6 rounded shadow-md">
+        <form wire:submit.prevent="submit" method="POST" class="bg-white p-6 rounded shadow-md text-black">
             @csrf
 
             <!-- Nama Lengkap -->
             <div class="mb-4">
                 <label class="block text-gray-700 font-bold mb-2">Nama Lengkap *</label>
-                <input type="text" wire:model="nama_lengkap" name="nama_lengkap" class="w-full border border-gray-300 p-2 rounded" required>
+                <input type="text" wire:model="nama_lengkap" name="nama_lengkap" class="w-full border border-gray-300 p-2 rounded " required>
             </div>
 
             <!-- Tanggal Lahir -->

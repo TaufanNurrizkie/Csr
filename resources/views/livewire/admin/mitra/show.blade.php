@@ -96,29 +96,31 @@
         </div>
     </div>
 
+    <script>
+        function openModal(action) {
+            const modal = document.getElementById('modal');
+            const form = document.getElementById('modal-form');
+    
+            if (action === 'aktifkan') {
+                document.getElementById('modal-title').innerText = 'Aktifkan Mitra?';
+                document.getElementById('modal-description').innerText = 'Mitra akan diaktifkan kembali.';
+                form.action = "{{ url('/admin/mitra/'.$mitra->id.'/aktifkan') }}"; // URL untuk mengaktifkan mitra
+            } else {
+                document.getElementById('modal-title').innerText = 'Non-Aktifkan Mitra?';
+                document.getElementById('modal-description').innerText = 'Mitra akan dinonaktifkan sementara, Anda bisa mengaktifkannya kembali.';
+                form.action = "{{ url('/admin/mitra/'.$mitra->id.'/nonaktifkan') }}"; // URL untuk menonaktifkan mitra
+            }
+    
+            modal.classList.remove('hidden');
+        }
+    
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+    </script>
+
 </div>
 
-<script>
-    function openModal(action) {
-        const modal = document.getElementById('modal');
-        const form = document.getElementById('modal-form');
 
-        if (action === 'aktifkan') {
-            document.getElementById('modal-title').innerText = 'Aktifkan Mitra?';
-            document.getElementById('modal-description').innerText = 'Mitra akan diaktifkan kembali.';
-            form.action = "{{ url('/mitra/'.$mitra->id.'/aktifkan') }}"; // URL untuk mengaktifkan mitra
-        } else {
-            document.getElementById('modal-title').innerText = 'Non-Aktifkan Mitra?';
-            document.getElementById('modal-description').innerText = 'Mitra akan dinonaktifkan sementara, Anda bisa mengaktifkannya kembali.';
-            form.action = "{{ url('/mitra/'.$mitra->id.'/nonaktifkan') }}"; // URL untuk menonaktifkan mitra
-        }
-
-        modal.classList.remove('hidden');
-    }
-
-    function closeModal() {
-        document.getElementById('modal').classList.add('hidden');
-    }
-</script>
 
 

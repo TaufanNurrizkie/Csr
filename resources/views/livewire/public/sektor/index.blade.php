@@ -60,18 +60,19 @@
             </div>
 
             <div class="grid grid-cols-4 gap-6 mb-10">
-                <!-- Input Tahun -->
-                <div class="col-span-1">
-                    <div class="relative">
-            <!-- Input Tahun dengan jQuery UI Datepicker -->
-            <select  id="sector" wire:model="sector" class="border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out">
-                <option value="Semua Sektor">Semua Sektor</option>
-                @foreach($sektors as $sektor)
-                    <option value="{{ $sektor->id }}">{{ $sektor->nama }}</option>
-                @endforeach
-            </select>
-                    </div>
-                </div>
+<!-- Input Tahun -->
+<div class="col-span-1">
+    <div class="relative">
+        <!-- Pastikan wire:model mengikat ke $sector -->
+        <select id="sector" wire:model="sector" class="border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 ease-in-out">
+            <option value="Semua Sektor">Semua Sektor</option>
+            @foreach($sektors as $sektor)
+                <option value="{{ $sektor->id }}">{{ $sektor->nama }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
 
                 <!-- Input Kuartal dengan select -->
                 <div class="col-span-2">
