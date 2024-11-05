@@ -101,7 +101,7 @@
             <div
                 class="flex justify-center w-full max-w-6xl space-x-4 p-6 bg-white border border-gray-200 rounded-lg shadow-md">
                 <!-- Tombol Revisi -->
-                <button   wire:click="hapusLaporan"
+                <a  
                     class="w-1/6 flex items-center justify-center px-4 py-2 border border-[#D0D5DD]  text-black rounded-md hover:bg-gray-200">
                     <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -117,10 +117,10 @@
                         </defs>
                     </svg>
                     Hapus
-                </button>
+                </a>
 
                 <!-- Tombol Terima -->
-                <button  wire:click="revisiLaporan"
+                <a  href="{{  route('mitra.laporan.edit', $laporan->id)  }}"
                     class="w-1/6 flex items-center justify-center space-x-2 px-4 py-2 bg-[#98100A] text-white rounded-md hover:bg-red-900">
                     <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +129,7 @@
                             stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     Revisi
-                </button>
+                </a>
             </div>
         </div>
     @endif

@@ -21,7 +21,7 @@ class CreateReportsTable extends Migration
 
             $table->unsignedBigInteger('reviewed_by')->nullable(); // Reviewer ID (nullable)
             $table->string('title'); // Report title
-            $table->string('mitra')->nullable(); // Partner (nullable)
+            $table->string('nama_mitra')->nullable(); // Partner (nullable)
             $table->string('lokasi')->nullable(); // Location (nullable)
             $table->decimal('realisasi', 15, 2)->nullable(); // Realization amount (nullable)
 
@@ -30,7 +30,7 @@ class CreateReportsTable extends Migration
 
             $table->date('tgl_realisasi')->nullable(); // Realization date (nullable)
             $table->date('laporan_dikirim')->nullable(); // Report sent date (nullable)
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // Status
+            $table->enum('status', ['pending', 'approved', 'rejected', 'revisi'])->default('pending'); // Status
             $table->timestamps(); // Created at and updated at timestamps
             $table->text('suggestion')->nullable(); // Suggestions (nullable)
 
