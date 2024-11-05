@@ -9,7 +9,7 @@ use App\Http\Controllers\SectorController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\NotificationController;
-
+use App\Livewire\Mitra\EditLaporan;
 
 
 Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
@@ -129,4 +129,6 @@ Route::middleware([
     Route::get('/mitra/laporan', App\Livewire\Mitra\Laporan::class)->name('mitra.laporan');
     Route::get('/mitra/laporan/create', App\Livewire\Mitra\CreateLaporan::class)->name('mitra.laporan.create');
     Route::get('/mitra/laporan/{id}', App\Livewire\Mitra\ShowLaporan::class)->name('mitra.laporan.show');
+    Route::get('/mitra/laporan/{id}/edit', App\Livewire\Mitra\EditLaporan::class)->name('mitra.laporan.edit');
+    
 });
