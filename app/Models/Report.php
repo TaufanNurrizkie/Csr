@@ -23,7 +23,7 @@ class Report extends Model
         'project_id',
         'user_id',
         'foto',
-        'mitra',
+        'nama_mitra',
     ];
 
 

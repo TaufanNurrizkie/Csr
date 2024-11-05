@@ -34,7 +34,6 @@ class Index extends Component
 
     public function render()
     {
-        // Query laporan dengan filter mitra_id dan pencarian, serta pagination
         $laporans = Report::when($this->selectedMitra, function ($query) {
                 $query->where('mitra_id', $this->selectedMitra);
             })
@@ -49,5 +48,6 @@ class Index extends Component
             'laporans' => $laporans,
             'mitras' => $mitras,
         ])->layout('components.layouts.public');
+
     }
 }

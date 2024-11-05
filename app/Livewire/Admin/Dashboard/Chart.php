@@ -20,6 +20,10 @@ class Chart extends Component
 
     public function render()
     {
+        // Ambil data sektor dan mitra dari database
+        $sektors = Sektor::all(); // Mengambil semua sektor
+        $mitras = Mitra::all(); // Mengambil semua mitra
+
         // Proses data proyek
         $projects = Project::query()
             ->when($this->search, function ($query) {
@@ -30,19 +34,6 @@ class Chart extends Component
             })
             ->when($this->sector !== 'Semua Sektor', function ($query) {
                 $query->where('sektor_id', $this->sector);
-            })
-            ->when($this->status !== 'all', function ($query) {
-                $query->where('status', $this->status);
-            })
-            ->paginate(10);
-
-        // Proses data sektor
-        $sektors = Sektor::query()
-            ->when($this->search, function ($query) {
-                $query->where('nama', 'like', '%' . $this->search . '%');
-            })
-            ->when($this->year, function ($query) {
-                $query->whereYear('created_at', $this->year);
             })
             ->when($this->status !== 'all', function ($query) {
                 $query->where('status', $this->status);
@@ -82,10 +73,8 @@ class Chart extends Component
 
         $barChart = LarapexChart::horizontalBarChart()
             ->setTitle('Total Realisasi Berdasarkan Sektor CSR')
-
             ->setColors(['#00E396', '#feb019', '#ff455f', '#775dd0', '#80effe'])
             ->setDataset([['name' => 'Realisasi', 'data' => $data1]])
-
             ->setXAxis($namabar);
 
         // Data untuk bar chart berdasarkan PT
@@ -122,7 +111,7 @@ class Chart extends Component
             ->setXAxis($lokasi);
 
         // Kembalikan view dengan semua data
-        if(Auth::user() && Auth::user()->hasRole('admin')) {
+        if (Auth::user() && Auth::user()->hasRole('admin')) {
             return view('livewire.admin.dashboard.chart', [
                 'pieChart' => $pieChart,
                 'barChart' => $barChart,
@@ -132,11 +121,10 @@ class Chart extends Component
                 'jumlahCSR' => $jumlahCSR,
                 'jumlahApproved' => $jumlahApproved,
                 'totalDanaCsr' => $totalDanaCsr,
-                'sektors' => $sektors, // Tambahkan variabel sektors
-                'projects' => $projects, // Tambahkan variabel projects
+                'sektors' => $sektors,
+                'mitras' => $mitras,
+                'projects' => $projects,
             ])->layout('components.layouts.admin');
         }
-
     }
 }
-
