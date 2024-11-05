@@ -13,8 +13,8 @@
         <div class="absolute inset-0 flex items-center justify-start pl-20" style="top: 50%; transform: translateY(-50%);">
             <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
                 <p class="text-lg">
-                    <span class="text-[#E66445]">Beranda</span> /
-                    <span class="text-white">Statistik</span>
+                    <a href="/" class="text-[#E66445]">Beranda</a> /
+                    <a class="text-white">Sektor</a>
                 </p>
                 <h1 class="text-7xl font-bold">Sektor</h1>
                 <p class="mt-2 text-sm">Program CSR Yang Sudah Berjalan Di Kabupaten Cirebon</p>

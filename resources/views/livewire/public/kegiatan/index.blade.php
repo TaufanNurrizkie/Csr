@@ -12,8 +12,8 @@
         <div class="absolute inset-0 flex items-center justify-start pl-20" style="top: 50%; transform: translateY(-50%);">
             <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
                 <p class="text-lg">
-                    <span class="text-[#E66445]">Beranda</span> /
-                    <span class="text-white">Kegiatan</span>
+                    <a href="/" class="text-[#E66445]">Beranda</a> /
+                    <a class="text-white">Kegiatan</a>
                 </p>
                 <h1 class="text-7xl font-bold">Kegiatan</h1>
                 <p class="mt-2 text-sm">Kegiatan Terkini Dari CSR Kabupaten Cirebon</p>
@@ -25,23 +25,22 @@
     
 
     <!-- Filter and Search -->
-    <div class="filter-section my-8 container mx-auto">
-        <div class="flex justify-between items-center space-x-4">
-            <div class="w-[240px]">
-                <select class="form-select w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500">
-                    <option selected>Terbaru</option>
-                    <option value="1">Kategori 1</option>
-                    <option value="2">Kategori 2</option>
-                </select>
-            </div>
-            <div class="w-full ml-8">
-                <input type="text" placeholder="Cari Proyek" class="border-gray-300 p-2 rounded-lg w-full" wire:model.live="search" />
-            </div>
+<div class="filter-section my-8 container mx-auto">
+    <div class="flex justify-between items-center space-x-4">
+        <div class="w-[240px]">
+            <select wire:model="sortBy" class="form-select w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500">
+                <option value="desc">Terbaru</option>
+                <option value="asc">Terlama</option>
+            </select>
+        </div>
+        <div class="w-full ml-8">
+            <input type="text" placeholder="Cari Proyek" class="border-gray-300 p-2 rounded-lg w-full" wire:model="search" />
         </div>
     </div>
+</div>
 
     <!-- Kegiatan Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 container mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 container mx-auto mt-4">
         @foreach($kegiatan as $item)
         <div class="bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <a href="{{ route('kegiatan.show', $item->id) }}" wire:navigate>

@@ -17,7 +17,7 @@ class Index extends Component
        // Hitung data yang diperlukan
        $jumlahMitra = Mitra::count();
        $jumlahCSR = Project::count();
-       $jumlahApproved = Report::where('status', 'approved')->count();
+       $jumlahProyekTerealisasi = Project::where('status', 'terbit')->count();
        $totalDanaCsr = Report::sum('realisasi');
 
        // Data untuk pie chart
@@ -93,7 +93,7 @@ class Index extends Component
             'barChart3' => $barChart3,
             'jumlahMitra' => $jumlahMitra,
             'jumlahCSR' => $jumlahCSR,
-            'jumlahApproved' => $jumlahApproved,
+            'jumlahProyekTerealisasi' => $jumlahProyekTerealisasi,
             'totalDanaCsr' => $totalDanaCsr,
         ])->layout('components.layouts.public');
     }

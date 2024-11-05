@@ -13,8 +13,8 @@
             <div class="absolute inset-0 flex items-center justify-start pl-20" style="top: 50%; transform: translateY(-50%);">
                 <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
                     <p class="text-lg">
-                        <span class="text-[#E66445]">Beranda</span> /
-                        <span class="text-white">Tentang</span>
+                        <a href="/" class="text-[#E66445]">Beranda</a> /
+                        <a class="text-white">Tentang</a>
                     </p>
                     <h1 class="text-7xl font-bold">Tentang</h1>
                     <p class="mt-2 text-sm">Tentang Csr Kabupaten Cirebon</p>
@@ -97,26 +97,28 @@
       <div class="w-10 h-1 bg-[#FF5D56] mb-2 mx-auto"></div>
  <!-- Garis merah di atas -->
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Laporan Program <br> Terbaru</h2>
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($reports as $report)
             <!-- Card -->
-            <div class="bg-white shadow-lg overflow-hidden">
-                <!-- Use dynamic image path -->
-                <img src="{{ asset('storage/' . $report->foto) }}" alt="Kegiatan" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <span class="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded mb-2">{{ $report->tgl_realisasi }}</span>
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $report->title }}</h3>
-                    <p class="text-sm text-gray-600 mb-4">
-                        {{ $report->deskripsi }}
-                    </p>
-                </div>
-            </div>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
+              <a href="{{ route('laporan.detail', $report->id) }}" wire:navigate>
+              <img src="{{'storage/' . $report->foto ?? 'https://via.placeholder.com/600x400' }}" alt="report Image"
+                  class="w-full h-48 object-cover">
+                </a>
+              <div class="absolute top-3 left-2 bg-red-600 text-white px-3 py-1 text-xs rounded">
+                {{ \Carbon\Carbon::parse($report->laporan_dikirim)->format('d F, Y') }}
+              </div>
+              <div class="p-4">
+                  <h3 class="text-lg font-bold text-gray-800">{{ $report->title }}</h3>
+                  <p class="text-gray-600 text-sm mt-2">{{ Str::limit($report->deskripsi, 100) }}</p>
+              </div>
+          </div>
             @endforeach
         </div>
 
         <div class="flex justify-center mt-8">
-            <a href="#" class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
-                Lihat semua laporan
+            <a href="/kegiatan" wire:navigate class="border-2 border-gray-300 text-gray-600 hover:text-blue-700 hover:border-blue-700 font-semibold py-2 px-6 rounded">
+                Lihat semua kegiatan
             </a>
         </div>
     </div>

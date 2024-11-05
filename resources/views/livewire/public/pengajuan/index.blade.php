@@ -13,9 +13,9 @@
         <div class="absolute inset-0 flex items-center justify-start pl-20" style="top: 50%; transform: translateY(-50%);">
             <div class="relative z-10 text-white text-left flex flex-col ml-20"> <!-- Menambahkan margin kiri -->
                 <p class="text-lg">
-                    <span class="text-[#E66445]">Beranda</span> /
-                    <span class="text-[#E66445]">Tentang</span> /
-                    <span class="text-white">Pengajuan</span>
+                    <a href="/" class="text-[#E66445]">Beranda</a> /
+                    <a href="{{ route('tentang') }}" wire:navigate class="text-[#E66445]">Tentang</a> /
+                    <a class="text-white">Pengajuan</span>
                 </p>
                 <h1 class="text-7xl font-bold">Pengajuan</h1>
                 <p class="mt-2 text-sm">Tentang CSR Kabupaten Cirebon</p>
