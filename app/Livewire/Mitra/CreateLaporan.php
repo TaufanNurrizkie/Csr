@@ -95,8 +95,7 @@ class CreateLaporan extends Component
             'foto' => json_encode($uploadedPhotos), // Menyimpan URL gambar dalam format JSON
         ]);
 
-        session()->flash('message', 'Laporan berhasil disimpan.');
-        $this->resetForm();
+        return redirect()->route('mitra.dashboard')->with('success', 'Laporan berhasil dibuat.');
     }
 
     // Fungsi reset form
