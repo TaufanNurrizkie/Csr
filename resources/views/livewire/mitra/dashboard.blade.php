@@ -203,6 +203,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.35.3"></script>
+
 {{ $pieChart->script() }}
 {{ $barChart->script() }}
 {{ $barChart2->script() }}

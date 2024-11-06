@@ -130,5 +130,6 @@ Route::middleware([
     Route::get('/mitra/laporan/create', App\Livewire\Mitra\CreateLaporan::class)->name('mitra.laporan.create');
     Route::get('/mitra/laporan/{id}', App\Livewire\Mitra\ShowLaporan::class)->name('mitra.laporan.show');
     Route::get('/mitra/laporan/{id}/edit', App\Livewire\Mitra\EditLaporan::class)->name('mitra.laporan.edit');
+
     
 });

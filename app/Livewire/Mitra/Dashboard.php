@@ -43,7 +43,7 @@ class Dashboard extends Component
         $jumlahApproved = Report::where('user_id', $user->id)->where('status', 'approved')->count();
         $totalDanaCsr = Report::where('user_id', $user->id)->sum('realisasi');
 
-        // Data untuk pie chart
+
         // Data untuk pie chart
         $sektorsForPieChart = Sektor::with(['reports' => function ($query) {
             $query->select('sektor_id', DB::raw('SUM(realisasi) as total_realisasi'))->groupBy('sektor_id');

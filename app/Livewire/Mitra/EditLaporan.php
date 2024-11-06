@@ -91,7 +91,7 @@ class EditLaporan extends Component
         ]);
 
         // Redirect ke halaman daftar laporan
-        return redirect()->route('mitra.laporan')->with('success', 'Laporan berhasil diperbarui.');
+        return redirect()->route('mitra.dashboard')->with('success', 'Laporan berhasil diperbarui.');
     }
 
     public function saveDraft()
